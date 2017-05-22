@@ -1,110 +1,185 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.IO;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace Homologador.Fe.Auth
 {
     public class SunatAuth
     {
-        private readonly string _ruc;
+        protected readonly string Ruc;
         private readonly string _user;
         private readonly string _password;
 
-        private readonly CookieContainer _cookies = new CookieContainer();
+        private CookieContainer _cookies;
+        private string _location;
 
-        public SunatAuth(string ruc, string user, string password)
+        protected SunatAuth(string ruc, string user, string clave)
         {
-            _ruc = ruc;
+            Ruc = ruc;
             _user = user;
-            _password = password;
+            _password = clave;
         }
 
-        /// <summary>
-        /// Logins this instance.
-        /// </summary>
-        /// <returns>Task&lt;System.Boolean&gt;.</returns>
-        public async Task<bool> Login()
+        protected HttpClient CreatClient()
         {
-
-
-            using (var client = GetClient())
+            var handler = new HttpClientHandler
             {
-                var content = new FormUrlEncodedContent(new []
-                {
-                    new KeyValuePair<string, string>("username", _ruc + _user), 
-                    new KeyValuePair<string, string>("password", _password), 
-                    new KeyValuePair<string, string>("captcha", string.Empty), 
-                    new KeyValuePair<string, string>("params", "*&*&/cl-ti-itmenu/MenuInternet.htm&b64d26a8b5af091923b23b6407a1c1db41e733a6"), 
-                    new KeyValuePair<string, string>("exe", string.Empty) 
-                });
-
-
-                var r = await client.PostAsync("https://e-menu.sunat.gob.pe/cl-ti-itmenu/AutenticaMenuInternet.htm", content);
-                //if (r.Headers.Contains("Location"))
-                if (r.IsSuccessStatusCode)
-                {
-                    return true;
-                }
-                return false;
-            }
-        }
-
-        /// <summary>
-        /// Gets the solicitudes.
-        /// </summary>
-        /// <example>
-        /// Response:
-        /// {"items":[{"estado":"En proceso-Set de pruebas","fecnot":"","numsol":"3050825980023","compro":" Factura, Boleta","fecpre":"11\/05\/2017"},{"estado":"No aprobada","fecnot":"27\/03\/2017","numsol":"3021701500023","compro":" Factura, Boleta","fecpre":"27\/02\/2017"}],"identifier":"numsol"}
-        /// </example>
-        /// <returns>Task&lt;System.String&gt;.</returns>
-        public async Task<string> GetSolicitudes()
-        {
-            await SetUrl();
-            using (var client = GetClient())
-            {
-                var r = await client.GetAsync("https://ww1.sunat.gob.pe/cl-ti-itconestsol/Consulta.htm?accion=consultaTodasSolicitudes&numRUC=" + _ruc +"&indTipoContrib=0");
-                if (!r.IsSuccessStatusCode) return null;
-
-                return await r.Content.ReadAsStringAsync();
-            }    
-        }
-
-        public async Task<string> GetPruebas(string numProceso)
-        {
-            using (var client = GetClient())
-            {
-                var content = new FormUrlEncodedContent(new []
-                {
-                    new KeyValuePair<string, string>("accion", "mostrarDashboard"),
-                    new KeyValuePair<string, string>("numProceso", numProceso),
-                    new KeyValuePair<string, string>("numRUC", _ruc)
-                });
-                var r = await client.PostAsync("https://ww1.sunat.gob.pe/cl-ti-itconestsol/Consulta.htm", content);
-                if (!r.IsSuccessStatusCode) return null;
-
-                return await r.Content.ReadAsStringAsync();
-            }
-        }
-
-        private HttpClient GetClient()
-        {
-            var handler = new HttpClientHandler()
-            {
-                AllowAutoRedirect = true,
+                AllowAutoRedirect = false,
                 CookieContainer = _cookies
             };
             var client = new HttpClient(handler);
             return client;
         }
 
-        private async Task SetUrl()
+        public void Init()
         {
-            using (var client = GetClient())
+            LoadCookies();
+        }
+
+        public void Login()
+        {
+            _location = "https://e-menu.sunat.gob.pe/cl-ti-itmenu/AutenticaMenuInternet.htm";
+            _cookies = new CookieContainer();
+            Send(new NameValueCollection
             {
-                 var r = await client.GetAsync("https://e-menu.sunat.gob.pe/cl-ti-itmenu/MenuInternet.htm?action=execute&code=11.9.3.1.1&s=ww1");
-                var heads = r.Headers;
+                {"username", Ruc + _user},
+                {"password", _password},
+                {"captcha", ""},
+                {"params", "*&*&/cl-ti-itmenu/MenuInternet.htm&b64d26a8b5af091923b23b6407a1c1db41e733a6"},
+                {"exe", ""},
+            });
+            _location = "https://e-menu.sunat.gob.pe/cl-ti-itmenu/MenuInternet.htm?action=execute&code=11.9.3.1.1&s=ww1";
+            Send();
+            WriteCookies();
+        }
+
+        public void ProcessCookies(HttpWebResponse res)
+        {
+            SetLocation(res);
+        }
+
+        private void Send(NameValueCollection data = null)
+        {
+            while (true)
+            {
+                var http = (HttpWebRequest)WebRequest.Create(_location);
+                http.AllowAutoRedirect = false;
+                http.CookieContainer = _cookies;
+                if (data != null)
+                {
+                    http.Method = "POST";
+                    http.ContentType = "application/x-www-form-urlencoded";
+                    var postData = GetData(data);
+                    http.ContentLength = postData.Length;
+                    WriteData(http, postData);
+                }
+                else
+                    http.Method = "GET";
+                if (Output((HttpWebResponse)http.GetResponse()))
+                {
+                    data = null;
+                    continue;
+                }
+                break;
             }
+        }
+
+        private byte[] GetData(NameValueCollection objs)
+        {
+            var concat = string.Empty;
+            var content = string.Empty;
+            for (var i = 0; i < objs.Count; i++)
+            {
+                var value = Uri.EscapeDataString(objs[i]);
+                content += concat + objs.GetKey(i) + "=" + value;
+                concat = "&";
+            }
+            var data = Encoding.ASCII.GetBytes(content);
+            return data;
+        }
+
+        private void WriteData(WebRequest req, byte[] data)
+        {
+            using (var stream = req.GetRequestStream())
+            {
+                stream.Write(data, 0, data.Length);
+            }
+        }
+
+        private bool SetLocation(HttpWebResponse resp)
+        {
+            var heads = resp.Headers;
+            for (var i = 0; i < heads.Count; i++)
+            {
+                var key = heads.GetKey(i);
+                if (key != "Location") continue;
+                _location = heads[i];
+                var prevDomain = resp.ResponseUri.Host;
+                var url = new Uri(_location);
+                var newDomain = url.Host;
+                if (prevDomain != newDomain)
+                    foreach (Cookie cookie in resp.Cookies)
+                        _cookies.Add(url, cookie);
+                return true;
+            }
+            return false;
+        }
+
+        private bool Output(HttpWebResponse resp)
+        {
+            var st = resp.GetResponseStream();
+            try
+            {
+                if (st != null)
+                    using (var wr = new StreamReader(st))
+                    {
+                        wr.Read();
+                        //var r = wr.ReadToEnd();
+                        //Console.Write(r);
+                    }
+                //foreach (Cookie cook in resp.Cookies)
+                //{
+                //    cook.Expires = new DateTime();
+                //}
+            }
+            catch
+            {
+                // ignored
+            }
+
+            return SetLocation(resp);
+        }
+
+        private void WriteCookies()
+        {
+            var format = new BinaryFormatter();
+            using (var file = File.Create("cooks.dat"))
+            {
+                format.Serialize(file, _cookies);
+            }
+        }
+        private void LoadCookies()
+        {
+            var filename = "cooks.dat";
+            if (File.Exists(filename))
+            {
+                var format = new BinaryFormatter();
+                using (var file = File.OpenRead(filename))
+                {
+                    _cookies = (CookieContainer)format.Deserialize(file);
+                    var cook = _cookies.GetCookies(new Uri("https://e-menu.sunat.gob.pe"));
+                    _cookies.Add(cook);
+                }
+                return;
+            }
+            Login();
         }
     }
 }

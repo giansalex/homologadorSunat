@@ -18,7 +18,7 @@ namespace Homologador
 {
     public partial class MainForm : MetroForm
     {
-        private SunatAuth _auth;
+        private SunatApi _auth;
         public MainForm()
         {
             InitializeComponent();
@@ -28,7 +28,7 @@ namespace Homologador
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            _auth = new SunatAuth("", "", "");
+            _auth = new SunatApi("", "", "");
             //tbDocs.Enabled = false;
         }
 
@@ -205,16 +205,16 @@ namespace Homologador
                             subGroup[num - 1].HasNotaCredit = true;
                         else
                             subGroup[num - 1].HasNotaDebit = true;
-                        continue;
                     }
 
                     var cs = new Caso
                     {
+                        Codigo = (string)caso1["codcaso"],
                         Documento = (string)caso1["numdoc"],
                         Grupo = group,
                         Descripcion = desc,
                         Estado = (string)caso1["estado"],
-                        Lines = num
+                        Lines = isNota ? 0 : num
                     };
                     subGroup.Add(cs);
                 }
