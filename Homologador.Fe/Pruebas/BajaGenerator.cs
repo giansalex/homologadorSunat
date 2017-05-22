@@ -6,7 +6,7 @@ using FacturacionElectronica.GeneradorXml.Entity.Details;
 using FacturacionElectronica.GeneradorXml.Enums;
 using Homologador.Model;
 
-namespace Homologador.Pruebas
+namespace Homologador.Fe.Pruebas
 {
     public class BajaGenerator
     {

@@ -1,0 +1,19 @@
+﻿{
+  "items": [
+    {
+      "estado": "En proceso-Set de pruebas",
+      "fecnot": "",
+      "numsol": "3050825980023",
+      "compro": " Factura, Boleta",
+      "fecpre": "11/05/2017"
+    },
+    {
+      "estado": "No aprobada",
+      "fecnot": "27/03/2017",
+      "numsol": "3021701500023",
+      "compro": " Factura, Boleta",
+      "fecpre": "27/02/2017"
+    }
+  ],
+  "identifier": "numsol"
+}

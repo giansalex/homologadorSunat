@@ -1,0 +1,753 @@
+﻿{
+  "estadoetapa": "INICIADO",
+  "fecfinetapa": "-",
+  "boletas": [
+    {
+      "nomGrupo": "Venta gravadas con IGV",
+      "casos": [
+        {
+          "estado": "Aprobado",
+          "numticket": "201700978271360",
+          "descaso": "Boleta de Venta 1 con 4 items",
+          "numdoc": "BB11-4",
+          "fecenvio": "17/05/2017 08:12",
+          "codcaso": "52"
+        },
+        {
+          "estado": "Aprobado",
+          "numticket": "201700981433951",
+          "descaso": "Boleta de Venta 2 con 7 items",
+          "numdoc": "BB11-1",
+          "fecenvio": "18/05/2017 07:53",
+          "codcaso": "53"
+        },
+        {
+          "estado": "Aprobado",
+          "numticket": "201700978323083",
+          "descaso": "Boleta de Venta 3 con 5 items",
+          "numdoc": "BB11-5",
+          "fecenvio": "17/05/2017 08:37",
+          "codcaso": "54"
+        },
+        {
+          "estado": "Aprobado",
+          "numticket": "201700978271911",
+          "descaso": "Boleta de Venta 4 con 3 items",
+          "numdoc": "BB11-3",
+          "fecenvio": "17/05/2017 08:12",
+          "codcaso": "55"
+        },
+        {
+          "estado": "Aprobado",
+          "numticket": "201700978272752",
+          "descaso": "Boleta de Venta 5 con 2 items",
+          "numdoc": "BB11-2",
+          "fecenvio": "17/05/2017 08:13",
+          "codcaso": "56"
+        },
+        {
+          "estado": "Aprobado",
+          "numticket": "201700981441213",
+          "descaso": "Nota de crédito de Boleta de Venta 2",
+          "numdoc": "BB11-1",
+          "fecenvio": "18/05/2017 07:55",
+          "codcaso": "57"
+        },
+        {
+          "estado": "No enviado",
+          "numticket": "-",
+          "descaso": "Nota de crédito de Boleta de Venta 3",
+          "numdoc": "",
+          "fecenvio": "",
+          "codcaso": "58"
+        },
+        {
+          "estado": "No enviado",
+          "numticket": "-",
+          "descaso": "Nota de crédito de Boleta de Venta 4",
+          "numdoc": "",
+          "fecenvio": "",
+          "codcaso": "59"
+        },
+        {
+          "estado": "Aprobado",
+          "numticket": "201700981447499",
+          "descaso": "Nota de débito de Boleta de Venta 2",
+          "numdoc": "BB11-1",
+          "fecenvio": "18/05/2017 07:58",
+          "codcaso": "60"
+        },
+        {
+          "estado": "No enviado",
+          "numticket": "-",
+          "descaso": "Nota de débito de Boleta de Venta 3",
+          "numdoc": "",
+          "fecenvio": "",
+          "codcaso": "61"
+        },
+        {
+          "estado": "No enviado",
+          "numticket": "-",
+          "descaso": "Nota de débito de Boleta de Venta 4",
+          "numdoc": "",
+          "fecenvio": "",
+          "codcaso": "62"
+        }
+      ],
+      "codGrupo": 8
+    },
+    {
+      "nomGrupo": "Venta exoneradas y/o inafectas ",
+      "casos": [
+        {
+          "estado": "No aprobado",
+          "numticket": "201700984583014",
+          "descaso": "Boleta de Venta 1 con 2 items",
+          "numdoc": "BB12-1",
+          "fecenvio": "19/05/2017 07:19",
+          "codcaso": "63"
+        },
+        {
+          "estado": "No aprobado",
+          "numticket": "201700984751845",
+          "descaso": "Boleta de Venta 2 con 4 items",
+          "numdoc": "BB12-3",
+          "fecenvio": "19/05/2017 08:29",
+          "codcaso": "64"
+        },
+        {
+          "estado": "No aprobado",
+          "numticket": "201700984760110",
+          "descaso": "Boleta de Venta 3 con 7 items",
+          "numdoc": "BB12-5",
+          "fecenvio": "19/05/2017 08:33",
+          "codcaso": "65"
+        },
+        {
+          "estado": "No aprobado",
+          "numticket": "201700984581697",
+          "descaso": "Boleta de Venta 4 con 5 items",
+          "numdoc": "BB12-4",
+          "fecenvio": "19/05/2017 07:19",
+          "codcaso": "66"
+        },
+        {
+          "estado": "No aprobado",
+          "numticket": "201700984582606",
+          "descaso": "Boleta de Venta 5 con 1 item",
+          "numdoc": "BB12-2",
+          "fecenvio": "19/05/2017 07:19",
+          "codcaso": "67"
+        },
+        {
+          "estado": "No enviado",
+          "numticket": "-",
+          "descaso": "Nota de crédito de Boleta de Venta 1",
+          "numdoc": "",
+          "fecenvio": "",
+          "codcaso": "68"
+        },
+        {
+          "estado": "No enviado",
+          "numticket": "-",
+          "descaso": "Nota de crédito de Boleta de Venta 4",
+          "numdoc": "",
+          "fecenvio": "",
+          "codcaso": "69"
+        },
+        {
+          "estado": "No enviado",
+          "numticket": "-",
+          "descaso": "Nota de crédito de Boleta de Venta 5",
+          "numdoc": "",
+          "fecenvio": "",
+          "codcaso": "70"
+        },
+        {
+          "estado": "No enviado",
+          "numticket": "-",
+          "descaso": "Nota de débito de Boleta de Venta 1",
+          "numdoc": "",
+          "fecenvio": "",
+          "codcaso": "71"
+        },
+        {
+          "estado": "No enviado",
+          "numticket": "-",
+          "descaso": "Nota de débito de Boleta de Venta 4",
+          "numdoc": "",
+          "fecenvio": "",
+          "codcaso": "72"
+        },
+        {
+          "estado": "No enviado",
+          "numticket": "-",
+          "descaso": "Nota de débito de Boleta de Venta 5",
+          "numdoc": "",
+          "fecenvio": "",
+          "codcaso": "73"
+        }
+      ],
+      "codGrupo": 9
+    },
+    {
+      "nomGrupo": "Venta gratuitas",
+      "casos": [
+        {
+          "estado": "Aprobado",
+          "numticket": "201700981134845",
+          "descaso": "Boleta de Venta 1 con 7 items",
+          "numdoc": "BB13-337",
+          "fecenvio": "18/05/2017 05:55",
+          "codcaso": "74"
+        },
+        {
+          "estado": "Aprobado",
+          "numticket": "201700982985016",
+          "descaso": "Boleta de Venta 2 con 2 items",
+          "numdoc": "BB13-24344",
+          "fecenvio": "19/05/2017 09:43",
+          "codcaso": "75"
+        },
+        {
+          "estado": "Aprobado",
+          "numticket": "201700981136116",
+          "descaso": "Boleta de Venta 3 con 5 items",
+          "numdoc": "BB13-20337",
+          "fecenvio": "18/05/2017 05:56",
+          "codcaso": "76"
+        },
+        {
+          "estado": "Aprobado",
+          "numticket": "201700981137757",
+          "descaso": "Boleta de Venta 4 con 4 items",
+          "numdoc": "BB13-24337",
+          "fecenvio": "18/05/2017 05:56",
+          "codcaso": "77"
+        },
+        {
+          "estado": "Aprobado",
+          "numticket": "201700981133852",
+          "descaso": "Boleta de Venta 5 con 9 items",
+          "numdoc": "BB13-3437",
+          "fecenvio": "18/05/2017 05:55",
+          "codcaso": "78"
+        }
+      ],
+      "codGrupo": 10
+    },
+    {
+      "nomGrupo": "Venta con descuentos",
+      "casos": [
+        {
+          "estado": "No aprobado",
+          "numticket": "201700984905986",
+          "descaso": "Boleta de Venta 1 con 10 items",
+          "numdoc": "BB14-2",
+          "fecenvio": "19/05/2017 09:35",
+          "codcaso": "85"
+        },
+        {
+          "estado": "Aprobado",
+          "numticket": "201700984905584",
+          "descaso": "Boleta de Venta 2 con 7 items",
+          "numdoc": "BB14-1",
+          "fecenvio": "19/05/2017 09:35",
+          "codcaso": "86"
+        },
+        {
+          "estado": "No enviado",
+          "numticket": "-",
+          "descaso": "Boleta de Venta 3 con 6 items",
+          "numdoc": "",
+          "fecenvio": "",
+          "codcaso": "87"
+        },
+        {
+          "estado": "No aprobado",
+          "numticket": "201700984905813",
+          "descaso": "Boleta de Venta 4 con 9 items",
+          "numdoc": "BB14-3",
+          "fecenvio": "19/05/2017 09:35",
+          "codcaso": "88"
+        },
+        {
+          "estado": "No enviado",
+          "numticket": "-",
+          "descaso": "Boleta de Venta 5 con 4 items",
+          "numdoc": "",
+          "fecenvio": "",
+          "codcaso": "89"
+        },
+        {
+          "estado": "No enviado",
+          "numticket": "-",
+          "descaso": "Nota de crédito de Boleta de Venta 1",
+          "numdoc": "",
+          "fecenvio": "",
+          "codcaso": "90"
+        },
+        {
+          "estado": "No enviado",
+          "numticket": "-",
+          "descaso": "Nota de crédito de Boleta de Venta 2",
+          "numdoc": "",
+          "fecenvio": "",
+          "codcaso": "91"
+        },
+        {
+          "estado": "No enviado",
+          "numticket": "-",
+          "descaso": "Nota de crédito de Boleta de Venta 4",
+          "numdoc": "",
+          "fecenvio": "",
+          "codcaso": "92"
+        },
+        {
+          "estado": "No enviado",
+          "numticket": "-",
+          "descaso": "Nota de débito de Boleta de Venta 1",
+          "numdoc": "",
+          "fecenvio": "",
+          "codcaso": "93"
+        },
+        {
+          "estado": "No enviado",
+          "numticket": "-",
+          "descaso": "Nota de débito de Boleta de Venta 2",
+          "numdoc": "",
+          "fecenvio": "",
+          "codcaso": "94"
+        },
+        {
+          "estado": "No enviado",
+          "numticket": "-",
+          "descaso": "Nota de débito de Boleta de Venta 4",
+          "numdoc": "",
+          "fecenvio": "",
+          "codcaso": "95"
+        }
+      ],
+      "codGrupo": 11
+    },
+    {
+      "nomGrupo": "Venta con operaciones en otro tipo de moneda",
+      "casos": [
+        {
+          "estado": "Aprobado",
+          "numticket": "201700984910003",
+          "descaso": "Boleta de Venta 1 con 3 items",
+          "numdoc": "BB50-1",
+          "fecenvio": "19/05/2017 09:37",
+          "codcaso": "96"
+        },
+        {
+          "estado": "No enviado",
+          "numticket": "-",
+          "descaso": "Nota de crédito de Boleta de Venta 1",
+          "numdoc": "",
+          "fecenvio": "",
+          "codcaso": "97"
+        },
+        {
+          "estado": "No enviado",
+          "numticket": "-",
+          "descaso": "Nota de débito de Boleta de Venta 1",
+          "numdoc": "",
+          "fecenvio": "",
+          "codcaso": "98"
+        }
+      ],
+      "codGrupo": 12
+    },
+    {
+      "nomGrupo": "Resumen diario de boletas de venta",
+      "casos": [
+        {
+          "estado": "No enviado",
+          "numticket": "-",
+          "descaso": "Resumen diario de Boletas de venta",
+          "numdoc": "",
+          "fecenvio": "",
+          "codcaso": "99"
+        }
+      ],
+      "codGrupo": 13
+    }
+  ],
+  "facturas": [
+    {
+      "nomGrupo": "Ventas gravadas con IGV",
+      "casos": [
+        {
+          "estado": "Aprobado",
+          "numticket": "201700978214569",
+          "descaso": "Factura 1 con 3 items",
+          "numdoc": "FF11-3",
+          "fecenvio": "17/05/2017 07:49",
+          "codcaso": "1"
+        },
+        {
+          "estado": "Aprobado",
+          "numticket": "201700978214260",
+          "descaso": "Factura 2 con 2 items",
+          "numdoc": "FF11-2",
+          "fecenvio": "17/05/2017 07:49",
+          "codcaso": "2"
+        },
+        {
+          "estado": "Aprobado",
+          "numticket": "201700978271665",
+          "descaso": "Factura 3 con 1 items",
+          "numdoc": "FF11-6",
+          "fecenvio": "17/05/2017 08:12",
+          "codcaso": "3"
+        },
+        {
+          "estado": "Aprobado",
+          "numticket": "201700978215083",
+          "descaso": "Factura 4 con 5 items",
+          "numdoc": "FF11-5",
+          "fecenvio": "17/05/2017 07:49",
+          "codcaso": "4"
+        },
+        {
+          "estado": "Aprobado",
+          "numticket": "201700978214846",
+          "descaso": "Factura 5 con 4 items",
+          "numdoc": "FF11-4",
+          "fecenvio": "17/05/2017 07:49",
+          "codcaso": "5"
+        },
+        {
+          "estado": "Aprobado",
+          "numticket": "201700981276678",
+          "descaso": "Nota de crédito de factura 2",
+          "numdoc": "FF11-104",
+          "fecenvio": "18/05/2017 06:48",
+          "codcaso": "6"
+        },
+        {
+          "estado": "Aprobado",
+          "numticket": "201700978431503",
+          "descaso": "Nota de crédito de factura 3",
+          "numdoc": "FF11-103",
+          "fecenvio": "17/05/2017 09:29",
+          "codcaso": "7"
+        },
+        {
+          "estado": "Aprobado",
+          "numticket": "201700981374528",
+          "descaso": "Nota de crédito de factura 4",
+          "numdoc": "FF11-106",
+          "fecenvio": "18/05/2017 07:28",
+          "codcaso": "8"
+        },
+        {
+          "estado": "No enviado",
+          "numticket": "-",
+          "descaso": "Nota de débito de factura 2",
+          "numdoc": "",
+          "fecenvio": "",
+          "codcaso": "9"
+        },
+        {
+          "estado": "No enviado",
+          "numticket": "-",
+          "descaso": "Nota de débito de factura 3",
+          "numdoc": "",
+          "fecenvio": "",
+          "codcaso": "10"
+        },
+        {
+          "estado": "No enviado",
+          "numticket": "-",
+          "descaso": "Nota de débito de factura 4",
+          "numdoc": "",
+          "fecenvio": "",
+          "codcaso": "11"
+        }
+      ],
+      "codGrupo": 1
+    },
+    {
+      "nomGrupo": "Ventas inafectas  y/o exoneradas",
+      "casos": [
+        {
+          "estado": "Aprobado",
+          "numticket": "201700978403150",
+          "descaso": "Factura 1 con 1 item",
+          "numdoc": "FF12-1",
+          "fecenvio": "17/05/2017 09:15",
+          "codcaso": "12"
+        },
+        {
+          "estado": "No aprobado",
+          "numticket": "201700984747461",
+          "descaso": "Factura 2 con 4 items",
+          "numdoc": "FF12-2",
+          "fecenvio": "19/05/2017 08:27",
+          "codcaso": "13"
+        },
+        {
+          "estado": "No aprobado",
+          "numticket": "201700984579903",
+          "descaso": "Factura 3 con 7 items",
+          "numdoc": "FF12-3",
+          "fecenvio": "19/05/2017 07:18",
+          "codcaso": "14"
+        },
+        {
+          "estado": "No aprobado",
+          "numticket": "201700984749140",
+          "descaso": "Factura 4 con 5 items",
+          "numdoc": "FF12-4",
+          "fecenvio": "19/05/2017 08:28",
+          "codcaso": "15"
+        },
+        {
+          "estado": "Aprobado",
+          "numticket": "201700984749856",
+          "descaso": "Factura 5 con 6 items",
+          "numdoc": "FF12-5",
+          "fecenvio": "19/05/2017 08:28",
+          "codcaso": "16"
+        },
+        {
+          "estado": "No enviado",
+          "numticket": "-",
+          "descaso": "Nota de crédito de factura 1",
+          "numdoc": "",
+          "fecenvio": "",
+          "codcaso": "17"
+        },
+        {
+          "estado": "No enviado",
+          "numticket": "-",
+          "descaso": "Nota de crédito de factura 3",
+          "numdoc": "",
+          "fecenvio": "",
+          "codcaso": "18"
+        },
+        {
+          "estado": "No enviado",
+          "numticket": "-",
+          "descaso": "Nota de crédito de factura 5",
+          "numdoc": "",
+          "fecenvio": "",
+          "codcaso": "19"
+        },
+        {
+          "estado": "No enviado",
+          "numticket": "-",
+          "descaso": "Nota de débito de factura 1",
+          "numdoc": "",
+          "fecenvio": "",
+          "codcaso": "20"
+        },
+        {
+          "estado": "No enviado",
+          "numticket": "-",
+          "descaso": "Nota de débito de factura 3",
+          "numdoc": "",
+          "fecenvio": "",
+          "codcaso": "21"
+        },
+        {
+          "estado": "No enviado",
+          "numticket": "-",
+          "descaso": "Nota de débito de factura 5",
+          "numdoc": "",
+          "fecenvio": "",
+          "codcaso": "22"
+        }
+      ],
+      "codGrupo": 2
+    },
+    {
+      "nomGrupo": "Ventas gratuitas ",
+      "casos": [
+        {
+          "estado": "Aprobado",
+          "numticket": "201700981120155",
+          "descaso": "Factura 1 con 7 items",
+          "numdoc": "FF13-3437",
+          "fecenvio": "18/05/2017 05:50",
+          "codcaso": "23"
+        },
+        {
+          "estado": "Aprobado",
+          "numticket": "201700981101802",
+          "descaso": "Factura 2 con 2 items",
+          "numdoc": "FF13-1",
+          "fecenvio": "18/05/2017 05:44",
+          "codcaso": "24"
+        },
+        {
+          "estado": "Aprobado",
+          "numticket": "201700981109582",
+          "descaso": "Factura 3 con 5 items",
+          "numdoc": "FF13-3434",
+          "fecenvio": "18/05/2017 05:47",
+          "codcaso": "25"
+        },
+        {
+          "estado": "Aprobado",
+          "numticket": "201700981107835",
+          "descaso": "Factura 4 con 4 items",
+          "numdoc": "FF13-3034",
+          "fecenvio": "18/05/2017 05:46",
+          "codcaso": "26"
+        },
+        {
+          "estado": "Aprobado",
+          "numticket": "201700981106658",
+          "descaso": "Factura 5 con 3 items",
+          "numdoc": "FF13-34",
+          "fecenvio": "18/05/2017 05:46",
+          "codcaso": "27"
+        }
+      ],
+      "codGrupo": 3
+    },
+    {
+      "nomGrupo": "Ventas con descuento global",
+      "casos": [
+        {
+          "estado": "Aprobado",
+          "numticket": "201700984527244",
+          "descaso": "Factura 1 con 2 items",
+          "numdoc": "FF14-4",
+          "fecenvio": "19/05/2017 06:55",
+          "codcaso": "32"
+        },
+        {
+          "estado": "Aprobado",
+          "numticket": "201700984774777",
+          "descaso": "Factura 2 con 1 item",
+          "numdoc": "FF14-5",
+          "fecenvio": "19/05/2017 08:39",
+          "codcaso": "33"
+        },
+        {
+          "estado": "Aprobado",
+          "numticket": "201700984807273",
+          "descaso": "Factura 3 con 4 items",
+          "numdoc": "FF14-7",
+          "fecenvio": "19/05/2017 08:53",
+          "codcaso": "34"
+        },
+        {
+          "estado": "Aprobado",
+          "numticket": "201700984805188",
+          "descaso": "Factura 4 con 3 items",
+          "numdoc": "FF14-6",
+          "fecenvio": "19/05/2017 08:52",
+          "codcaso": "35"
+        },
+        {
+          "estado": "Aprobado",
+          "numticket": "201700984775078",
+          "descaso": "Factura 5 con 5 items",
+          "numdoc": "FF14-8",
+          "fecenvio": "19/05/2017 08:39",
+          "codcaso": "36"
+        },
+        {
+          "estado": "No enviado",
+          "numticket": "-",
+          "descaso": "Nota de crédito de factura 2",
+          "numdoc": "",
+          "fecenvio": "",
+          "codcaso": "37"
+        },
+        {
+          "estado": "No enviado",
+          "numticket": "-",
+          "descaso": "Nota de crédito de factura 3",
+          "numdoc": "",
+          "fecenvio": "",
+          "codcaso": "38"
+        },
+        {
+          "estado": "No enviado",
+          "numticket": "-",
+          "descaso": "Nota de crédito de factura 5",
+          "numdoc": "",
+          "fecenvio": "",
+          "codcaso": "39"
+        },
+        {
+          "estado": "No enviado",
+          "numticket": "-",
+          "descaso": "Nota de débito de factura 2",
+          "numdoc": "",
+          "fecenvio": "",
+          "codcaso": "40"
+        },
+        {
+          "estado": "No enviado",
+          "numticket": "-",
+          "descaso": "Nota de débito de factura 3",
+          "numdoc": "",
+          "fecenvio": "",
+          "codcaso": "41"
+        },
+        {
+          "estado": "No enviado",
+          "numticket": "-",
+          "descaso": "Nota de débito de factura 5",
+          "numdoc": "",
+          "fecenvio": "",
+          "codcaso": "42"
+        }
+      ],
+      "codGrupo": 4
+    },
+    {
+      "nomGrupo": "Ventas con operaciones en otras monedas",
+      "casos": [
+        {
+          "estado": "Aprobado",
+          "numticket": "201700984903515",
+          "descaso": "Factura 1 con 5 items",
+          "numdoc": "FF50-1",
+          "fecenvio": "19/05/2017 09:34",
+          "codcaso": "49"
+        },
+        {
+          "estado": "No enviado",
+          "numticket": "-",
+          "descaso": "Nota de crédito de factura 1",
+          "numdoc": "",
+          "fecenvio": "",
+          "codcaso": "50"
+        },
+        {
+          "estado": "No enviado",
+          "numticket": "-",
+          "descaso": "Nota de débito de factura 1",
+          "numdoc": "",
+          "fecenvio": "",
+          "codcaso": "51"
+        }
+      ],
+      "codGrupo": 7
+    },
+    {
+      "nomGrupo": "Comunicación de baja de numeración",
+      "casos": [
+        {
+          "estado": "Aprobado",
+          "numticket": "201700981054629",
+          "descaso": "Comunicación de Baja",
+          "numdoc": "20551520634-RA-20170518-01",
+          "fecenvio": "18/05/2017 05:28",
+          "codcaso": "100"
+        }
+      ],
+      "codGrupo": 14
+    }
+  ],
+  "fecinietapa": "17/05/2017"
+}

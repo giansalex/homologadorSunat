@@ -3,7 +3,7 @@ using FacturacionElectronica.GeneradorXml.Entity;
 using FacturacionElectronica.GeneradorXml.Entity.Details;
 using FacturacionElectronica.GeneradorXml.Enums;
 
-namespace Homologador.Pruebas
+namespace Homologador.Fe.Pruebas
 {
     public class NotaGenerator
     {

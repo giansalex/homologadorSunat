@@ -7,7 +7,7 @@ using FacturacionElectronica.GeneradorXml.Entity.Misc;
 using FacturacionElectronica.GeneradorXml.Enums;
 using Homologador.Model;
 
-namespace Homologador.Pruebas
+namespace Homologador.Fe.Pruebas
 {
     public class ResumenGenerator
     {
