@@ -13,7 +13,7 @@ namespace Homologador
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new ConfigurationForm());
+            Application.Run(new MainForm());
         }
     }
 }

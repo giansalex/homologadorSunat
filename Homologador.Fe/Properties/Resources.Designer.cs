@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Homologador.Properties {
+namespace Homologador.Fe.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace Homologador.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Homologador.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Homologador.Fe.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,32 +61,20 @@ namespace Homologador.Properties {
         }
         
         /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        ///   Busca una cadena traducida similar a https://e-menu.sunat.gob.pe/cl-ti-itmenu/AutenticaMenuInternet.htm.
         /// </summary>
-        internal static System.Drawing.Bitmap ajustes {
+        internal static string Auth {
             get {
-                object obj = ResourceManager.GetObject("ajustes", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
+                return ResourceManager.GetString("Auth", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        ///   Busca una cadena traducida similar a https://e-menu.sunat.gob.pe/cl-ti-itmenu/MenuInternet.htm?action=execute&amp;code=11.9.3.1.1&amp;s=ww1.
         /// </summary>
-        internal static System.Drawing.Bitmap Factura50 {
+        internal static string OpcionMenu {
             get {
-                object obj = ResourceManager.GetObject("Factura50", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap play {
-            get {
-                object obj = ResourceManager.GetObject("play", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
+                return ResourceManager.GetString("OpcionMenu", resourceCulture);
             }
         }
     }

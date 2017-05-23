@@ -122,6 +122,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Compartir-50.ico" />
+    <None Include="Resources\ajustes.png" />
     <None Include="Resources\play.png" />
   </ItemGroup>
   <ItemGroup>

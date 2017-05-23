@@ -6,10 +6,14 @@ using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using FacturacionElectronica.GeneradorXml;
+using FacturacionElectronica.GeneradorXml.Res;
+using FacturacionElectronica.Homologacion;
+using FacturacionElectronica.Homologacion.Res;
 using Homologador.Fe.Auth;
 using Homologador.Fe.Pruebas;
 using Homologador.Model;
 using Homologador.Properties;
+using Homologador.Pruebas;
 using MetroFramework;
 using MetroFramework.Forms;
 using Newtonsoft.Json.Linq;
@@ -26,22 +30,15 @@ namespace Homologador
             Load += MainForm_Load;
         }
 
-        private void MainForm_Load(object sender, EventArgs e)
+        private async void MainForm_Load(object sender, EventArgs e)
         {
-            _auth = new SunatApi("", "", "");
+            var sett = Settings.Default;
+            //TODO: Init Login from config validate with exist configuration
+            _auth = new SunatApi(sett.Ruc, sett.Usuario, sett.Clave);
+            await Extractor();
             //tbDocs.Enabled = false;
         }
 
-        private void LoadFacturas()
-        {
-            
-        }
-
-        private void LoadBoletas()
-        {
-
-        }
-        
 
         private void InitLoad()
         {
@@ -115,28 +112,33 @@ namespace Homologador
 
         private async Task Extractor()
         {
+            _auth.Init();
             var numpr = await GetNumProceso();
             if (string.IsNullOrEmpty(numpr))
             {
-                MetroMessageBox.Show(this, "No se encontro ningun proceso de homologación vigente", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MetroMessageBox.Show(this, "No se encontro ningún proceso de homologación vigente", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;    
             }
 
             var json = await _auth.GetPruebas(numpr);
-            var obj = JObject.Parse(json);
-            if (obj["fecfinetapa"].ToString() != "-")
+            if (json == null)
             {
-                MetroMessageBox.Show(this, "Ya finalizo el proceso de homologación", "Finalizado", MessageBoxButtons.OK);
+                MetroMessageBox.Show(this, "No se pudo obtener informacion de las pruebas", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            var facturas = (JArray)obj["facturas"];
-            var boletas = (JArray)obj["boletas"];
+            var obj = JObject.Parse(json);
+            //if (obj["fecfinetapa"].ToString() != "-")
+            //{
+            //    MetroMessageBox.Show(this, "Ya finalizo el proceso de homologación", "Finalizado", MessageBoxButtons.OK);
+            //    return;
+            //}
 
+            LoadFacs((JArray)obj["facturas"]);
+            LoadBols((JArray)obj["boletas"]);
         }
 
         private void LoadFacs(JArray facturas)
         {
-
             var facGroup = new List<Caso>();
             foreach (var factura in facturas)
             {
@@ -151,7 +153,7 @@ namespace Homologador
                 foreach (var caso1 in casos)
                 {
                     var desc = (string)caso1["descaso"];
-                    var isNota = desc.StartsWith("NOTA");
+                    var isNota = desc.StartsWith("NOTA", StringComparison.InvariantCultureIgnoreCase);
                     var num = GetNumItems(desc, isNota);
                     if (isNota)
                     {
@@ -159,11 +161,12 @@ namespace Homologador
                             subGroup[num - 1].HasNotaCredit = true;
                         else
                             subGroup[num - 1].HasNotaDebit = true;
-                        continue;
+                        //continue;
                     }
 
                     var cs = new Caso
                     {
+                        Codigo = (string)caso1["codcaso"],
                         Documento = (string)caso1["numdoc"],
                         Grupo = group,
                         Descripcion = desc,
@@ -174,15 +177,14 @@ namespace Homologador
                 }
                 facGroup.AddRange(subGroup);
             }
-
+            lblCountFact.Text = facGroup.Count + @" Registros";
             foreach (var gr in facGroup)
             {
-                gridFacturas.Rows.Add(gr.Grupo, gr.Descripcion, gr.Documento, gr.Estado, gr.Lines, gr.HasNotaCredit, gr.HasNotaDebit);
+                gridFacturas.Rows.Add(gr.Grupo, gr.Codigo, gr.Descripcion, gr.Documento, gr.Lines, gr.HasNotaCredit, gr.HasNotaDebit, gr.Estado);
             }
         }
         private void LoadBols(JArray boletas)
         {
-
             var bolGroup = new List<Caso>();
             foreach (var boleta in boletas)
             {
@@ -197,7 +199,7 @@ namespace Homologador
                 foreach (var caso1 in casos)
                 {
                     var desc = (string)caso1["descaso"];
-                    var isNota = desc.StartsWith("NOTA");
+                    var isNota = desc.StartsWith("NOTA", StringComparison.InvariantCultureIgnoreCase);
                     var num = GetNumItems(desc, isNota);
                     if (isNota)
                     {
@@ -220,10 +222,10 @@ namespace Homologador
                 }
                 bolGroup.AddRange(subGroup);
             }
-
+            lblCountBoletas.Text = bolGroup.Count + @" Registros";
             foreach (var gr in bolGroup)
             {
-                gridFacturas.Rows.Add(gr.Grupo, gr.Descripcion, gr.Documento, gr.Estado, gr.Lines, gr.HasNotaCredit, gr.HasNotaDebit);
+                gridBoletas.Rows.Add(gr.Grupo, gr.Codigo, gr.Descripcion, gr.Documento, gr.Lines, gr.HasNotaCredit, gr.HasNotaDebit, gr.Estado);
             }
         }
         private async Task<string> GetNumProceso()
@@ -264,6 +266,37 @@ namespace Homologador
                     Direccion = sett.Direccion
                 }
             };
+        }
+
+        private void btnSetting_Click(object sender, EventArgs e)
+        {
+            using (var sett = new ConfigurationForm())
+            {
+                sett.ShowDialog(this); 
+            }
+        }
+
+        private void Send()
+        {
+            var fact = new FacturaGenerator()
+                .ToCompany(GetCompany())
+                .ForGroup(GrupoPrueba.Gravada)
+                .ForDoc("03")
+                .WithLines(1)
+                .Build();
+
+            var gen = new XmlDocGenerator(new X509Certificate2("", ""));
+            var op = new OperationResult();
+            var r = gen.GeneraDocumentoInvoice(ref op, fact);
+            var sett = Settings.Default;
+            var mng = new SunatManager(new SolConfig
+            {
+                Ruc = sett.Ruc,
+                Usuario = sett.Usuario,
+                Clave = sett.Clave,
+                Service = ServiceSunatType.Homologacion
+            });
+            var res = mng.SendDocument(r.FileName, r.Content);
         }
     }
 }

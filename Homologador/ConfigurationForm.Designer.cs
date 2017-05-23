@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ConfigurationForm));
             this.metroStyleManager1 = new MetroFramework.Components.MetroStyleManager(this.components);
             this.metroTabControl1 = new MetroFramework.Controls.MetroTabControl();
             this.metroTabPage1 = new MetroFramework.Controls.MetroTabPage();
@@ -74,12 +75,15 @@
             // 
             // metroTabControl1
             // 
+            this.metroTabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.metroTabControl1.Controls.Add(this.metroTabPage1);
             this.metroTabControl1.Controls.Add(this.metroTabPage2);
             this.metroTabControl1.Location = new System.Drawing.Point(23, 63);
             this.metroTabControl1.Name = "metroTabControl1";
-            this.metroTabControl1.SelectedIndex = 0;
-            this.metroTabControl1.Size = new System.Drawing.Size(588, 325);
+            this.metroTabControl1.SelectedIndex = 1;
+            this.metroTabControl1.Size = new System.Drawing.Size(614, 325);
             this.metroTabControl1.TabIndex = 0;
             this.metroTabControl1.UseSelectable = true;
             // 
@@ -140,7 +144,7 @@
             this.txtDistrito.SelectionStart = 0;
             this.txtDistrito.ShortcutsEnabled = true;
             this.txtDistrito.Size = new System.Drawing.Size(163, 23);
-            this.txtDistrito.TabIndex = 5;
+            this.txtDistrito.TabIndex = 9;
             this.txtDistrito.UseSelectable = true;
             this.txtDistrito.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.txtDistrito.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
@@ -170,7 +174,7 @@
             this.txtProvincia.SelectionStart = 0;
             this.txtProvincia.ShortcutsEnabled = true;
             this.txtProvincia.Size = new System.Drawing.Size(163, 23);
-            this.txtProvincia.TabIndex = 5;
+            this.txtProvincia.TabIndex = 8;
             this.txtProvincia.UseSelectable = true;
             this.txtProvincia.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.txtProvincia.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
@@ -200,7 +204,7 @@
             this.txtDepartment.SelectionStart = 0;
             this.txtDepartment.ShortcutsEnabled = true;
             this.txtDepartment.Size = new System.Drawing.Size(163, 23);
-            this.txtDepartment.TabIndex = 5;
+            this.txtDepartment.TabIndex = 7;
             this.txtDepartment.UseSelectable = true;
             this.txtDepartment.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.txtDepartment.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
@@ -230,7 +234,7 @@
             this.txtUrbanizacion.SelectionStart = 0;
             this.txtUrbanizacion.ShortcutsEnabled = true;
             this.txtUrbanizacion.Size = new System.Drawing.Size(163, 23);
-            this.txtUrbanizacion.TabIndex = 5;
+            this.txtUrbanizacion.TabIndex = 6;
             this.txtUrbanizacion.UseSelectable = true;
             this.txtUrbanizacion.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.txtUrbanizacion.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
@@ -290,7 +294,7 @@
             this.txtUbigueo.SelectionStart = 0;
             this.txtUbigueo.ShortcutsEnabled = true;
             this.txtUbigueo.Size = new System.Drawing.Size(163, 23);
-            this.txtUbigueo.TabIndex = 5;
+            this.txtUbigueo.TabIndex = 4;
             this.txtUbigueo.UseSelectable = true;
             this.txtUbigueo.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.txtUbigueo.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
@@ -298,7 +302,7 @@
             // metroLabel3
             // 
             this.metroLabel3.AutoSize = true;
-            this.metroLabel3.Location = new System.Drawing.Point(4, 109);
+            this.metroLabel3.Location = new System.Drawing.Point(11, 133);
             this.metroLabel3.Name = "metroLabel3";
             this.metroLabel3.Size = new System.Drawing.Size(123, 19);
             this.metroLabel3.TabIndex = 3;
@@ -307,7 +311,7 @@
             // metroLabel2
             // 
             this.metroLabel2.AutoSize = true;
-            this.metroLabel2.Location = new System.Drawing.Point(3, 43);
+            this.metroLabel2.Location = new System.Drawing.Point(11, 68);
             this.metroLabel2.Name = "metroLabel2";
             this.metroLabel2.Size = new System.Drawing.Size(83, 19);
             this.metroLabel2.TabIndex = 3;
@@ -336,7 +340,7 @@
             this.metroLabel6.AutoSize = true;
             this.metroLabel6.Location = new System.Drawing.Point(291, 141);
             this.metroLabel6.Name = "metroLabel6";
-            this.metroLabel6.Size = new System.Drawing.Size(95, 19);
+            this.metroLabel6.Size = new System.Drawing.Size(94, 19);
             this.metroLabel6.TabIndex = 3;
             this.metroLabel6.Text = "Departamento";
             // 
@@ -361,7 +365,7 @@
             // metroLabel9
             // 
             this.metroLabel9.AutoSize = true;
-            this.metroLabel9.Location = new System.Drawing.Point(9, 12);
+            this.metroLabel9.Location = new System.Drawing.Point(11, 11);
             this.metroLabel9.Name = "metroLabel9";
             this.metroLabel9.Size = new System.Drawing.Size(30, 19);
             this.metroLabel9.TabIndex = 3;
@@ -391,7 +395,7 @@
             this.txtNomComercial.CustomButton.UseSelectable = true;
             this.txtNomComercial.CustomButton.Visible = false;
             this.txtNomComercial.Lines = new string[0];
-            this.txtNomComercial.Location = new System.Drawing.Point(7, 139);
+            this.txtNomComercial.Location = new System.Drawing.Point(7, 165);
             this.txtNomComercial.MaxLength = 100;
             this.txtNomComercial.Name = "txtNomComercial";
             this.txtNomComercial.PasswordChar = '\0';
@@ -401,7 +405,7 @@
             this.txtNomComercial.SelectionStart = 0;
             this.txtNomComercial.ShortcutsEnabled = true;
             this.txtNomComercial.Size = new System.Drawing.Size(215, 23);
-            this.txtNomComercial.TabIndex = 2;
+            this.txtNomComercial.TabIndex = 3;
             this.txtNomComercial.UseSelectable = true;
             this.txtNomComercial.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.txtNomComercial.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
@@ -421,7 +425,7 @@
             this.txtRsz.CustomButton.UseSelectable = true;
             this.txtRsz.CustomButton.Visible = false;
             this.txtRsz.Lines = new string[0];
-            this.txtRsz.Location = new System.Drawing.Point(7, 74);
+            this.txtRsz.Location = new System.Drawing.Point(7, 100);
             this.txtRsz.MaxLength = 200;
             this.txtRsz.Name = "txtRsz";
             this.txtRsz.PasswordChar = '\0';
@@ -442,7 +446,7 @@
             // 
             // 
             this.txtRuc.CustomButton.Image = null;
-            this.txtRuc.CustomButton.Location = new System.Drawing.Point(86, 1);
+            this.txtRuc.CustomButton.Location = new System.Drawing.Point(193, 1);
             this.txtRuc.CustomButton.Name = "";
             this.txtRuc.CustomButton.Size = new System.Drawing.Size(21, 21);
             this.txtRuc.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
@@ -451,7 +455,7 @@
             this.txtRuc.CustomButton.UseSelectable = true;
             this.txtRuc.CustomButton.Visible = false;
             this.txtRuc.Lines = new string[0];
-            this.txtRuc.Location = new System.Drawing.Point(54, 10);
+            this.txtRuc.Location = new System.Drawing.Point(7, 34);
             this.txtRuc.MaxLength = 11;
             this.txtRuc.Name = "txtRuc";
             this.txtRuc.PasswordChar = '\0';
@@ -460,8 +464,8 @@
             this.txtRuc.SelectionLength = 0;
             this.txtRuc.SelectionStart = 0;
             this.txtRuc.ShortcutsEnabled = true;
-            this.txtRuc.Size = new System.Drawing.Size(108, 23);
-            this.txtRuc.TabIndex = 2;
+            this.txtRuc.Size = new System.Drawing.Size(215, 23);
+            this.txtRuc.TabIndex = 1;
             this.txtRuc.UseSelectable = true;
             this.txtRuc.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.txtRuc.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
@@ -482,7 +486,7 @@
             this.metroTabPage2.HorizontalScrollbarSize = 10;
             this.metroTabPage2.Location = new System.Drawing.Point(4, 38);
             this.metroTabPage2.Name = "metroTabPage2";
-            this.metroTabPage2.Size = new System.Drawing.Size(580, 283);
+            this.metroTabPage2.Size = new System.Drawing.Size(606, 283);
             this.metroTabPage2.TabIndex = 1;
             this.metroTabPage2.Text = "Credenciales";
             this.metroTabPage2.VerticalScrollbarBarColor = true;
@@ -494,7 +498,7 @@
             this.btnCertificate.Location = new System.Drawing.Point(131, 109);
             this.btnCertificate.Name = "btnCertificate";
             this.btnCertificate.Size = new System.Drawing.Size(75, 23);
-            this.btnCertificate.TabIndex = 4;
+            this.btnCertificate.TabIndex = 3;
             this.btnCertificate.Text = "Buscar";
             this.btnCertificate.UseSelectable = true;
             this.btnCertificate.Click += new System.EventHandler(this.btnCertificate_Click);
@@ -524,7 +528,7 @@
             this.txtClaveCert.SelectionStart = 0;
             this.txtClaveCert.ShortcutsEnabled = true;
             this.txtClaveCert.Size = new System.Drawing.Size(191, 23);
-            this.txtClaveCert.TabIndex = 3;
+            this.txtClaveCert.TabIndex = 5;
             this.txtClaveCert.UseSelectable = true;
             this.txtClaveCert.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.txtClaveCert.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
@@ -534,7 +538,7 @@
             this.metroLabel13.AutoSize = true;
             this.metroLabel13.Location = new System.Drawing.Point(15, 178);
             this.metroLabel13.Name = "metroLabel13";
-            this.metroLabel13.Size = new System.Drawing.Size(110, 19);
+            this.metroLabel13.Size = new System.Drawing.Size(109, 19);
             this.metroLabel13.TabIndex = 2;
             this.metroLabel13.Text = "Clave Certificado";
             // 
@@ -554,7 +558,7 @@
             this.txtClave.CustomButton.Visible = false;
             this.txtClave.Lines = new string[0];
             this.txtClave.Location = new System.Drawing.Point(84, 65);
-            this.txtClave.MaxLength = 32767;
+            this.txtClave.MaxLength = 13;
             this.txtClave.Name = "txtClave";
             this.txtClave.PasswordChar = '*';
             this.txtClave.ScrollBars = System.Windows.Forms.ScrollBars.None;
@@ -563,7 +567,7 @@
             this.txtClave.SelectionStart = 0;
             this.txtClave.ShortcutsEnabled = true;
             this.txtClave.Size = new System.Drawing.Size(122, 23);
-            this.txtClave.TabIndex = 3;
+            this.txtClave.TabIndex = 2;
             this.txtClave.UseSelectable = true;
             this.txtClave.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.txtClave.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
@@ -602,7 +606,7 @@
             this.txtPathCertify.SelectionStart = 0;
             this.txtPathCertify.ShortcutsEnabled = true;
             this.txtPathCertify.Size = new System.Drawing.Size(191, 23);
-            this.txtPathCertify.TabIndex = 3;
+            this.txtPathCertify.TabIndex = 4;
             this.txtPathCertify.UseSelectable = true;
             this.txtPathCertify.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.txtPathCertify.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
@@ -612,12 +616,13 @@
             this.metroLabel12.AutoSize = true;
             this.metroLabel12.Location = new System.Drawing.Point(15, 110);
             this.metroLabel12.Name = "metroLabel12";
-            this.metroLabel12.Size = new System.Drawing.Size(74, 19);
+            this.metroLabel12.Size = new System.Drawing.Size(73, 19);
             this.metroLabel12.TabIndex = 2;
             this.metroLabel12.Text = "Certificado";
             // 
             // txtUser
             // 
+            this.txtUser.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             // 
             // 
             // 
@@ -632,7 +637,7 @@
             this.txtUser.CustomButton.Visible = false;
             this.txtUser.Lines = new string[0];
             this.txtUser.Location = new System.Drawing.Point(84, 26);
-            this.txtUser.MaxLength = 32767;
+            this.txtUser.MaxLength = 8;
             this.txtUser.Name = "txtUser";
             this.txtUser.PasswordChar = '\0';
             this.txtUser.ScrollBars = System.Windows.Forms.ScrollBars.None;
@@ -641,7 +646,7 @@
             this.txtUser.SelectionStart = 0;
             this.txtUser.ShortcutsEnabled = true;
             this.txtUser.Size = new System.Drawing.Size(122, 23);
-            this.txtUser.TabIndex = 3;
+            this.txtUser.TabIndex = 1;
             this.txtUser.UseSelectable = true;
             this.txtUser.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.txtUser.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
@@ -658,10 +663,10 @@
             // btnSave
             // 
             this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSave.Location = new System.Drawing.Point(535, 398);
+            this.btnSave.Location = new System.Drawing.Point(564, 398);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 23);
-            this.btnSave.TabIndex = 1;
+            this.btnSave.TabIndex = 20;
             this.btnSave.Text = "Guardar";
             this.btnSave.UseSelectable = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
@@ -670,9 +675,10 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(631, 431);
+            this.ClientSize = new System.Drawing.Size(660, 431);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.metroTabControl1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "ConfigurationForm";
             this.Resizable = false;

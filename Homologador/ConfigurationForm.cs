@@ -1,7 +1,9 @@
 ﻿using System;
 using System.IO;
 using System.Windows.Forms;
+using Homologador.Fe.Auth;
 using Homologador.Properties;
+using MetroFramework;
 using MetroFramework.Forms;
 
 namespace Homologador
@@ -25,10 +27,11 @@ namespace Homologador
             txtUrbanizacion.Text = sett.Urbanizacion;
             txtDepartment.Text = sett.Departamento;
             txtProvincia.Text = sett.Provincia;
-            txtDirecion.Text = sett.Distrito;
+            txtDistrito.Text = sett.Distrito;
             txtUser.Text = sett.Usuario;
             txtClave.Text = sett.Clave;
             txtClaveCert.Text = sett.ClaveCert;
+            metroTabControl1.SelectTab(0);
         }
 
         private void btnCertificate_Click(object sender, EventArgs e)
@@ -42,8 +45,9 @@ namespace Homologador
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            var sett = Settings.Default;
+            if (!ValidarCredenciales()) return;
 
+            var sett = Settings.Default;
             sett.Ruc = txtRuc.Text;
             sett.RzSocial = txtRsz.Text;
             sett.NComercial = txtNomComercial.Text;
@@ -52,7 +56,7 @@ namespace Homologador
             sett.Urbanizacion = txtUrbanizacion.Text;
             sett.Departamento = txtDepartment.Text;
             sett.Provincia = txtProvincia.Text;
-            sett.Direccion = txtDistrito.Text;
+            sett.Distrito = txtDistrito.Text;
             sett.Usuario = txtUser.Text;
             sett.Clave = txtClave.Text;
             sett.ClaveCert = txtClaveCert.Text;
@@ -63,6 +67,22 @@ namespace Homologador
                 sett.Ceritificado = Convert.ToBase64String(bytes);
             }
             Settings.Default.Save();
+            Close();
+        }
+
+        private bool ValidarCredenciales()
+        {
+            try
+            {
+                if (RucAuth.Validate(txtRuc.Text, txtUser.Text, txtClave.Text)) return true;
+                MetroMessageBox.Show(this, "Credenciales invalidas", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtRuc.Focus();
+            }
+            catch (Exception e)
+            {
+                MetroMessageBox.Show(this, e.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            return false;
         }
     }
 }

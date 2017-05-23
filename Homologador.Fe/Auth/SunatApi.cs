@@ -63,16 +63,15 @@ namespace Homologador.Fe.Auth
             {
                 var content = new FormUrlEncodedContent(new []
                 {
-                    new KeyValuePair<string, string>("accion", "mostrarDashboard"),
+                    new KeyValuePair<string, string>("accion", "consultarEtapa"),
                     new KeyValuePair<string, string>("numProceso", numProceso),
-                    new KeyValuePair<string, string>("numRUC", Ruc)
+                    new KeyValuePair<string, string>("numEtapa", "2")
                 });
                 var r = await client.PostAsync("https://ww1.sunat.gob.pe/cl-ti-itconestsol/Consulta.htm", content);
                 if (!r.IsSuccessStatusCode) return null;
 
                 return await r.Content.ReadAsStringAsync();
             }
-            //
         }
 
     }

@@ -41,12 +41,13 @@ namespace Homologador.Pruebas
             return this;
         }
 
-        public void Build()
+        public InvoiceHeader Build()
         {
             var head = GetHead();
             SetClient(head);
             Calculator(head);
             LoadTotal(head);
+            return head;
         }
 
         private InvoiceHeader GetHead()

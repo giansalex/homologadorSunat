@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Homologador.Fe.Auth
 {
@@ -22,6 +19,7 @@ namespace Homologador.Fe.Auth
 
         protected SunatAuth(string ruc, string user, string clave)
         {
+            
             Ruc = ruc;
             _user = user;
             _password = clave;
@@ -32,9 +30,11 @@ namespace Homologador.Fe.Auth
             var handler = new HttpClientHandler
             {
                 AllowAutoRedirect = false,
-                CookieContainer = _cookies
+                CookieContainer = _cookies,
+                
             };
             var client = new HttpClient(handler);
+            client.DefaultRequestHeaders.ExpectContinue = false;
             return client;
         }
 
@@ -45,7 +45,7 @@ namespace Homologador.Fe.Auth
 
         public void Login()
         {
-            _location = "https://e-menu.sunat.gob.pe/cl-ti-itmenu/AutenticaMenuInternet.htm";
+            _location = Properties.Resources.Auth;
             _cookies = new CookieContainer();
             Send(new NameValueCollection
             {
@@ -55,16 +55,10 @@ namespace Homologador.Fe.Auth
                 {"params", "*&*&/cl-ti-itmenu/MenuInternet.htm&b64d26a8b5af091923b23b6407a1c1db41e733a6"},
                 {"exe", ""},
             });
-            _location = "https://e-menu.sunat.gob.pe/cl-ti-itmenu/MenuInternet.htm?action=execute&code=11.9.3.1.1&s=ww1";
+            _location = Properties.Resources.OpcionMenu;
             Send();
-            WriteCookies();
+            SaveCookies();
         }
-
-        public void ProcessCookies(HttpWebResponse res)
-        {
-            SetLocation(res);
-        }
-
         private void Send(NameValueCollection data = null)
         {
             while (true)
@@ -72,8 +66,10 @@ namespace Homologador.Fe.Auth
                 var http = (HttpWebRequest)WebRequest.Create(_location);
                 http.AllowAutoRedirect = false;
                 http.CookieContainer = _cookies;
+                http.ServicePoint.Expect100Continue = false;
                 if (data != null)
                 {
+                    http.ServerCertificateValidationCallback = delegate { return true; };
                     http.Method = "POST";
                     http.ContentType = "application/x-www-form-urlencoded";
                     var postData = GetData(data);
@@ -141,13 +137,7 @@ namespace Homologador.Fe.Auth
                     using (var wr = new StreamReader(st))
                     {
                         wr.Read();
-                        //var r = wr.ReadToEnd();
-                        //Console.Write(r);
                     }
-                //foreach (Cookie cook in resp.Cookies)
-                //{
-                //    cook.Expires = new DateTime();
-                //}
             }
             catch
             {
@@ -157,7 +147,7 @@ namespace Homologador.Fe.Auth
             return SetLocation(resp);
         }
 
-        private void WriteCookies()
+        private void SaveCookies()
         {
             var format = new BinaryFormatter();
             using (var file = File.Create("cooks.dat"))
