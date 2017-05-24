@@ -6,9 +6,10 @@ using FacturacionElectronica.GeneradorXml.Entity.Details;
 using FacturacionElectronica.GeneradorXml.Entity.Misc;
 using FacturacionElectronica.GeneradorXml.Enums;
 using Gs.Ubl.v2.Sac;
+using Homologador.Fe.Model;
 using Homologador.Model;
 
-namespace Homologador.Pruebas
+namespace Homologador.Fe.Pruebas
 {
     public class FacturaGenerator
     {

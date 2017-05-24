@@ -38,19 +38,9 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.tbDocs = new MetroFramework.Controls.MetroTabControl();
             this.mtabFacturas = new MetroFramework.Controls.MetroTabPage();
+            this.lblCountFact = new MetroFramework.Controls.MetroLabel();
             this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
             this.gridFacturas = new MetroFramework.Controls.MetroGrid();
-            this.mtabBajas = new MetroFramework.Controls.MetroTabPage();
-            this.mtxtBajaCant = new MetroFramework.Controls.MetroTextBox();
-            this.metroLabel2 = new MetroFramework.Controls.MetroLabel();
-            this.mtabBoletas = new MetroFramework.Controls.MetroTabPage();
-            this.mtabResumen = new MetroFramework.Controls.MetroTabPage();
-            this.metroStyleManager1 = new MetroFramework.Components.MetroStyleManager(this.components);
-            this.lblStatus = new MetroFramework.Controls.MetroLabel();
-            this.spinner = new MetroFramework.Controls.MetroProgressSpinner();
-            this.btnSetting = new System.Windows.Forms.PictureBox();
-            this.btnRun = new System.Windows.Forms.PictureBox();
-            this.lblCountFact = new MetroFramework.Controls.MetroLabel();
             this.fgroup = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fcodigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fdescripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -59,8 +49,7 @@
             this.fnotacr = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.fnotadb = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.festado = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.mtxtItemsRes = new MetroFramework.Controls.MetroTextBox();
-            this.metroLabel3 = new MetroFramework.Controls.MetroLabel();
+            this.mtabBoletas = new MetroFramework.Controls.MetroTabPage();
             this.lblCountBoletas = new MetroFramework.Controls.MetroLabel();
             this.metroLabel5 = new MetroFramework.Controls.MetroLabel();
             this.gridBoletas = new MetroFramework.Controls.MetroGrid();
@@ -72,16 +61,27 @@
             this.dataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.dataGridViewCheckBoxColumn2 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.mtabBajas = new MetroFramework.Controls.MetroTabPage();
+            this.mtxtBajaCant = new MetroFramework.Controls.MetroTextBox();
+            this.metroLabel2 = new MetroFramework.Controls.MetroLabel();
+            this.mtabResumen = new MetroFramework.Controls.MetroTabPage();
+            this.mtxtItemsRes = new MetroFramework.Controls.MetroTextBox();
+            this.metroLabel3 = new MetroFramework.Controls.MetroLabel();
+            this.metroStyleManager1 = new MetroFramework.Components.MetroStyleManager(this.components);
+            this.lblStatus = new MetroFramework.Controls.MetroLabel();
+            this.spinner = new MetroFramework.Controls.MetroProgressSpinner();
+            this.btnSetting = new System.Windows.Forms.PictureBox();
+            this.btnRun = new System.Windows.Forms.PictureBox();
             this.tbDocs.SuspendLayout();
             this.mtabFacturas.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridFacturas)).BeginInit();
-            this.mtabBajas.SuspendLayout();
             this.mtabBoletas.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridBoletas)).BeginInit();
+            this.mtabBajas.SuspendLayout();
             this.mtabResumen.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.metroStyleManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSetting)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnRun)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridBoletas)).BeginInit();
             this.SuspendLayout();
             // 
             // tbDocs
@@ -116,6 +116,16 @@
             this.mtabFacturas.VerticalScrollbarBarColor = true;
             this.mtabFacturas.VerticalScrollbarHighlightOnWheel = false;
             this.mtabFacturas.VerticalScrollbarSize = 10;
+            // 
+            // lblCountFact
+            // 
+            this.lblCountFact.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblCountFact.Location = new System.Drawing.Point(431, 291);
+            this.lblCountFact.Name = "lblCountFact";
+            this.lblCountFact.Size = new System.Drawing.Size(177, 19);
+            this.lblCountFact.TabIndex = 4;
+            this.lblCountFact.Text = "0 Registros";
+            this.lblCountFact.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // metroLabel1
             // 
@@ -183,158 +193,6 @@
             this.gridFacturas.Size = new System.Drawing.Size(611, 250);
             this.gridFacturas.TabIndex = 2;
             // 
-            // mtabBajas
-            // 
-            this.mtabBajas.Controls.Add(this.mtxtBajaCant);
-            this.mtabBajas.Controls.Add(this.metroLabel2);
-            this.mtabBajas.HorizontalScrollbarBarColor = true;
-            this.mtabBajas.HorizontalScrollbarHighlightOnWheel = false;
-            this.mtabBajas.HorizontalScrollbarSize = 10;
-            this.mtabBajas.Location = new System.Drawing.Point(4, 38);
-            this.mtabBajas.Name = "mtabBajas";
-            this.mtabBajas.Size = new System.Drawing.Size(607, 308);
-            this.mtabBajas.TabIndex = 3;
-            this.mtabBajas.Text = "C. de Baja";
-            this.mtabBajas.VerticalScrollbarBarColor = true;
-            this.mtabBajas.VerticalScrollbarHighlightOnWheel = false;
-            this.mtabBajas.VerticalScrollbarSize = 10;
-            // 
-            // mtxtBajaCant
-            // 
-            // 
-            // 
-            // 
-            this.mtxtBajaCant.CustomButton.Image = null;
-            this.mtxtBajaCant.CustomButton.Location = new System.Drawing.Point(53, 1);
-            this.mtxtBajaCant.CustomButton.Name = "";
-            this.mtxtBajaCant.CustomButton.Size = new System.Drawing.Size(21, 21);
-            this.mtxtBajaCant.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
-            this.mtxtBajaCant.CustomButton.TabIndex = 1;
-            this.mtxtBajaCant.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
-            this.mtxtBajaCant.CustomButton.UseSelectable = true;
-            this.mtxtBajaCant.CustomButton.Visible = false;
-            this.mtxtBajaCant.Lines = new string[] {
-        "5"};
-            this.mtxtBajaCant.Location = new System.Drawing.Point(65, 16);
-            this.mtxtBajaCant.MaxLength = 32767;
-            this.mtxtBajaCant.Name = "mtxtBajaCant";
-            this.mtxtBajaCant.PasswordChar = '\0';
-            this.mtxtBajaCant.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.mtxtBajaCant.SelectedText = "";
-            this.mtxtBajaCant.SelectionLength = 0;
-            this.mtxtBajaCant.SelectionStart = 0;
-            this.mtxtBajaCant.ShortcutsEnabled = true;
-            this.mtxtBajaCant.Size = new System.Drawing.Size(75, 23);
-            this.mtxtBajaCant.TabIndex = 3;
-            this.mtxtBajaCant.Text = "5";
-            this.mtxtBajaCant.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.mtxtBajaCant.UseSelectable = true;
-            this.mtxtBajaCant.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
-            this.mtxtBajaCant.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
-            // 
-            // metroLabel2
-            // 
-            this.metroLabel2.AutoSize = true;
-            this.metroLabel2.Location = new System.Drawing.Point(11, 16);
-            this.metroLabel2.Name = "metroLabel2";
-            this.metroLabel2.Size = new System.Drawing.Size(40, 19);
-            this.metroLabel2.TabIndex = 2;
-            this.metroLabel2.Text = "Items";
-            // 
-            // mtabBoletas
-            // 
-            this.mtabBoletas.Controls.Add(this.lblCountBoletas);
-            this.mtabBoletas.Controls.Add(this.metroLabel5);
-            this.mtabBoletas.Controls.Add(this.gridBoletas);
-            this.mtabBoletas.HorizontalScrollbarBarColor = true;
-            this.mtabBoletas.HorizontalScrollbarHighlightOnWheel = false;
-            this.mtabBoletas.HorizontalScrollbarSize = 10;
-            this.mtabBoletas.Location = new System.Drawing.Point(4, 38);
-            this.mtabBoletas.Name = "mtabBoletas";
-            this.mtabBoletas.Size = new System.Drawing.Size(607, 308);
-            this.mtabBoletas.TabIndex = 1;
-            this.mtabBoletas.Text = "Boletas";
-            this.mtabBoletas.VerticalScrollbarBarColor = true;
-            this.mtabBoletas.VerticalScrollbarHighlightOnWheel = false;
-            this.mtabBoletas.VerticalScrollbarSize = 10;
-            // 
-            // mtabResumen
-            // 
-            this.mtabResumen.Controls.Add(this.mtxtItemsRes);
-            this.mtabResumen.Controls.Add(this.metroLabel3);
-            this.mtabResumen.HorizontalScrollbarBarColor = true;
-            this.mtabResumen.HorizontalScrollbarHighlightOnWheel = false;
-            this.mtabResumen.HorizontalScrollbarSize = 10;
-            this.mtabResumen.Location = new System.Drawing.Point(4, 38);
-            this.mtabResumen.Name = "mtabResumen";
-            this.mtabResumen.Size = new System.Drawing.Size(607, 308);
-            this.mtabResumen.TabIndex = 2;
-            this.mtabResumen.Text = "Resumen";
-            this.mtabResumen.VerticalScrollbarBarColor = true;
-            this.mtabResumen.VerticalScrollbarHighlightOnWheel = false;
-            this.mtabResumen.VerticalScrollbarSize = 10;
-            // 
-            // metroStyleManager1
-            // 
-            this.metroStyleManager1.Owner = this;
-            this.metroStyleManager1.Style = MetroFramework.MetroColorStyle.Green;
-            this.metroStyleManager1.Theme = MetroFramework.MetroThemeStyle.Dark;
-            // 
-            // lblStatus
-            // 
-            this.lblStatus.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.lblStatus.AutoSize = true;
-            this.lblStatus.Location = new System.Drawing.Point(2, 416);
-            this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(35, 19);
-            this.lblStatus.TabIndex = 1;
-            this.lblStatus.Text = "Listo";
-            // 
-            // spinner
-            // 
-            this.spinner.Location = new System.Drawing.Point(385, 7);
-            this.spinner.Maximum = 100;
-            this.spinner.Name = "spinner";
-            this.spinner.Size = new System.Drawing.Size(60, 50);
-            this.spinner.TabIndex = 4;
-            this.spinner.UseSelectable = true;
-            this.spinner.Visible = false;
-            // 
-            // btnSetting
-            // 
-            this.btnSetting.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSetting.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnSetting.Image = global::Homologador.Properties.Resources.ajustes;
-            this.btnSetting.Location = new System.Drawing.Point(599, 39);
-            this.btnSetting.Name = "btnSetting";
-            this.btnSetting.Size = new System.Drawing.Size(40, 37);
-            this.btnSetting.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.btnSetting.TabIndex = 5;
-            this.btnSetting.TabStop = false;
-            this.btnSetting.Click += new System.EventHandler(this.btnSetting_Click);
-            // 
-            // btnRun
-            // 
-            this.btnRun.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnRun.Image = global::Homologador.Properties.Resources.play;
-            this.btnRun.Location = new System.Drawing.Point(281, 19);
-            this.btnRun.Name = "btnRun";
-            this.btnRun.Size = new System.Drawing.Size(40, 37);
-            this.btnRun.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.btnRun.TabIndex = 3;
-            this.btnRun.TabStop = false;
-            this.btnRun.Click += new System.EventHandler(this.btnRun_Click);
-            // 
-            // lblCountFact
-            // 
-            this.lblCountFact.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblCountFact.Location = new System.Drawing.Point(431, 291);
-            this.lblCountFact.Name = "lblCountFact";
-            this.lblCountFact.Size = new System.Drawing.Size(177, 19);
-            this.lblCountFact.TabIndex = 4;
-            this.lblCountFact.Text = "0 Registros";
-            this.lblCountFact.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
             // fgroup
             // 
             this.fgroup.HeaderText = "Grupo";
@@ -389,47 +247,22 @@
             this.festado.HeaderText = "Estado";
             this.festado.Name = "festado";
             // 
-            // mtxtItemsRes
+            // mtabBoletas
             // 
-            // 
-            // 
-            // 
-            this.mtxtItemsRes.CustomButton.Image = null;
-            this.mtxtItemsRes.CustomButton.Location = new System.Drawing.Point(53, 1);
-            this.mtxtItemsRes.CustomButton.Name = "";
-            this.mtxtItemsRes.CustomButton.Size = new System.Drawing.Size(21, 21);
-            this.mtxtItemsRes.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
-            this.mtxtItemsRes.CustomButton.TabIndex = 1;
-            this.mtxtItemsRes.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
-            this.mtxtItemsRes.CustomButton.UseSelectable = true;
-            this.mtxtItemsRes.CustomButton.Visible = false;
-            this.mtxtItemsRes.Lines = new string[] {
-        "5"};
-            this.mtxtItemsRes.Location = new System.Drawing.Point(65, 16);
-            this.mtxtItemsRes.MaxLength = 32767;
-            this.mtxtItemsRes.Name = "mtxtItemsRes";
-            this.mtxtItemsRes.PasswordChar = '\0';
-            this.mtxtItemsRes.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.mtxtItemsRes.SelectedText = "";
-            this.mtxtItemsRes.SelectionLength = 0;
-            this.mtxtItemsRes.SelectionStart = 0;
-            this.mtxtItemsRes.ShortcutsEnabled = true;
-            this.mtxtItemsRes.Size = new System.Drawing.Size(75, 23);
-            this.mtxtItemsRes.TabIndex = 5;
-            this.mtxtItemsRes.Text = "5";
-            this.mtxtItemsRes.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.mtxtItemsRes.UseSelectable = true;
-            this.mtxtItemsRes.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
-            this.mtxtItemsRes.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
-            // 
-            // metroLabel3
-            // 
-            this.metroLabel3.AutoSize = true;
-            this.metroLabel3.Location = new System.Drawing.Point(11, 16);
-            this.metroLabel3.Name = "metroLabel3";
-            this.metroLabel3.Size = new System.Drawing.Size(40, 19);
-            this.metroLabel3.TabIndex = 4;
-            this.metroLabel3.Text = "Items";
+            this.mtabBoletas.Controls.Add(this.lblCountBoletas);
+            this.mtabBoletas.Controls.Add(this.metroLabel5);
+            this.mtabBoletas.Controls.Add(this.gridBoletas);
+            this.mtabBoletas.HorizontalScrollbarBarColor = true;
+            this.mtabBoletas.HorizontalScrollbarHighlightOnWheel = false;
+            this.mtabBoletas.HorizontalScrollbarSize = 10;
+            this.mtabBoletas.Location = new System.Drawing.Point(4, 38);
+            this.mtabBoletas.Name = "mtabBoletas";
+            this.mtabBoletas.Size = new System.Drawing.Size(607, 308);
+            this.mtabBoletas.TabIndex = 1;
+            this.mtabBoletas.Text = "Boletas";
+            this.mtabBoletas.VerticalScrollbarBarColor = true;
+            this.mtabBoletas.VerticalScrollbarHighlightOnWheel = false;
+            this.mtabBoletas.VerticalScrollbarSize = 10;
             // 
             // lblCountBoletas
             // 
@@ -561,6 +394,173 @@
             this.dataGridViewTextBoxColumn6.HeaderText = "Estado";
             this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
             // 
+            // mtabBajas
+            // 
+            this.mtabBajas.Controls.Add(this.mtxtBajaCant);
+            this.mtabBajas.Controls.Add(this.metroLabel2);
+            this.mtabBajas.HorizontalScrollbarBarColor = true;
+            this.mtabBajas.HorizontalScrollbarHighlightOnWheel = false;
+            this.mtabBajas.HorizontalScrollbarSize = 10;
+            this.mtabBajas.Location = new System.Drawing.Point(4, 38);
+            this.mtabBajas.Name = "mtabBajas";
+            this.mtabBajas.Size = new System.Drawing.Size(607, 308);
+            this.mtabBajas.TabIndex = 3;
+            this.mtabBajas.Text = "C. de Baja";
+            this.mtabBajas.VerticalScrollbarBarColor = true;
+            this.mtabBajas.VerticalScrollbarHighlightOnWheel = false;
+            this.mtabBajas.VerticalScrollbarSize = 10;
+            // 
+            // mtxtBajaCant
+            // 
+            // 
+            // 
+            // 
+            this.mtxtBajaCant.CustomButton.Image = null;
+            this.mtxtBajaCant.CustomButton.Location = new System.Drawing.Point(53, 1);
+            this.mtxtBajaCant.CustomButton.Name = "";
+            this.mtxtBajaCant.CustomButton.Size = new System.Drawing.Size(21, 21);
+            this.mtxtBajaCant.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
+            this.mtxtBajaCant.CustomButton.TabIndex = 1;
+            this.mtxtBajaCant.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.mtxtBajaCant.CustomButton.UseSelectable = true;
+            this.mtxtBajaCant.CustomButton.Visible = false;
+            this.mtxtBajaCant.Lines = new string[] {
+        "5"};
+            this.mtxtBajaCant.Location = new System.Drawing.Point(65, 16);
+            this.mtxtBajaCant.MaxLength = 32767;
+            this.mtxtBajaCant.Name = "mtxtBajaCant";
+            this.mtxtBajaCant.PasswordChar = '\0';
+            this.mtxtBajaCant.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.mtxtBajaCant.SelectedText = "";
+            this.mtxtBajaCant.SelectionLength = 0;
+            this.mtxtBajaCant.SelectionStart = 0;
+            this.mtxtBajaCant.ShortcutsEnabled = true;
+            this.mtxtBajaCant.Size = new System.Drawing.Size(75, 23);
+            this.mtxtBajaCant.TabIndex = 3;
+            this.mtxtBajaCant.Text = "5";
+            this.mtxtBajaCant.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.mtxtBajaCant.UseSelectable = true;
+            this.mtxtBajaCant.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.mtxtBajaCant.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            // 
+            // metroLabel2
+            // 
+            this.metroLabel2.AutoSize = true;
+            this.metroLabel2.Location = new System.Drawing.Point(11, 16);
+            this.metroLabel2.Name = "metroLabel2";
+            this.metroLabel2.Size = new System.Drawing.Size(40, 19);
+            this.metroLabel2.TabIndex = 2;
+            this.metroLabel2.Text = "Items";
+            // 
+            // mtabResumen
+            // 
+            this.mtabResumen.Controls.Add(this.mtxtItemsRes);
+            this.mtabResumen.Controls.Add(this.metroLabel3);
+            this.mtabResumen.HorizontalScrollbarBarColor = true;
+            this.mtabResumen.HorizontalScrollbarHighlightOnWheel = false;
+            this.mtabResumen.HorizontalScrollbarSize = 10;
+            this.mtabResumen.Location = new System.Drawing.Point(4, 38);
+            this.mtabResumen.Name = "mtabResumen";
+            this.mtabResumen.Size = new System.Drawing.Size(607, 308);
+            this.mtabResumen.TabIndex = 2;
+            this.mtabResumen.Text = "Resumen";
+            this.mtabResumen.VerticalScrollbarBarColor = true;
+            this.mtabResumen.VerticalScrollbarHighlightOnWheel = false;
+            this.mtabResumen.VerticalScrollbarSize = 10;
+            // 
+            // mtxtItemsRes
+            // 
+            // 
+            // 
+            // 
+            this.mtxtItemsRes.CustomButton.Image = null;
+            this.mtxtItemsRes.CustomButton.Location = new System.Drawing.Point(53, 1);
+            this.mtxtItemsRes.CustomButton.Name = "";
+            this.mtxtItemsRes.CustomButton.Size = new System.Drawing.Size(21, 21);
+            this.mtxtItemsRes.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
+            this.mtxtItemsRes.CustomButton.TabIndex = 1;
+            this.mtxtItemsRes.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.mtxtItemsRes.CustomButton.UseSelectable = true;
+            this.mtxtItemsRes.CustomButton.Visible = false;
+            this.mtxtItemsRes.Lines = new string[] {
+        "5"};
+            this.mtxtItemsRes.Location = new System.Drawing.Point(65, 16);
+            this.mtxtItemsRes.MaxLength = 32767;
+            this.mtxtItemsRes.Name = "mtxtItemsRes";
+            this.mtxtItemsRes.PasswordChar = '\0';
+            this.mtxtItemsRes.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.mtxtItemsRes.SelectedText = "";
+            this.mtxtItemsRes.SelectionLength = 0;
+            this.mtxtItemsRes.SelectionStart = 0;
+            this.mtxtItemsRes.ShortcutsEnabled = true;
+            this.mtxtItemsRes.Size = new System.Drawing.Size(75, 23);
+            this.mtxtItemsRes.TabIndex = 5;
+            this.mtxtItemsRes.Text = "5";
+            this.mtxtItemsRes.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.mtxtItemsRes.UseSelectable = true;
+            this.mtxtItemsRes.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.mtxtItemsRes.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            // 
+            // metroLabel3
+            // 
+            this.metroLabel3.AutoSize = true;
+            this.metroLabel3.Location = new System.Drawing.Point(11, 16);
+            this.metroLabel3.Name = "metroLabel3";
+            this.metroLabel3.Size = new System.Drawing.Size(40, 19);
+            this.metroLabel3.TabIndex = 4;
+            this.metroLabel3.Text = "Items";
+            // 
+            // metroStyleManager1
+            // 
+            this.metroStyleManager1.Owner = this;
+            this.metroStyleManager1.Style = MetroFramework.MetroColorStyle.Green;
+            this.metroStyleManager1.Theme = MetroFramework.MetroThemeStyle.Dark;
+            // 
+            // lblStatus
+            // 
+            this.lblStatus.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblStatus.AutoSize = true;
+            this.lblStatus.Location = new System.Drawing.Point(2, 416);
+            this.lblStatus.Name = "lblStatus";
+            this.lblStatus.Size = new System.Drawing.Size(35, 19);
+            this.lblStatus.TabIndex = 1;
+            this.lblStatus.Text = "Listo";
+            // 
+            // spinner
+            // 
+            this.spinner.Location = new System.Drawing.Point(385, 7);
+            this.spinner.Maximum = 100;
+            this.spinner.Name = "spinner";
+            this.spinner.Size = new System.Drawing.Size(60, 50);
+            this.spinner.TabIndex = 4;
+            this.spinner.UseSelectable = true;
+            this.spinner.Visible = false;
+            // 
+            // btnSetting
+            // 
+            this.btnSetting.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSetting.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSetting.Image = global::Homologador.Properties.Resources.ajustes;
+            this.btnSetting.Location = new System.Drawing.Point(599, 39);
+            this.btnSetting.Name = "btnSetting";
+            this.btnSetting.Size = new System.Drawing.Size(40, 37);
+            this.btnSetting.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnSetting.TabIndex = 5;
+            this.btnSetting.TabStop = false;
+            this.btnSetting.Click += new System.EventHandler(this.btnSetting_Click);
+            // 
+            // btnRun
+            // 
+            this.btnRun.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnRun.Image = global::Homologador.Properties.Resources.play;
+            this.btnRun.Location = new System.Drawing.Point(281, 19);
+            this.btnRun.Name = "btnRun";
+            this.btnRun.Size = new System.Drawing.Size(40, 37);
+            this.btnRun.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnRun.TabIndex = 3;
+            this.btnRun.TabStop = false;
+            this.btnRun.Click += new System.EventHandler(this.btnRun_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -580,16 +580,16 @@
             this.mtabFacturas.ResumeLayout(false);
             this.mtabFacturas.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridFacturas)).EndInit();
-            this.mtabBajas.ResumeLayout(false);
-            this.mtabBajas.PerformLayout();
             this.mtabBoletas.ResumeLayout(false);
             this.mtabBoletas.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridBoletas)).EndInit();
+            this.mtabBajas.ResumeLayout(false);
+            this.mtabBajas.PerformLayout();
             this.mtabResumen.ResumeLayout(false);
             this.mtabResumen.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.metroStyleManager1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSetting)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnRun)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridBoletas)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

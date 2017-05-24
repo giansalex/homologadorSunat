@@ -2,18 +2,14 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using FacturacionElectronica.GeneradorXml;
-using FacturacionElectronica.GeneradorXml.Res;
-using FacturacionElectronica.Homologacion;
-using FacturacionElectronica.Homologacion.Res;
 using Homologador.Fe.Auth;
+using Homologador.Fe.Manage;
+using Homologador.Fe.Model;
 using Homologador.Fe.Pruebas;
 using Homologador.Model;
 using Homologador.Properties;
-using Homologador.Pruebas;
 using MetroFramework;
 using MetroFramework.Forms;
 using Newtonsoft.Json.Linq;
@@ -23,6 +19,37 @@ namespace Homologador
     public partial class MainForm : MetroForm
     {
         private SunatApi _auth;
+
+        private Company _company
+        {
+            get
+            {
+                var sett = Settings.Default;
+                return new Company
+                {
+                    Ruc = sett.Ruc,
+                    RazonSocial = sett.RzSocial,
+                    NombreComercial = sett.NComercial,
+                    User = sett.Usuario,
+                    Clave = sett.Clave,
+                    Address = new CompanyAddress
+                    {
+                        Ubigueo = sett.Ubigueo,
+                        Urbanizacion = sett.Urbanizacion,
+                        Departamento = sett.Departamento,
+                        Provincia = sett.Provincia,
+                        Distrito = sett.Distrito,
+                        Direccion = sett.Direccion
+                    },
+                    Certified = new Certified
+                    {
+                        Content = Convert.FromBase64String(sett.Ceritificado),
+                        Password = sett.ClaveCert
+                    }
+                };
+            }
+        }
+
         public MainForm()
         {
             InitializeComponent();
@@ -30,15 +57,26 @@ namespace Homologador
             Load += MainForm_Load;
         }
 
-        private async void MainForm_Load(object sender, EventArgs e)
+        private void MainForm_Load(object sender, EventArgs e)
         {
-            var sett = Settings.Default;
-            //TODO: Init Login from config validate with exist configuration
-            _auth = new SunatApi(sett.Ruc, sett.Usuario, sett.Clave);
-            await Extractor();
-            //tbDocs.Enabled = false;
+            Init();
         }
 
+        private async void Init()
+        {
+            var sett = Settings.Default;
+            if (string.IsNullOrWhiteSpace(sett.Ruc)
+                || string.IsNullOrWhiteSpace(sett.Usuario)
+                || string.IsNullOrWhiteSpace(sett.Clave))
+            {
+                InvokeOnClick(btnSetting, null);
+                return;
+            }
+
+            _auth = new SunatApi(sett.Ruc, sett.Usuario, sett.Clave);
+            _auth.Login();
+            await Extractor();
+        }
 
         private void InitLoad()
         {
@@ -69,6 +107,45 @@ namespace Homologador
 
         private void Factura_Run()
         {
+            var rows = gridFacturas.SelectedRows;
+            if (rows.Count == 0) return;
+            var mng = new BillManager(_company);
+            var fgenerator = new FacturaGenerator()
+                    .ToCompany(_company)
+                    .ForDoc("01");
+            
+            foreach (DataGridViewRow row in rows)
+            {
+                var gr = row.Cells["fgroup"].Value.ToString();
+                var lines = int.Parse(row.Cells["fcantidad"].Value.ToString());
+                var hasNcr = bool.Parse(row.Cells["fnotacr"].Value.ToString());
+                var hasNdb = bool.Parse(row.Cells["fnotadb"].Value.ToString());
+
+                var inv = fgenerator
+                    .ForGroup(ToEnum<GrupoPrueba>(gr))
+                    .WithLines(lines)
+                    .Build();
+
+                var res = mng.Send(inv);
+                row.Cells["festado"].Value = res.Description;
+                if (res.Success)
+                {
+                    var nGene = new NotaGenerator()
+                        .From(inv);
+
+                    if (hasNcr)
+                    {
+                        var ncr = nGene.BuildNcr();
+                        mng.Send(ncr);
+                    }
+
+                    if (hasNdb)
+                    {
+                        var ndb = nGene.BuildNdb();
+                        mng.Send(ndb);
+                    }
+                }
+            }
             
         }
 
@@ -79,22 +156,33 @@ namespace Homologador
 
         private void Resumen_Run()
         {
+            //TODO: Add label for status in ResumenTab
             int cant;
             if (!int.TryParse(mtxtBajaCant.Text, out cant))
             {
-                MetroMessageBox.Show(this, "Numero de items invalido", "Error");
+                Error("Numero de items invalido");
                 mtxtBajaCant.Focus();
                 return;
             }
 
             var resumen = new ResumenGenerator()
-                .ToCompany(GetCompany())
+                .ToCompany(_company)
                 .WithLines(cant)
                 .Build();
+
+            var mng = new BillManager(_company);
+            var r = mng.Send(resumen);
+            if (r.Success)
+            {
+                Status($@"Resumen enviado exitosamente: {r.Code}-{r.Description}");
+                return;
+            }
+            Error(r.Description);
         }
 
         private void Baja_Run()
         {
+            //TODO: Add label for status in BajaTab
             int cant ;
             if (!int.TryParse(mtxtBajaCant.Text, out cant))
             {
@@ -104,37 +192,62 @@ namespace Homologador
             }
 
             var voided = new BajaGenerator()
-                .ToCompany(GetCompany())
+                .ToCompany(_company)
                 .WithLines(cant)
                 .Build();
-;
+
+            var mng = new BillManager(_company);
+            var r = mng.Send(voided);
+            if (r.Success)
+            {
+                Status($@"Baja enviada exitosamente: {r.Code}-{r.Description}");
+                return;
+            }
+            Error(r.Description);
         }
 
         private async Task Extractor()
         {
-            _auth.Init();
             var numpr = await GetNumProceso();
             if (string.IsNullOrEmpty(numpr))
             {
-                MetroMessageBox.Show(this, "No se encontro ningún proceso de homologación vigente", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                Alert("No se encontro ningún proceso de homologación vigente");
                 return;    
             }
 
             var json = await _auth.GetPruebas(numpr);
             if (json == null)
             {
-                MetroMessageBox.Show(this, "No se pudo obtener informacion de las pruebas", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                Alert("No se pudo obtener informacion de las pruebas");
                 return;
             }
             var obj = JObject.Parse(json);
             //if (obj["fecfinetapa"].ToString() != "-")
             //{
-            //    MetroMessageBox.Show(this, "Ya finalizo el proceso de homologación", "Finalizado", MessageBoxButtons.OK);
+            //    Success("Ya finalizo el proceso de homologación");
             //    return;
             //}
 
-            LoadFacs((JArray)obj["facturas"]);
-            LoadBols((JArray)obj["boletas"]);
+            JToken token;
+            if (obj.TryGetValue("facturas", out token))
+            {
+                LoadFacs((JArray)token);
+            }
+            {
+                mtabFacturas.Visible = false;
+                mtabBajas.Visible = false;
+            }
+
+            if (obj.TryGetValue("boletas", out token))
+            {
+                LoadBols((JArray)token);
+            }
+            else
+            {
+                mtabBoletas.Visible = false;
+                mtabResumen.Visible = false;
+            }
+            
         }
 
         private void LoadFacs(JArray facturas)
@@ -178,6 +291,7 @@ namespace Homologador
                 facGroup.AddRange(subGroup);
             }
             lblCountFact.Text = facGroup.Count + @" Registros";
+
             foreach (var gr in facGroup)
             {
                 gridFacturas.Rows.Add(gr.Grupo, gr.Codigo, gr.Descripcion, gr.Documento, gr.Lines, gr.HasNotaCredit, gr.HasNotaDebit, gr.Estado);
@@ -248,55 +362,49 @@ namespace Homologador
             return int.Parse(arrs[arrs.Length - 2]);
         }
 
-        private Company GetCompany()
-        {
-            var sett = Settings.Default;
-            return new Company
-            {
-                Ruc = sett.Ruc,
-                RazonSocial = sett.RzSocial,
-                NombreComercial = sett.NComercial,
-                Address = new CompanyAddress
-                {
-                    Ubigueo = sett.Ubigueo,
-                    Urbanizacion = sett.Urbanizacion,
-                    Departamento = sett.Departamento,
-                    Provincia = sett.Provincia,
-                    Distrito = sett.Distrito,
-                    Direccion = sett.Direccion
-                }
-            };
-        }
-
         private void btnSetting_Click(object sender, EventArgs e)
         {
-            using (var sett = new ConfigurationForm())
+            using (var frm = new ConfigurationForm())
             {
-                sett.ShowDialog(this); 
+                frm.ShowDialog(this);
+                var sett = Settings.Default;
+                if (string.IsNullOrWhiteSpace(sett.Ruc)
+                    || string.IsNullOrWhiteSpace(sett.Usuario)
+                    || string.IsNullOrWhiteSpace(sett.Clave))
+                {
+                    Close();
+                    return;
+                }
+                Init();
             }
         }
 
-        private void Send()
+        private void Success(string msg)
         {
-            var fact = new FacturaGenerator()
-                .ToCompany(GetCompany())
-                .ForGroup(GrupoPrueba.Gravada)
-                .ForDoc("03")
-                .WithLines(1)
-                .Build();
+            MetroMessageBox.Show(this, msg, "Success");
+        }
+        private void Error(string msg)
+        {
+            MetroMessageBox.Show(this, msg, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+        private void Alert(string msg)
+        {
+            MetroMessageBox.Show(this, msg, "Alert!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        }
 
-            var gen = new XmlDocGenerator(new X509Certificate2("", ""));
-            var op = new OperationResult();
-            var r = gen.GeneraDocumentoInvoice(ref op, fact);
-            var sett = Settings.Default;
-            var mng = new SunatManager(new SolConfig
+        private T ToEnum<T>(string code)
+        {
+            return (T) Enum.ToObject(typeof(T), int.Parse(code));
+        }
+
+        private void Status(string msg)
+        {
+            if (InvokeRequired)
             {
-                Ruc = sett.Ruc,
-                Usuario = sett.Usuario,
-                Clave = sett.Clave,
-                Service = ServiceSunatType.Homologacion
-            });
-            var res = mng.SendDocument(r.FileName, r.Content);
+                Invoke(new MethodInvoker(() => lblStatus.Text = msg));
+                return;
+            }
+            lblStatus.Text = msg;
         }
     }
 }

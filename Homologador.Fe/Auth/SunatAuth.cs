@@ -38,11 +38,6 @@ namespace Homologador.Fe.Auth
             return client;
         }
 
-        public void Init()
-        {
-            LoadCookies();
-        }
-
         public void Login()
         {
             _location = Properties.Resources.Auth;
@@ -57,7 +52,6 @@ namespace Homologador.Fe.Auth
             });
             _location = Properties.Resources.OpcionMenu;
             Send();
-            SaveCookies();
         }
         private void Send(NameValueCollection data = null)
         {
@@ -147,29 +141,5 @@ namespace Homologador.Fe.Auth
             return SetLocation(resp);
         }
 
-        private void SaveCookies()
-        {
-            var format = new BinaryFormatter();
-            using (var file = File.Create("cooks.dat"))
-            {
-                format.Serialize(file, _cookies);
-            }
-        }
-        private void LoadCookies()
-        {
-            var filename = "cooks.dat";
-            if (File.Exists(filename))
-            {
-                var format = new BinaryFormatter();
-                using (var file = File.OpenRead(filename))
-                {
-                    _cookies = (CookieContainer)format.Deserialize(file);
-                    var cook = _cookies.GetCookies(new Uri("https://e-menu.sunat.gob.pe"));
-                    _cookies.Add(cook);
-                }
-                return;
-            }
-            Login();
-        }
     }
 }

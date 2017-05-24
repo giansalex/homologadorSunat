@@ -5,7 +5,7 @@ using FacturacionElectronica.GeneradorXml.Entity;
 using FacturacionElectronica.GeneradorXml.Entity.Details;
 using FacturacionElectronica.GeneradorXml.Entity.Misc;
 using FacturacionElectronica.GeneradorXml.Enums;
-using Homologador.Model;
+using Homologador.Fe.Model;
 
 namespace Homologador.Fe.Pruebas
 {
@@ -28,7 +28,7 @@ namespace Homologador.Fe.Pruebas
 
         public SummaryHeader Build()
         {
-            var head = new SummaryHeader()
+            var head = new SummaryHeader
             {
                 TipoDocumentoIdentidadEmisor = TipoDocumentoIdentidad.RegistroUnicoContribuyentes,
                 RucEmisor = _company.Ruc,
@@ -36,7 +36,8 @@ namespace Homologador.Fe.Pruebas
                 NombreRazonSocialEmisor = _company.RazonSocial,
                 NombreComercialEmisor = _company.NombreComercial,
                 CorrelativoArchivo = new Random().Next(1, 100).ToString("D3"),
-                CodigoMoneda = "PEN"
+                CodigoMoneda = "PEN",
+                DetallesDocumento = new List<SummaryDetail>(_lines)
             };
 
             foreach (var item in Enumerable.Range(1, _lines))

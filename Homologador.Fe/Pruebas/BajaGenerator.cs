@@ -4,7 +4,7 @@ using System.Linq;
 using FacturacionElectronica.GeneradorXml.Entity;
 using FacturacionElectronica.GeneradorXml.Entity.Details;
 using FacturacionElectronica.GeneradorXml.Enums;
-using Homologador.Model;
+using Homologador.Fe.Model;
 
 namespace Homologador.Fe.Pruebas
 {

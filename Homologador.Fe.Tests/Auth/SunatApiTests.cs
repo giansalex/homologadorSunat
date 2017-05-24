@@ -20,7 +20,7 @@ namespace Homologador.Fe.Tests.Auth
         [TestInitialize]
         public void LoginTest()
         {
-            _auth.Init();
+            _auth.Login();
             
         }
 

@@ -39,10 +39,6 @@
     <Reference Include="Gs.Ubl">
       <HintPath>..\Third\Gs.Ubl.dll</HintPath>
     </Reference>
-    <Reference Include="Ionic.Zip.Reduced, Version=1.9.1.8, Culture=neutral, PublicKeyToken=edbe51ad942a3f5c, processorArchitecture=MSIL">
-      <HintPath>..\packages\DotNetZip.Reduced.1.9.1.8\lib\net20\Ionic.Zip.Reduced.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -56,6 +52,10 @@
     <Compile Include="Auth\RucAuth.cs" />
     <Compile Include="Auth\SunatApi.cs" />
     <Compile Include="Auth\SunatAuth.cs" />
+    <Compile Include="Manage\BillManager.cs" />
+    <Compile Include="Manage\BillResult.cs" />
+    <Compile Include="Manage\XmlManager.cs" />
+    <Compile Include="Model\Certified.cs" />
     <Compile Include="Model\Company.cs" />
     <Compile Include="Model\CompanyAddress.cs" />
     <Compile Include="Model\GrupoPrueba.cs" />
@@ -69,9 +69,6 @@
     <Compile Include="Pruebas\FacturaGenerator.cs" />
     <Compile Include="Pruebas\NotaGenerator.cs" />
     <Compile Include="Pruebas\ResumenGenerator.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
