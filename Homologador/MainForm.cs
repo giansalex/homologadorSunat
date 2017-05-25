@@ -321,8 +321,11 @@ namespace Homologador
                     var desc = (string)caso1["descaso"];
                     var isNota = desc.StartsWith("NOTA", StringComparison.InvariantCultureIgnoreCase);
                     var num = GetNumItems(desc, isNota);
+                    var state = (string) caso1["estado"];
                     if (isNota)
                     {
+                        if (state.Equals("Aprobado", StringComparison.InvariantCultureIgnoreCase)) continue;
+                        
                         if (desc.Contains("crédito"))
                             subGroup[num - 1].HasNotaCredit = true;
                         else
@@ -336,7 +339,7 @@ namespace Homologador
                         Documento = (string)caso1["numdoc"],
                         Grupo = group,
                         Descripcion = desc,
-                        Estado = (string)caso1["estado"],
+                        Estado = state,
                         Lines = num
                     };
                     subGroup.Add(cs);
@@ -371,8 +374,10 @@ namespace Homologador
                     var desc = (string)caso1["descaso"];
                     var isNota = desc.StartsWith("NOTA", StringComparison.InvariantCultureIgnoreCase);
                     var num = GetNumItems(desc, isNota);
+                    var state = (string)caso1["estado"];
                     if (isNota)
                     {
+                        if (state.Equals("Aprobado", StringComparison.InvariantCultureIgnoreCase)) continue;
                         if (desc.Contains("crédito"))
                             subGroup[num - 1].HasNotaCredit = true;
                         else
@@ -386,8 +391,8 @@ namespace Homologador
                         Documento = (string)caso1["numdoc"],
                         Grupo = group,
                         Descripcion = desc,
-                        Estado = (string)caso1["estado"],
-                        Lines = isNota ? 0 : num
+                        Estado = state,
+                        Lines = num
                     };
                     subGroup.Add(cs);
                 }
