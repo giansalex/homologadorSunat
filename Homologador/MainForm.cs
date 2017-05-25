@@ -11,6 +11,7 @@ using Homologador.Fe.Pruebas;
 using Homologador.Model;
 using Homologador.Properties;
 using MetroFramework;
+using MetroFramework.Controls;
 using MetroFramework.Forms;
 using Newtonsoft.Json.Linq;
 
@@ -64,18 +65,27 @@ namespace Homologador
 
         private async void Init()
         {
-            var sett = Settings.Default;
-            if (string.IsNullOrWhiteSpace(sett.Ruc)
-                || string.IsNullOrWhiteSpace(sett.Usuario)
-                || string.IsNullOrWhiteSpace(sett.Clave))
+            try
             {
-                InvokeOnClick(btnSetting, null);
-                return;
-            }
+                InitLoad();
+                var sett = Settings.Default;
+                if (string.IsNullOrWhiteSpace(sett.Ruc)
+                    || string.IsNullOrWhiteSpace(sett.Usuario)
+                    || string.IsNullOrWhiteSpace(sett.Clave))
+                {
+                    InvokeOnClick(btnSetting, null);
+                    return;
+                }
 
-            _auth = new SunatApi(sett.Ruc, sett.Usuario, sett.Clave);
-            _auth.Login();
-            await Extractor();
+                _auth = new SunatApi(sett.Ruc, sett.Usuario, sett.Clave);
+                _auth.Login();
+                await Extractor();
+            }
+            catch (Exception e)
+            {
+                Error(e.Message);
+            }
+            spinner.Visible = false;
         }
 
         private void InitLoad()
@@ -136,27 +146,68 @@ namespace Homologador
                     if (hasNcr)
                     {
                         var ncr = nGene.BuildNcr();
-                        mng.Send(ncr);
+                        row.Cells["fnotacr"].Value = !mng.Send(ncr).Success;
                     }
 
                     if (hasNdb)
                     {
                         var ndb = nGene.BuildNdb();
-                        mng.Send(ndb);
+                        row.Cells["fnotadb"].Value = !mng.Send(ndb).Success;
                     }
                 }
             }
-            
+            var msg = gridFacturas.SelectedRows.Count > 1 ? "Facturas Enviadas" : "Factura Enviada";
+            Status(msg);
         }
 
         private void Boleta_Run()
         {
+            var rows = gridBoletas.SelectedRows;
+            if (rows.Count == 0) return;
+            var mng = new BillManager(_company);
+            var fgenerator = new FacturaGenerator()
+                .ToCompany(_company)
+                .ForDoc("03");
 
+            foreach (DataGridViewRow row in rows)
+            {
+                var gr = row.Cells["bgroup"].Value.ToString();
+                var lines = int.Parse(row.Cells["bcantidad"].Value.ToString());
+                var hasNcr = bool.Parse(row.Cells["bnotacr"].Value.ToString());
+                var hasNdb = bool.Parse(row.Cells["bnotadb"].Value.ToString());
+
+                var gro = gr == "12" ? GrupoPrueba.OtrasMonedas : (GrupoPrueba)Enum.ToObject(typeof(GrupoPrueba), int.Parse(gr) - 7);
+                var inv = fgenerator
+                    .ForGroup(gro)
+                    .WithLines(lines)
+                    .Build();
+
+                var res = mng.Send(inv);
+                row.Cells["bestado"].Value = res.Description;
+                if (res.Success)
+                {
+                    var nGene = new NotaGenerator()
+                        .From(inv);
+
+                    if (hasNcr)
+                    {
+                        var ncr = nGene.BuildNcr();
+                        row.Cells["bnotacr"].Value = !mng.Send(ncr).Success;
+                    }
+
+                    if (hasNdb)
+                    {
+                        var ndb = nGene.BuildNdb();
+                        row.Cells["bnotadb"].Value = !mng.Send(ndb).Success;
+                    }
+                }
+            }
+            var msg = gridBoletas.SelectedRows.Count > 1 ? "Boletas Enviadas" : "Boleta Enviada";
+            Status(msg);
         }
 
         private void Resumen_Run()
         {
-            //TODO: Add label for status in ResumenTab
             int cant;
             if (!int.TryParse(mtxtBajaCant.Text, out cant))
             {
@@ -182,7 +233,6 @@ namespace Homologador
 
         private void Baja_Run()
         {
-            //TODO: Add label for status in BajaTab
             int cant ;
             if (!int.TryParse(mtxtBajaCant.Text, out cant))
             {
@@ -256,12 +306,15 @@ namespace Homologador
             foreach (var factura in facturas)
             {
                 var group = (int)factura["codGrupo"];
-                if (group == 14)
+                var casos = (JArray)factura["casos"];
+
+                if (group == 14) // Bajas
                 {
                     mtabResumen.Visible = true;
+                    lblStateBaja.Text = (string)casos.First["estado"];
                     continue;
                 }
-                var casos = (JArray)factura["casos"];
+                
                 var subGroup = new List<Caso>();
                 foreach (var caso1 in casos)
                 {
@@ -274,7 +327,7 @@ namespace Homologador
                             subGroup[num - 1].HasNotaCredit = true;
                         else
                             subGroup[num - 1].HasNotaDebit = true;
-                        //continue;
+                        continue;
                     }
 
                     var cs = new Caso
@@ -292,6 +345,7 @@ namespace Homologador
             }
             lblCountFact.Text = facGroup.Count + @" Registros";
 
+            gridFacturas.Rows.Clear();
             foreach (var gr in facGroup)
             {
                 gridFacturas.Rows.Add(gr.Grupo, gr.Codigo, gr.Descripcion, gr.Documento, gr.Lines, gr.HasNotaCredit, gr.HasNotaDebit, gr.Estado);
@@ -303,12 +357,14 @@ namespace Homologador
             foreach (var boleta in boletas)
             {
                 var group = (int)boleta["codGrupo"];
+                var casos = (JArray)boleta["casos"];
                 if (group == 13) // Resumen
                 {
                     mtabResumen.Visible = true;
+                    lblStateResumen.Text = (string)casos.First["estado"];
                     continue;
                 }
-                var casos = (JArray)boleta["casos"];
+                
                 var subGroup = new List<Caso>();
                 foreach (var caso1 in casos)
                 {
@@ -321,6 +377,7 @@ namespace Homologador
                             subGroup[num - 1].HasNotaCredit = true;
                         else
                             subGroup[num - 1].HasNotaDebit = true;
+                        continue;
                     }
 
                     var cs = new Caso
@@ -337,6 +394,7 @@ namespace Homologador
                 bolGroup.AddRange(subGroup);
             }
             lblCountBoletas.Text = bolGroup.Count + @" Registros";
+            gridBoletas.Rows.Clear();
             foreach (var gr in bolGroup)
             {
                 gridBoletas.Rows.Add(gr.Grupo, gr.Codigo, gr.Descripcion, gr.Documento, gr.Lines, gr.HasNotaCredit, gr.HasNotaDebit, gr.Estado);
@@ -345,9 +403,11 @@ namespace Homologador
         private async Task<string> GetNumProceso()
         {
             var json = await _auth.GetSolicitudes();
+            if (json == null) return null;
             var obj = JObject.Parse(json);
             var items = (JArray)obj["items"];
-            var node = items.FirstOrDefault(r => string.IsNullOrWhiteSpace(r["fecnot"].ToString()));
+            //var node = items.FirstOrDefault(r => string.IsNullOrWhiteSpace(r["fecnot"].ToString()));
+            var node = items.FirstOrDefault();
             if (node != null) return (string)node["numsol"];
             return null;
         }
@@ -355,11 +415,7 @@ namespace Homologador
         private int GetNumItems(string content, bool isNota)
         {
             var arrs = content.Split(' ');
-            if (isNota)
-            {
-                return int.Parse(arrs[arrs.Length - 1]);
-            }
-            return int.Parse(arrs[arrs.Length - 2]);
+            return int.Parse(isNota ? arrs[arrs.Length - 1] : arrs[arrs.Length - 2]);
         }
 
         private void btnSetting_Click(object sender, EventArgs e)
@@ -372,7 +428,7 @@ namespace Homologador
                     || string.IsNullOrWhiteSpace(sett.Usuario)
                     || string.IsNullOrWhiteSpace(sett.Clave))
                 {
-                    Close();
+                    Application.Exit();
                     return;
                 }
                 Init();
@@ -406,5 +462,41 @@ namespace Homologador
             }
             lblStatus.Text = msg;
         }
+
+        private void mtcontextMenu_Opening(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            var source = mtcontextMenu.SourceControl as MetroGrid;
+
+            if (source?.SelectedRows.Count != 1) return;
+
+            var suffix = source == gridBoletas ? "b" : "f";
+            var cells = source.SelectedRows[0].Cells;
+            var hasNcr = (bool)cells[suffix + "notacr"].Value;
+            var hasNdb = (bool)cells[suffix + "notadb"].Value;
+            if (hasNcr || hasNdb)
+            {
+                menuNcr.Visible = hasNcr;
+                menuNdb.Visible = hasNdb;
+                return;
+            }
+            e.Cancel = true;
+        }
+
+        private void btnSync_Click(object sender, EventArgs e)
+        {
+            Init();
+        }
+
+        #region Notas
+        private void menuNcr_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void menuNdb_Click(object sender, EventArgs e)
+        {
+
+        } 
+        #endregion
     }
 }

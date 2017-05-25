@@ -49,37 +49,45 @@
             this.fnotacr = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.fnotadb = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.festado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.mtcontextMenu = new MetroFramework.Controls.MetroContextMenu(this.components);
+            this.menuNcr = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuNdb = new System.Windows.Forms.ToolStripMenuItem();
             this.mtabBoletas = new MetroFramework.Controls.MetroTabPage();
             this.lblCountBoletas = new MetroFramework.Controls.MetroLabel();
             this.metroLabel5 = new MetroFramework.Controls.MetroLabel();
             this.gridBoletas = new MetroFramework.Controls.MetroGrid();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.dataGridViewCheckBoxColumn2 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bgroup = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bcodigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bdescripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bdocumento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bcantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bnotacr = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.bnotadb = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.bestado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.mtabBajas = new MetroFramework.Controls.MetroTabPage();
+            this.lblStateBaja = new MetroFramework.Controls.MetroLabel();
             this.mtxtBajaCant = new MetroFramework.Controls.MetroTextBox();
             this.metroLabel2 = new MetroFramework.Controls.MetroLabel();
             this.mtabResumen = new MetroFramework.Controls.MetroTabPage();
+            this.lblStateResumen = new MetroFramework.Controls.MetroLabel();
             this.mtxtItemsRes = new MetroFramework.Controls.MetroTextBox();
             this.metroLabel3 = new MetroFramework.Controls.MetroLabel();
             this.metroStyleManager1 = new MetroFramework.Components.MetroStyleManager(this.components);
             this.lblStatus = new MetroFramework.Controls.MetroLabel();
             this.spinner = new MetroFramework.Controls.MetroProgressSpinner();
+            this.btnSync = new System.Windows.Forms.PictureBox();
             this.btnSetting = new System.Windows.Forms.PictureBox();
             this.btnRun = new System.Windows.Forms.PictureBox();
             this.tbDocs.SuspendLayout();
             this.mtabFacturas.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridFacturas)).BeginInit();
+            this.mtcontextMenu.SuspendLayout();
             this.mtabBoletas.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridBoletas)).BeginInit();
             this.mtabBajas.SuspendLayout();
             this.mtabResumen.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.metroStyleManager1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnSync)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSetting)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnRun)).BeginInit();
             this.SuspendLayout();
@@ -120,7 +128,7 @@
             // lblCountFact
             // 
             this.lblCountFact.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblCountFact.Location = new System.Drawing.Point(431, 291);
+            this.lblCountFact.Location = new System.Drawing.Point(431, 290);
             this.lblCountFact.Name = "lblCountFact";
             this.lblCountFact.Size = new System.Drawing.Size(177, 19);
             this.lblCountFact.TabIndex = 4;
@@ -130,14 +138,16 @@
             // metroLabel1
             // 
             this.metroLabel1.AutoSize = true;
-            this.metroLabel1.Location = new System.Drawing.Point(2, 13);
+            this.metroLabel1.Location = new System.Drawing.Point(2, 4);
             this.metroLabel1.Name = "metroLabel1";
-            this.metroLabel1.Size = new System.Drawing.Size(57, 19);
+            this.metroLabel1.Size = new System.Drawing.Size(56, 19);
             this.metroLabel1.TabIndex = 3;
             this.metroLabel1.Text = "Facturas";
             // 
             // gridFacturas
             // 
+            this.gridFacturas.AllowUserToAddRows = false;
+            this.gridFacturas.AllowUserToDeleteRows = false;
             this.gridFacturas.AllowUserToResizeRows = false;
             this.gridFacturas.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
@@ -164,6 +174,7 @@
             this.fnotacr,
             this.fnotadb,
             this.festado});
+            this.gridFacturas.ContextMenuStrip = this.mtcontextMenu;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
@@ -175,7 +186,7 @@
             this.gridFacturas.EnableHeadersVisualStyles = false;
             this.gridFacturas.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.gridFacturas.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.gridFacturas.Location = new System.Drawing.Point(-2, 40);
+            this.gridFacturas.Location = new System.Drawing.Point(-2, 27);
             this.gridFacturas.Name = "gridFacturas";
             this.gridFacturas.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -190,7 +201,7 @@
             this.gridFacturas.RowHeadersWidth = 20;
             this.gridFacturas.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.gridFacturas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridFacturas.Size = new System.Drawing.Size(611, 250);
+            this.gridFacturas.Size = new System.Drawing.Size(611, 263);
             this.gridFacturas.TabIndex = 2;
             // 
             // fgroup
@@ -218,6 +229,7 @@
             // 
             this.fdocumento.HeaderText = "Documento";
             this.fdocumento.Name = "fdocumento";
+            this.fdocumento.ReadOnly = true;
             // 
             // fcantidad
             // 
@@ -229,7 +241,8 @@
             // 
             this.fnotacr.HeaderText = "Ncr";
             this.fnotacr.Name = "fnotacr";
-            this.fnotacr.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.fnotacr.ReadOnly = true;
+            this.fnotacr.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.fnotacr.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.fnotacr.Width = 30;
             // 
@@ -237,7 +250,8 @@
             // 
             this.fnotadb.HeaderText = "Ndb";
             this.fnotadb.Name = "fnotadb";
-            this.fnotadb.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.fnotadb.ReadOnly = true;
+            this.fnotadb.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.fnotadb.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.fnotadb.Width = 30;
             // 
@@ -246,6 +260,32 @@
             this.festado.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.festado.HeaderText = "Estado";
             this.festado.Name = "festado";
+            this.festado.ReadOnly = true;
+            // 
+            // mtcontextMenu
+            // 
+            this.mtcontextMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.mtcontextMenu.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.mtcontextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuNcr,
+            this.menuNdb});
+            this.mtcontextMenu.Name = "mtcontextMenu";
+            this.mtcontextMenu.Size = new System.Drawing.Size(195, 48);
+            this.mtcontextMenu.Opening += new System.ComponentModel.CancelEventHandler(this.mtcontextMenu_Opening);
+            // 
+            // menuNcr
+            // 
+            this.menuNcr.Name = "menuNcr";
+            this.menuNcr.Size = new System.Drawing.Size(194, 22);
+            this.menuNcr.Text = "Enviar Nota De Crédito";
+            this.menuNcr.Click += new System.EventHandler(this.menuNcr_Click);
+            // 
+            // menuNdb
+            // 
+            this.menuNdb.Name = "menuNdb";
+            this.menuNdb.Size = new System.Drawing.Size(194, 22);
+            this.menuNdb.Text = "Enviar Nota de Débito";
+            this.menuNdb.Click += new System.EventHandler(this.menuNdb_Click);
             // 
             // mtabBoletas
             // 
@@ -267,7 +307,7 @@
             // lblCountBoletas
             // 
             this.lblCountBoletas.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblCountBoletas.Location = new System.Drawing.Point(431, 284);
+            this.lblCountBoletas.Location = new System.Drawing.Point(431, 290);
             this.lblCountBoletas.Name = "lblCountBoletas";
             this.lblCountBoletas.Size = new System.Drawing.Size(177, 19);
             this.lblCountBoletas.TabIndex = 7;
@@ -277,7 +317,7 @@
             // metroLabel5
             // 
             this.metroLabel5.AutoSize = true;
-            this.metroLabel5.Location = new System.Drawing.Point(2, 6);
+            this.metroLabel5.Location = new System.Drawing.Point(2, 4);
             this.metroLabel5.Name = "metroLabel5";
             this.metroLabel5.Size = new System.Drawing.Size(51, 19);
             this.metroLabel5.TabIndex = 6;
@@ -285,6 +325,8 @@
             // 
             // gridBoletas
             // 
+            this.gridBoletas.AllowUserToAddRows = false;
+            this.gridBoletas.AllowUserToDeleteRows = false;
             this.gridBoletas.AllowUserToResizeRows = false;
             this.gridBoletas.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
@@ -303,14 +345,15 @@
             this.gridBoletas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.gridBoletas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridBoletas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn1,
-            this.dataGridViewTextBoxColumn2,
-            this.dataGridViewTextBoxColumn3,
-            this.dataGridViewTextBoxColumn4,
-            this.dataGridViewTextBoxColumn5,
-            this.dataGridViewCheckBoxColumn1,
-            this.dataGridViewCheckBoxColumn2,
-            this.dataGridViewTextBoxColumn6});
+            this.bgroup,
+            this.bcodigo,
+            this.bdescripcion,
+            this.bdocumento,
+            this.bcantidad,
+            this.bnotacr,
+            this.bnotadb,
+            this.bestado});
+            this.gridBoletas.ContextMenuStrip = this.mtcontextMenu;
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
@@ -322,7 +365,7 @@
             this.gridBoletas.EnableHeadersVisualStyles = false;
             this.gridBoletas.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.gridBoletas.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.gridBoletas.Location = new System.Drawing.Point(-2, 33);
+            this.gridBoletas.Location = new System.Drawing.Point(-2, 27);
             this.gridBoletas.Name = "gridBoletas";
             this.gridBoletas.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -337,65 +380,70 @@
             this.gridBoletas.RowHeadersWidth = 20;
             this.gridBoletas.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.gridBoletas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridBoletas.Size = new System.Drawing.Size(611, 250);
+            this.gridBoletas.Size = new System.Drawing.Size(611, 259);
             this.gridBoletas.TabIndex = 5;
             // 
-            // dataGridViewTextBoxColumn1
+            // bgroup
             // 
-            this.dataGridViewTextBoxColumn1.HeaderText = "Grupo";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            this.dataGridViewTextBoxColumn1.Width = 40;
+            this.bgroup.HeaderText = "Grupo";
+            this.bgroup.Name = "bgroup";
+            this.bgroup.ReadOnly = true;
+            this.bgroup.Width = 40;
             // 
-            // dataGridViewTextBoxColumn2
+            // bcodigo
             // 
-            this.dataGridViewTextBoxColumn2.HeaderText = "Codigo";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            this.dataGridViewTextBoxColumn2.Width = 50;
+            this.bcodigo.HeaderText = "Codigo";
+            this.bcodigo.Name = "bcodigo";
+            this.bcodigo.ReadOnly = true;
+            this.bcodigo.Width = 50;
             // 
-            // dataGridViewTextBoxColumn3
+            // bdescripcion
             // 
-            this.dataGridViewTextBoxColumn3.HeaderText = "Descripción";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.ReadOnly = true;
-            this.dataGridViewTextBoxColumn3.Width = 160;
+            this.bdescripcion.HeaderText = "Descripción";
+            this.bdescripcion.Name = "bdescripcion";
+            this.bdescripcion.ReadOnly = true;
+            this.bdescripcion.Width = 160;
             // 
-            // dataGridViewTextBoxColumn4
+            // bdocumento
             // 
-            this.dataGridViewTextBoxColumn4.HeaderText = "Documento";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.bdocumento.HeaderText = "Documento";
+            this.bdocumento.Name = "bdocumento";
+            this.bdocumento.ReadOnly = true;
             // 
-            // dataGridViewTextBoxColumn5
+            // bcantidad
             // 
-            this.dataGridViewTextBoxColumn5.HeaderText = "Cantidad";
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            this.dataGridViewTextBoxColumn5.Width = 55;
+            this.bcantidad.HeaderText = "Cantidad";
+            this.bcantidad.Name = "bcantidad";
+            this.bcantidad.Width = 55;
             // 
-            // dataGridViewCheckBoxColumn1
+            // bnotacr
             // 
-            this.dataGridViewCheckBoxColumn1.HeaderText = "Ncr";
-            this.dataGridViewCheckBoxColumn1.Name = "dataGridViewCheckBoxColumn1";
-            this.dataGridViewCheckBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewCheckBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.dataGridViewCheckBoxColumn1.Width = 30;
+            this.bnotacr.HeaderText = "Ncr";
+            this.bnotacr.Name = "bnotacr";
+            this.bnotacr.ReadOnly = true;
+            this.bnotacr.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.bnotacr.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.bnotacr.Width = 30;
             // 
-            // dataGridViewCheckBoxColumn2
+            // bnotadb
             // 
-            this.dataGridViewCheckBoxColumn2.HeaderText = "Ndb";
-            this.dataGridViewCheckBoxColumn2.Name = "dataGridViewCheckBoxColumn2";
-            this.dataGridViewCheckBoxColumn2.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewCheckBoxColumn2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.dataGridViewCheckBoxColumn2.Width = 30;
+            this.bnotadb.HeaderText = "Ndb";
+            this.bnotadb.Name = "bnotadb";
+            this.bnotadb.ReadOnly = true;
+            this.bnotadb.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.bnotadb.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.bnotadb.Width = 30;
             // 
-            // dataGridViewTextBoxColumn6
+            // bestado
             // 
-            this.dataGridViewTextBoxColumn6.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dataGridViewTextBoxColumn6.HeaderText = "Estado";
-            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            this.bestado.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.bestado.HeaderText = "Estado";
+            this.bestado.Name = "bestado";
+            this.bestado.ReadOnly = true;
             // 
             // mtabBajas
             // 
+            this.mtabBajas.Controls.Add(this.lblStateBaja);
             this.mtabBajas.Controls.Add(this.mtxtBajaCant);
             this.mtabBajas.Controls.Add(this.metroLabel2);
             this.mtabBajas.HorizontalScrollbarBarColor = true;
@@ -409,6 +457,16 @@
             this.mtabBajas.VerticalScrollbarBarColor = true;
             this.mtabBajas.VerticalScrollbarHighlightOnWheel = false;
             this.mtabBajas.VerticalScrollbarSize = 10;
+            // 
+            // lblStateBaja
+            // 
+            this.lblStateBaja.AutoSize = true;
+            this.lblStateBaja.Location = new System.Drawing.Point(11, 55);
+            this.lblStateBaja.Name = "lblStateBaja";
+            this.lblStateBaja.Size = new System.Drawing.Size(80, 19);
+            this.lblStateBaja.Style = MetroFramework.MetroColorStyle.Green;
+            this.lblStateBaja.TabIndex = 4;
+            this.lblStateBaja.Text = "No Definido";
             // 
             // mtxtBajaCant
             // 
@@ -454,6 +512,7 @@
             // 
             // mtabResumen
             // 
+            this.mtabResumen.Controls.Add(this.lblStateResumen);
             this.mtabResumen.Controls.Add(this.mtxtItemsRes);
             this.mtabResumen.Controls.Add(this.metroLabel3);
             this.mtabResumen.HorizontalScrollbarBarColor = true;
@@ -467,6 +526,16 @@
             this.mtabResumen.VerticalScrollbarBarColor = true;
             this.mtabResumen.VerticalScrollbarHighlightOnWheel = false;
             this.mtabResumen.VerticalScrollbarSize = 10;
+            // 
+            // lblStateResumen
+            // 
+            this.lblStateResumen.AutoSize = true;
+            this.lblStateResumen.Location = new System.Drawing.Point(11, 55);
+            this.lblStateResumen.Name = "lblStateResumen";
+            this.lblStateResumen.Size = new System.Drawing.Size(80, 19);
+            this.lblStateResumen.Style = MetroFramework.MetroColorStyle.Green;
+            this.lblStateResumen.TabIndex = 6;
+            this.lblStateResumen.Text = "No Definido";
             // 
             // mtxtItemsRes
             // 
@@ -536,14 +605,27 @@
             this.spinner.UseSelectable = true;
             this.spinner.Visible = false;
             // 
+            // btnSync
+            // 
+            this.btnSync.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSync.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSync.Image = global::Homologador.Properties.Resources.Sincronizar;
+            this.btnSync.Location = new System.Drawing.Point(570, 39);
+            this.btnSync.Name = "btnSync";
+            this.btnSync.Size = new System.Drawing.Size(32, 33);
+            this.btnSync.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnSync.TabIndex = 6;
+            this.btnSync.TabStop = false;
+            this.btnSync.Click += new System.EventHandler(this.btnSync_Click);
+            // 
             // btnSetting
             // 
             this.btnSetting.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSetting.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnSetting.Image = global::Homologador.Properties.Resources.ajustes;
-            this.btnSetting.Location = new System.Drawing.Point(599, 39);
+            this.btnSetting.Location = new System.Drawing.Point(608, 39);
             this.btnSetting.Name = "btnSetting";
-            this.btnSetting.Size = new System.Drawing.Size(40, 37);
+            this.btnSetting.Size = new System.Drawing.Size(32, 33);
             this.btnSetting.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.btnSetting.TabIndex = 5;
             this.btnSetting.TabStop = false;
@@ -566,6 +648,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(661, 436);
+            this.Controls.Add(this.btnSync);
             this.Controls.Add(this.btnSetting);
             this.Controls.Add(this.spinner);
             this.Controls.Add(this.btnRun);
@@ -580,6 +663,7 @@
             this.mtabFacturas.ResumeLayout(false);
             this.mtabFacturas.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridFacturas)).EndInit();
+            this.mtcontextMenu.ResumeLayout(false);
             this.mtabBoletas.ResumeLayout(false);
             this.mtabBoletas.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridBoletas)).EndInit();
@@ -588,6 +672,7 @@
             this.mtabResumen.ResumeLayout(false);
             this.mtabResumen.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.metroStyleManager1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnSync)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSetting)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnRun)).EndInit();
             this.ResumeLayout(false);
@@ -612,6 +697,16 @@
         private MetroFramework.Controls.MetroProgressSpinner spinner;
         private System.Windows.Forms.PictureBox btnSetting;
         private MetroFramework.Controls.MetroLabel lblCountFact;
+        private MetroFramework.Controls.MetroTextBox mtxtItemsRes;
+        private MetroFramework.Controls.MetroLabel metroLabel3;
+        private MetroFramework.Controls.MetroLabel lblCountBoletas;
+        private MetroFramework.Controls.MetroLabel metroLabel5;
+        private MetroFramework.Controls.MetroGrid gridBoletas;
+        private MetroFramework.Controls.MetroContextMenu mtcontextMenu;
+        private System.Windows.Forms.ToolStripMenuItem menuNcr;
+        private MetroFramework.Controls.MetroLabel lblStateBaja;
+        private MetroFramework.Controls.MetroLabel lblStateResumen;
+        private System.Windows.Forms.ToolStripMenuItem menuNdb;
         private System.Windows.Forms.DataGridViewTextBoxColumn fgroup;
         private System.Windows.Forms.DataGridViewTextBoxColumn fcodigo;
         private System.Windows.Forms.DataGridViewTextBoxColumn fdescripcion;
@@ -620,18 +715,14 @@
         private System.Windows.Forms.DataGridViewCheckBoxColumn fnotacr;
         private System.Windows.Forms.DataGridViewCheckBoxColumn fnotadb;
         private System.Windows.Forms.DataGridViewTextBoxColumn festado;
-        private MetroFramework.Controls.MetroTextBox mtxtItemsRes;
-        private MetroFramework.Controls.MetroLabel metroLabel3;
-        private MetroFramework.Controls.MetroLabel lblCountBoletas;
-        private MetroFramework.Controls.MetroLabel metroLabel5;
-        private MetroFramework.Controls.MetroGrid gridBoletas;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn1;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
+        private System.Windows.Forms.PictureBox btnSync;
+        private System.Windows.Forms.DataGridViewTextBoxColumn bgroup;
+        private System.Windows.Forms.DataGridViewTextBoxColumn bcodigo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn bdescripcion;
+        private System.Windows.Forms.DataGridViewTextBoxColumn bdocumento;
+        private System.Windows.Forms.DataGridViewTextBoxColumn bcantidad;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn bnotacr;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn bnotadb;
+        private System.Windows.Forms.DataGridViewTextBoxColumn bestado;
     }
 }
