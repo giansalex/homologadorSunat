@@ -13,8 +13,8 @@ GRUPO                | TIPO DE DOCUMENTO    | SERIE | Descripcion
 3  :heavy_check_mark:| Facturas y Notas     | FF13  | Ventas gratuitas
 4  :heavy_check_mark:| Facturas y Notas     | FF14  | Ventas con descuento global
 5                    | Facturas y Notas     | FF30  | Operaciones gravadas con ISC
-6                    | Facturas y Notas     | FF40  | Operaciones con percepción
-7  :heavy_check_mark:| Facturas y Notas     | FF50  | Operaciones con otro tipo de mone
+6  :heavy_check_mark:| Facturas y Notas     | FF40  | Operaciones con percepción
+7  :heavy_check_mark:| Facturas y Notas     | FF50  | Operaciones con otro tipo de moneda
 8  :heavy_check_mark:| Boletas y Notas      | BB11  | Ventas Gravadas IGV
 9  :heavy_check_mark:| Boletas y Notas      | BB12  | Ventas inafectas y/o exoneradas
 10 :heavy_check_mark:| Boletas y Notas      | BB13  | Ventas Gratuitas

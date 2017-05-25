@@ -245,6 +245,22 @@ namespace Homologador.Fe.Pruebas
                     ID = "1002",
                     Value = "TRANSFERENCIA GRATUITA DE UN BIEN Y/O SERVICIO PRESTADO GRATUITAMENTE"
                 });
+
+            if (_grupo == GrupoPrueba.ConPercepcion)
+            {
+                var val = head.TotalVenta * 0.02M; // 2% percepcion
+                head.TotalTributosAdicionales.Add(new TotalTributosType
+                {
+                    Id = OtrosConceptosTributarios.Percepciones,
+                    MontoPagable = val,
+                    MontoTotal = head.TotalVenta + val
+                });
+                head.InfoAddicional.Add(new AdditionalPropertyType
+                {
+                    ID = "2000",
+                    Value = "COMPROBANTE DE PERCEPCION"
+                });
+            }
         }
 
         private DireccionType GetDireccion()
