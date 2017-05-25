@@ -79,13 +79,14 @@ namespace Homologador
 
                 _auth = new SunatApi(sett.Ruc, sett.Usuario, sett.Clave);
                 _auth.Login();
-                await Extractor();
+                await Extractor()
+                    .ConfigureAwait(false);
             }
             catch (Exception e)
             {
                 Error(e.Message);
             }
-            spinner.Visible = false;
+            Invoke(new MethodInvoker(() => spinner.Visible = false));
         }
 
         private void InitLoad()
@@ -96,26 +97,26 @@ namespace Homologador
             spinner.Visible = true;
         }
 
-        private void btnRun_Click(object sender, EventArgs e)
+        private async void btnRun_Click(object sender, EventArgs e)
         {
             switch (tbDocs.SelectedTab.Name)
             {
                 case nameof(mtabFacturas):
-                    Factura_Run();
+                    await Factura_Run();
                     break;
                 case nameof(mtabBoletas):
-                    Boleta_Run();
+                    await Boleta_Run();
                     break;
                 case nameof(mtabResumen):
-                    Resumen_Run();
+                    await Resumen_Run();
                     break;
                 case nameof(mtabBajas):
-                    Baja_Run();
+                    await Baja_Run();
                     break;
             }
         }
 
-        private void Factura_Run()
+        private async Task Factura_Run()
         {
             var rows = gridFacturas.SelectedRows;
             if (rows.Count == 0) return;
@@ -136,31 +137,32 @@ namespace Homologador
                     .WithLines(lines)
                     .Build();
 
-                var res = mng.Send(inv);
+                var res = await mng.Send(inv);
                 row.Cells["festado"].Value = res.Description;
-                if (res.Success)
+                if (!res.Success) continue;
+
+                row.Cells["fdocumento"].Value = $"{inv.SerieDocumento}-{inv.CorrelativoDocumento}";
+                var nGene = new NotaGenerator()
+                    .From(inv);
+
+                if (hasNcr)
                 {
-                    var nGene = new NotaGenerator()
-                        .From(inv);
+                    var ncr = nGene.BuildNcr();
+                    row.Cells["fnotacr"].Value = !(await mng.Send(ncr)).Success;
+                }
 
-                    if (hasNcr)
-                    {
-                        var ncr = nGene.BuildNcr();
-                        row.Cells["fnotacr"].Value = !mng.Send(ncr).Success;
-                    }
-
-                    if (hasNdb)
-                    {
-                        var ndb = nGene.BuildNdb();
-                        row.Cells["fnotadb"].Value = !mng.Send(ndb).Success;
-                    }
+                if (hasNdb)
+                {
+                    var ndb = nGene.BuildNdb();
+                    row.Cells["fnotadb"].Value = !(await mng.Send(ndb)).Success;
                 }
             }
             var msg = gridFacturas.SelectedRows.Count > 1 ? "Facturas Enviadas" : "Factura Enviada";
+            if (gridFacturas.SelectedRows.Count > 1) Success(msg);
             Status(msg);
         }
 
-        private void Boleta_Run()
+        private async Task Boleta_Run()
         {
             var rows = gridBoletas.SelectedRows;
             if (rows.Count == 0) return;
@@ -182,31 +184,32 @@ namespace Homologador
                     .WithLines(lines)
                     .Build();
 
-                var res = mng.Send(inv);
+                var res = await mng.Send(inv);
                 row.Cells["bestado"].Value = res.Description;
-                if (res.Success)
+                if (!res.Success) continue;
+
+                row.Cells["bdocumento"].Value = $"{inv.SerieDocumento}-{inv.CorrelativoDocumento}";
+                var nGene = new NotaGenerator()
+                    .From(inv);
+
+                if (hasNcr)
                 {
-                    var nGene = new NotaGenerator()
-                        .From(inv);
+                    var ncr = nGene.BuildNcr();
+                    row.Cells["bnotacr"].Value = !(await mng.Send(ncr)).Success;
+                }
 
-                    if (hasNcr)
-                    {
-                        var ncr = nGene.BuildNcr();
-                        row.Cells["bnotacr"].Value = !mng.Send(ncr).Success;
-                    }
-
-                    if (hasNdb)
-                    {
-                        var ndb = nGene.BuildNdb();
-                        row.Cells["bnotadb"].Value = !mng.Send(ndb).Success;
-                    }
+                if (hasNdb)
+                {
+                    var ndb = nGene.BuildNdb();
+                    row.Cells["bnotadb"].Value = !(await mng.Send(ndb)).Success;
                 }
             }
             var msg = gridBoletas.SelectedRows.Count > 1 ? "Boletas Enviadas" : "Boleta Enviada";
+            if (gridBoletas.SelectedRows.Count > 1) Success(msg);
             Status(msg);
         }
 
-        private void Resumen_Run()
+        private async Task Resumen_Run()
         {
             int cant;
             if (!int.TryParse(mtxtBajaCant.Text, out cant))
@@ -222,7 +225,7 @@ namespace Homologador
                 .Build();
 
             var mng = new BillManager(_company);
-            var r = mng.Send(resumen);
+            var r = await mng.Send(resumen);
             if (r.Success)
             {
                 Status($@"Resumen enviado exitosamente: {r.Code}-{r.Description}");
@@ -231,7 +234,7 @@ namespace Homologador
             Error(r.Description);
         }
 
-        private void Baja_Run()
+        private async Task Baja_Run()
         {
             int cant ;
             if (!int.TryParse(mtxtBajaCant.Text, out cant))
@@ -247,7 +250,7 @@ namespace Homologador
                 .Build();
 
             var mng = new BillManager(_company);
-            var r = mng.Send(voided);
+            var r = await mng.Send(voided);
             if (r.Success)
             {
                 Status($@"Baja enviada exitosamente: {r.Code}-{r.Description}");
@@ -299,7 +302,6 @@ namespace Homologador
             }
             
         }
-
         private void LoadFacs(JArray facturas)
         {
             var facGroup = new List<Caso>();
@@ -324,7 +326,7 @@ namespace Homologador
                     var state = (string) caso1["estado"];
                     if (isNota)
                     {
-                        if (state.Equals("Aprobado", StringComparison.InvariantCultureIgnoreCase)) continue;
+                        //if (state.Equals("Aprobado", StringComparison.InvariantCultureIgnoreCase)) continue;
                         
                         if (desc.Contains("crédito"))
                             subGroup[num - 1].HasNotaCredit = true;
@@ -377,7 +379,8 @@ namespace Homologador
                     var state = (string)caso1["estado"];
                     if (isNota)
                     {
-                        if (state.Equals("Aprobado", StringComparison.InvariantCultureIgnoreCase)) continue;
+                        //if (state.Equals("Aprobado", StringComparison.InvariantCultureIgnoreCase)) continue;
+
                         if (desc.Contains("crédito"))
                             subGroup[num - 1].HasNotaCredit = true;
                         else
@@ -440,9 +443,10 @@ namespace Homologador
             }
         }
 
+        #region Messages Box
         private void Success(string msg)
         {
-            MetroMessageBox.Show(this, msg, "Success");
+            MetroMessageBox.Show(this, msg, "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
         private void Error(string msg)
         {
@@ -451,7 +455,8 @@ namespace Homologador
         private void Alert(string msg)
         {
             MetroMessageBox.Show(this, msg, "Alert!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-        }
+        } 
+        #endregion
 
         private T ToEnum<T>(string code)
         {
@@ -476,6 +481,7 @@ namespace Homologador
 
             var suffix = source == gridBoletas ? "b" : "f";
             var cells = source.SelectedRows[0].Cells;
+
             var hasNcr = (bool)cells[suffix + "notacr"].Value;
             var hasNdb = (bool)cells[suffix + "notadb"].Value;
             if (hasNcr || hasNdb)
@@ -493,15 +499,68 @@ namespace Homologador
         }
 
         #region Notas
-        private void menuNcr_Click(object sender, EventArgs e)
-        {
 
+        private async void menuNota_Click(object sender, EventArgs e)
+        {
+            var grid = (MetroGrid)mtcontextMenu.SourceControl;
+            var rows = grid.SelectedRows;
+            if (rows.Count != 1) return;
+
+            var isFact = mtcontextMenu.SourceControl == gridFacturas;
+            var sufx = isFact ? "f" : "b";
+            var row = rows[0];
+
+            var doc = row.Cells[sufx + "documento"].Value.ToString();
+            if (!doc.Contains("-"))
+            {
+                Alert("Caso de prueba, no tiene documento enviado.");
+                return;
+            }
+
+            var gr = row.Cells[sufx + "group"].Value.ToString();
+            
+            var lines = int.Parse(row.Cells[sufx + "cantidad"].Value.ToString());
+            GrupoPrueba gro;
+
+            if (isFact)
+            {
+                gro = ToEnum<GrupoPrueba>(gr);
+            }
+            else
+            {
+                gro = gr == "12"
+                    ? GrupoPrueba.OtrasMonedas
+                    : (GrupoPrueba)Enum.ToObject(typeof(GrupoPrueba), int.Parse(gr) - 7);
+            }
+
+            var inv = new FacturaGenerator()
+                    .ToCompany(_company)
+                    .ForDoc(isFact ? "01" : "03")
+                    .ForGroup(gro)
+                    .WithLines(lines)
+                    .Build();
+
+            var arrs = doc.Split('-');
+            inv.SerieDocumento = arrs[0];
+            inv.CorrelativoDocumento = arrs[1];
+
+            var mng = new BillManager(_company);
+
+            var gn = new NotaGenerator()
+                        .From(inv);
+
+            if (sender == menuNcr)
+            {
+                var ncr = gn.BuildNcr();
+                row.Cells[sufx + "notacr"].Value = !(await mng.Send(ncr)).Success;
+            }
+            else
+            {
+                var ncr = gn.BuildNdb();
+                row.Cells[sufx + "notadb"].Value = !(await mng.Send(ncr)).Success;
+            }
+            
         }
-
-        private void menuNdb_Click(object sender, EventArgs e)
-        {
-
-        } 
         #endregion
     }
 }

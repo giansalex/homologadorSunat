@@ -140,7 +140,7 @@
             this.metroLabel1.AutoSize = true;
             this.metroLabel1.Location = new System.Drawing.Point(2, 4);
             this.metroLabel1.Name = "metroLabel1";
-            this.metroLabel1.Size = new System.Drawing.Size(56, 19);
+            this.metroLabel1.Size = new System.Drawing.Size(57, 19);
             this.metroLabel1.TabIndex = 3;
             this.metroLabel1.Text = "Facturas";
             // 
@@ -278,14 +278,14 @@
             this.menuNcr.Name = "menuNcr";
             this.menuNcr.Size = new System.Drawing.Size(194, 22);
             this.menuNcr.Text = "Enviar Nota De Crédito";
-            this.menuNcr.Click += new System.EventHandler(this.menuNcr_Click);
+            this.menuNcr.Click += new System.EventHandler(this.menuNota_Click);
             // 
             // menuNdb
             // 
             this.menuNdb.Name = "menuNdb";
             this.menuNdb.Size = new System.Drawing.Size(194, 22);
             this.menuNdb.Text = "Enviar Nota de Débito";
-            this.menuNdb.Click += new System.EventHandler(this.menuNdb_Click);
+            this.menuNdb.Click += new System.EventHandler(this.menuNota_Click);
             // 
             // mtabBoletas
             // 

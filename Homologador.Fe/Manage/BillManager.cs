@@ -1,4 +1,4 @@
-﻿using System.IO;
+﻿using System.Threading.Tasks;
 using FacturacionElectronica.GeneradorXml.Entity;
 using FacturacionElectronica.Homologacion;
 using FacturacionElectronica.Homologacion.Res;
@@ -36,12 +36,12 @@ namespace Homologador.Fe.Manage
         /// </summary>
         /// <param name="debit">The debit.</param>
         /// <returns>BillResult.</returns>
-        public BillResult Send(DebitNoteHeader debit)
+        public async Task<BillResult> Send(DebitNoteHeader debit)
         {
             var xmlRes = _xmlGenerator.ToXml(debit);
             if (!xmlRes.Success) return xmlRes;
             
-            return SendDoc(xmlRes.Path, xmlRes.Content);
+            return await SendDoc(xmlRes.Path, xmlRes.Content);
         }
 
         /// <summary>
@@ -49,12 +49,12 @@ namespace Homologador.Fe.Manage
         /// </summary>
         /// <param name="credit">The credit.</param>
         /// <returns>BillResult.</returns>
-        public BillResult Send(CreditNoteHeader credit)
+        public async Task<BillResult> Send(CreditNoteHeader credit)
         {
             var xmlRes = _xmlGenerator.ToXml(credit);
             if (!xmlRes.Success) return xmlRes;
 
-            return SendDoc(xmlRes.Path, xmlRes.Content);
+            return await SendDoc(xmlRes.Path, xmlRes.Content);
         }
 
 
@@ -63,12 +63,12 @@ namespace Homologador.Fe.Manage
         /// </summary>
         /// <param name="venta">The venta.</param>
         /// <returns>BillResult.</returns>
-        public BillResult Send(InvoiceHeader venta)
+        public async Task<BillResult> Send(InvoiceHeader venta)
         {
             var xmlRes = _xmlGenerator.ToXml(venta);
             if (!xmlRes.Success) return xmlRes;
 
-            return SendDoc(xmlRes.Path, xmlRes.Content);
+            return await SendDoc(xmlRes.Path, xmlRes.Content);
         }
 
         /// <summary>
@@ -76,12 +76,12 @@ namespace Homologador.Fe.Manage
         /// </summary>
         /// <param name="resumen">The resumen.</param>
         /// <returns>BillResult.</returns>
-        public BillResult Send(SummaryHeader resumen)
+        public async Task<BillResult> Send(SummaryHeader resumen)
         {
             var xmlRes = _xmlGenerator.ToXml(resumen);
             if (!xmlRes.Success) return xmlRes;
 
-            return SendSumm(xmlRes.Path, xmlRes.Content);
+            return await SendSumm(xmlRes.Path, xmlRes.Content);
         }
 
 
@@ -90,22 +90,22 @@ namespace Homologador.Fe.Manage
         /// </summary>
         /// <param name="baja">The baja.</param>
         /// <returns>BillResult.</returns>
-        public BillResult Send(VoidedHeader baja)
+        public async Task<BillResult> Send(VoidedHeader baja)
         {
             var xmlRes = _xmlGenerator.ToXml(baja);
             if (!xmlRes.Success) return xmlRes;
-            return SendSumm(xmlRes.Path, xmlRes.Content);
+            return await SendSumm(xmlRes.Path, xmlRes.Content);
         } 
         #endregion
 
-        private WsResult SendDoc(string xmlfile, byte[] content)
+        private async Task<WsResult> SendDoc(string xmlfile, byte[] content)
         {
-            var res = _wsManager.SendDocument(xmlfile, content);
-            return FromSunatResponse(res, xmlfile);
+            var res = await _wsManager.SendDocument(xmlfile, content);
+            return FromSunatResponse(res);
         }
-        private WsResult SendSumm(string xmlPath, byte[] content)
+        private async Task<WsResult> SendSumm(string xmlPath, byte[] content)
         {
-            var res = _wsManager.SendSummary(xmlPath, content);
+            var res = await _wsManager.SendSummary(xmlPath, content);
             var result = new WsResult
             {
                 Success = res.Success
@@ -123,7 +123,7 @@ namespace Homologador.Fe.Manage
             return result;
         }
 
-        private WsResult FromSunatResponse(SunatResponse response, string xmlPath)
+        private WsResult FromSunatResponse(SunatResponse response)
         {
             var res = new WsResult
             {

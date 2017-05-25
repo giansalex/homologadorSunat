@@ -95,7 +95,7 @@ namespace Homologador.Fe.Pruebas
             {
                 header.TipoDocumentoIdentidadCliente = TipoDocumentoIdentidad.RegistroUnicoContribuyentes;
                 header.NroDocCliente = "20100070970";
-                header.NombreRazonSocialCliente = "EMPRESA ANÓNIMA";
+                header.NombreRazonSocialCliente = "SUPER COMPANY";
             }
         }
 
