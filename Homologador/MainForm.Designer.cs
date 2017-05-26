@@ -39,7 +39,6 @@
             this.tbDocs = new MetroFramework.Controls.MetroTabControl();
             this.mtabFacturas = new MetroFramework.Controls.MetroTabPage();
             this.lblCountFact = new MetroFramework.Controls.MetroLabel();
-            this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
             this.gridFacturas = new MetroFramework.Controls.MetroGrid();
             this.fgroup = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fcodigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -54,7 +53,6 @@
             this.menuNdb = new System.Windows.Forms.ToolStripMenuItem();
             this.mtabBoletas = new MetroFramework.Controls.MetroTabPage();
             this.lblCountBoletas = new MetroFramework.Controls.MetroLabel();
-            this.metroLabel5 = new MetroFramework.Controls.MetroLabel();
             this.gridBoletas = new MetroFramework.Controls.MetroGrid();
             this.bgroup = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bcodigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -111,7 +109,6 @@
             // mtabFacturas
             // 
             this.mtabFacturas.Controls.Add(this.lblCountFact);
-            this.mtabFacturas.Controls.Add(this.metroLabel1);
             this.mtabFacturas.Controls.Add(this.gridFacturas);
             this.mtabFacturas.HorizontalScrollbarBarColor = true;
             this.mtabFacturas.HorizontalScrollbarHighlightOnWheel = false;
@@ -121,6 +118,7 @@
             this.mtabFacturas.Size = new System.Drawing.Size(607, 308);
             this.mtabFacturas.TabIndex = 0;
             this.mtabFacturas.Text = "Facturas";
+            this.mtabFacturas.ToolTipText = "Facturas y Notas";
             this.mtabFacturas.VerticalScrollbarBarColor = true;
             this.mtabFacturas.VerticalScrollbarHighlightOnWheel = false;
             this.mtabFacturas.VerticalScrollbarSize = 10;
@@ -134,15 +132,6 @@
             this.lblCountFact.TabIndex = 4;
             this.lblCountFact.Text = "0 Registros";
             this.lblCountFact.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // metroLabel1
-            // 
-            this.metroLabel1.AutoSize = true;
-            this.metroLabel1.Location = new System.Drawing.Point(2, 4);
-            this.metroLabel1.Name = "metroLabel1";
-            this.metroLabel1.Size = new System.Drawing.Size(57, 19);
-            this.metroLabel1.TabIndex = 3;
-            this.metroLabel1.Text = "Facturas";
             // 
             // gridFacturas
             // 
@@ -186,7 +175,7 @@
             this.gridFacturas.EnableHeadersVisualStyles = false;
             this.gridFacturas.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.gridFacturas.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.gridFacturas.Location = new System.Drawing.Point(-2, 27);
+            this.gridFacturas.Location = new System.Drawing.Point(-2, 3);
             this.gridFacturas.Name = "gridFacturas";
             this.gridFacturas.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -201,7 +190,7 @@
             this.gridFacturas.RowHeadersWidth = 20;
             this.gridFacturas.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.gridFacturas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridFacturas.Size = new System.Drawing.Size(611, 263);
+            this.gridFacturas.Size = new System.Drawing.Size(611, 287);
             this.gridFacturas.TabIndex = 2;
             // 
             // fgroup
@@ -290,7 +279,6 @@
             // mtabBoletas
             // 
             this.mtabBoletas.Controls.Add(this.lblCountBoletas);
-            this.mtabBoletas.Controls.Add(this.metroLabel5);
             this.mtabBoletas.Controls.Add(this.gridBoletas);
             this.mtabBoletas.HorizontalScrollbarBarColor = true;
             this.mtabBoletas.HorizontalScrollbarHighlightOnWheel = false;
@@ -300,6 +288,7 @@
             this.mtabBoletas.Size = new System.Drawing.Size(607, 308);
             this.mtabBoletas.TabIndex = 1;
             this.mtabBoletas.Text = "Boletas";
+            this.mtabBoletas.ToolTipText = "Boletas y Notas";
             this.mtabBoletas.VerticalScrollbarBarColor = true;
             this.mtabBoletas.VerticalScrollbarHighlightOnWheel = false;
             this.mtabBoletas.VerticalScrollbarSize = 10;
@@ -313,15 +302,6 @@
             this.lblCountBoletas.TabIndex = 7;
             this.lblCountBoletas.Text = "0 Registros";
             this.lblCountBoletas.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // metroLabel5
-            // 
-            this.metroLabel5.AutoSize = true;
-            this.metroLabel5.Location = new System.Drawing.Point(2, 4);
-            this.metroLabel5.Name = "metroLabel5";
-            this.metroLabel5.Size = new System.Drawing.Size(51, 19);
-            this.metroLabel5.TabIndex = 6;
-            this.metroLabel5.Text = "Boletas";
             // 
             // gridBoletas
             // 
@@ -365,7 +345,7 @@
             this.gridBoletas.EnableHeadersVisualStyles = false;
             this.gridBoletas.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.gridBoletas.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.gridBoletas.Location = new System.Drawing.Point(-2, 27);
+            this.gridBoletas.Location = new System.Drawing.Point(-2, 3);
             this.gridBoletas.Name = "gridBoletas";
             this.gridBoletas.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -380,7 +360,7 @@
             this.gridBoletas.RowHeadersWidth = 20;
             this.gridBoletas.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.gridBoletas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridBoletas.Size = new System.Drawing.Size(611, 259);
+            this.gridBoletas.Size = new System.Drawing.Size(611, 283);
             this.gridBoletas.TabIndex = 5;
             // 
             // bgroup
@@ -597,7 +577,8 @@
             // 
             // spinner
             // 
-            this.spinner.Location = new System.Drawing.Point(385, 7);
+            this.spinner.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.spinner.Location = new System.Drawing.Point(324, 385);
             this.spinner.Maximum = 100;
             this.spinner.Name = "spinner";
             this.spinner.Size = new System.Drawing.Size(60, 50);
@@ -661,11 +642,9 @@
             this.Theme = MetroFramework.MetroThemeStyle.Dark;
             this.tbDocs.ResumeLayout(false);
             this.mtabFacturas.ResumeLayout(false);
-            this.mtabFacturas.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridFacturas)).EndInit();
             this.mtcontextMenu.ResumeLayout(false);
             this.mtabBoletas.ResumeLayout(false);
-            this.mtabBoletas.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridBoletas)).EndInit();
             this.mtabBajas.ResumeLayout(false);
             this.mtabBajas.PerformLayout();
@@ -687,7 +666,6 @@
         private MetroFramework.Controls.MetroTabPage mtabBoletas;
         private MetroFramework.Controls.MetroTabPage mtabResumen;
         private MetroFramework.Components.MetroStyleManager metroStyleManager1;
-        private MetroFramework.Controls.MetroLabel metroLabel1;
         private MetroFramework.Controls.MetroGrid gridFacturas;
         private MetroFramework.Controls.MetroTabPage mtabBajas;
         private MetroFramework.Controls.MetroTextBox mtxtBajaCant;
@@ -700,7 +678,6 @@
         private MetroFramework.Controls.MetroTextBox mtxtItemsRes;
         private MetroFramework.Controls.MetroLabel metroLabel3;
         private MetroFramework.Controls.MetroLabel lblCountBoletas;
-        private MetroFramework.Controls.MetroLabel metroLabel5;
         private MetroFramework.Controls.MetroGrid gridBoletas;
         private MetroFramework.Controls.MetroContextMenu mtcontextMenu;
         private System.Windows.Forms.ToolStripMenuItem menuNcr;

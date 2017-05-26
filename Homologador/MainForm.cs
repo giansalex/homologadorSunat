@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -91,9 +90,6 @@ namespace Homologador
 
         private void InitLoad()
         {
-            var x = (Width - spinner.Width) / 2;
-            var y = (Height - spinner.Height) / 2;
-            spinner.Location = new Point(x, y);
             spinner.Visible = true;
         }
 
@@ -120,6 +116,10 @@ namespace Homologador
         {
             var rows = gridFacturas.SelectedRows;
             if (rows.Count == 0) return;
+
+            InitLoad();
+            Status("Iniciando Envío...");
+
             var mng = new BillManager(_company);
             var fgenerator = new FacturaGenerator()
                     .ToCompany(_company)
@@ -157,6 +157,7 @@ namespace Homologador
                     row.Cells["fnotadb"].Value = !(await mng.Send(ndb)).Success;
                 }
             }
+            spinner.Visible = false;
             var msg = gridFacturas.SelectedRows.Count > 1 ? "Facturas Enviadas" : "Factura Enviada";
             if (gridFacturas.SelectedRows.Count > 1) Success(msg);
             Status(msg);
@@ -166,6 +167,9 @@ namespace Homologador
         {
             var rows = gridBoletas.SelectedRows;
             if (rows.Count == 0) return;
+            InitLoad();
+            Status("Iniciando Envío...");
+
             var mng = new BillManager(_company);
             var fgenerator = new FacturaGenerator()
                 .ToCompany(_company)
@@ -204,6 +208,7 @@ namespace Homologador
                     row.Cells["bnotadb"].Value = !(await mng.Send(ndb)).Success;
                 }
             }
+            spinner.Visible = false;
             var msg = gridBoletas.SelectedRows.Count > 1 ? "Boletas Enviadas" : "Boleta Enviada";
             if (gridBoletas.SelectedRows.Count > 1) Success(msg);
             Status(msg);
@@ -282,16 +287,17 @@ namespace Homologador
             //}
 
             JToken token;
-            if (obj.TryGetValue("facturas", out token))
+            if (obj.TryGetValue("facturas", out token) && token.HasValues)
             {
                 LoadFacs((JArray)token);
             }
+            else
             {
                 mtabFacturas.Visible = false;
                 mtabBajas.Visible = false;
             }
 
-            if (obj.TryGetValue("boletas", out token))
+            if (obj.TryGetValue("boletas", out token) && token.HasValues)
             {
                 LoadBols((JArray)token);
             }
