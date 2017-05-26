@@ -65,6 +65,7 @@ namespace Homologador.Fe.Pruebas
                 TipoDocumentoIdentidadEmisor = TipoDocumentoIdentidad.RegistroUnicoContribuyentes,
                 CodigoMoneda = _grupo == GrupoPrueba.OtrasMonedas ? "USD" : "PEN",
                 DetallesDocumento = new List<InvoiceDetail>(_lines),
+                Impuesto = new List<TotalImpuestosType>(),
                 DireccionEmisor = GetDireccion()
             };
 
@@ -152,15 +153,30 @@ namespace Homologador.Fe.Pruebas
             foreach (var detail in header.DetallesDocumento)
             {
                 detail.ValorVenta = detail.Cantidad * detail.PrecioUnitario;
+                var isc = 0M;
+
+                if (_grupo == GrupoPrueba.ConIsc)
+                {
+                    isc = 0.17M * detail.PrecioUnitario * detail.Cantidad;
+                    detail.Impuesto.Add(new TotalImpuestosType
+                    {
+                        TipoIsc = TipoSistemaIsc.SistemValor,
+                        TipoTributo = TipoTributo.ISC_EXC,
+                        Monto =  isc// 17% ISC
+                    });
+                }
+
+
                 detail.Impuesto = new List<TotalImpuestosType>
                 {
                     new TotalImpuestosType
                     {
-                        Monto = tipIgv == TipoAfectacionIgv.GravadoOperacionOnerosa ? detail.ValorVenta * 1.18M : 0,
+                        Monto = tipIgv == TipoAfectacionIgv.GravadoOperacionOnerosa ? (detail.ValorVenta + isc)* 1.18M : 0,
                         TipoAfectacion = tipIgv,
                         TipoTributo = TipoTributo.IGV_VAT
                     }
                 };
+
                 detail.PrecioAlternativos = new List<PrecioItemType>
                 {
                     new PrecioItemType
@@ -217,18 +233,27 @@ namespace Homologador.Fe.Pruebas
             }
             if (_grupo == GrupoPrueba.DescuentoGlobal)
             {
-                head.DescuentoGlobal = 5;
+                head.DescuentoGlobal = 5; //TODO:  Se aplica a los Grav,Inaf,Exon.
             }
 
-            var igv = (subTotal - head.DescuentoGlobal)* 1.18M;
-            head.Impuesto = new List<TotalImpuestosType>
+            var isc = 0M;
+            if (_grupo == GrupoPrueba.ConIsc)
             {
-                new TotalImpuestosType
+                isc = subTotal * 0.17M;
+                head.Impuesto.Add(new TotalImpuestosType
                 {
-                    TipoTributo = TipoTributo.IGV_VAT,
-                    Monto = Math.Round(igv, 2, MidpointRounding.AwayFromZero)
-                }
-            };
+                    TipoTributo = TipoTributo.ISC_EXC,
+                    Monto = isc
+                });
+            }
+
+            var igv = (subTotal + isc - head.DescuentoGlobal)* 1.18M;
+            head.Impuesto.Add(new TotalImpuestosType
+            {
+                TipoTributo = TipoTributo.IGV_VAT,
+                Monto = Math.Round(igv, 2, MidpointRounding.AwayFromZero)
+            });
+
             head.TotalVenta = Math.Round(subTotal + igv, 2, MidpointRounding.AwayFromZero);
             head.InfoAddicional = new List<AdditionalPropertyType>
             {

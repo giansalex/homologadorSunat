@@ -280,11 +280,11 @@ namespace Homologador
                 return;
             }
             var obj = JObject.Parse(json);
-            //if (obj["fecfinetapa"].ToString() != "-")
-            //{
-            //    Success("Ya finalizo el proceso de homologación");
-            //    return;
-            //}
+            if (obj["fecfinetapa"].ToString() != "-")
+            {
+                Success("Ya finalizo el proceso de homologación");
+                return;
+            }
 
             JToken token;
             if (obj.TryGetValue("facturas", out token) && token.HasValues)
@@ -332,7 +332,7 @@ namespace Homologador
                     var state = (string) caso1["estado"];
                     if (isNota)
                     {
-                        //if (state.Equals("Aprobado", StringComparison.InvariantCultureIgnoreCase)) continue;
+                        if (state.Equals("Aprobado", StringComparison.InvariantCultureIgnoreCase)) continue;
                         
                         if (desc.Contains("crédito"))
                             subGroup[num - 1].HasNotaCredit = true;
@@ -385,7 +385,7 @@ namespace Homologador
                     var state = (string)caso1["estado"];
                     if (isNota)
                     {
-                        //if (state.Equals("Aprobado", StringComparison.InvariantCultureIgnoreCase)) continue;
+                        if (state.Equals("Aprobado", StringComparison.InvariantCultureIgnoreCase)) continue;
 
                         if (desc.Contains("crédito"))
                             subGroup[num - 1].HasNotaCredit = true;
@@ -420,8 +420,7 @@ namespace Homologador
             if (json == null) return null;
             var obj = JObject.Parse(json);
             var items = (JArray)obj["items"];
-            //var node = items.FirstOrDefault(r => string.IsNullOrWhiteSpace(r["fecnot"].ToString()));
-            var node = items.FirstOrDefault();
+            var node = items.FirstOrDefault(r => string.IsNullOrWhiteSpace(r["fecnot"].ToString()));
             if (node != null) return (string)node["numsol"];
             return null;
         }
