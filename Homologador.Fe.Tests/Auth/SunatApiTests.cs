@@ -17,14 +17,14 @@ namespace Homologador.Fe.Tests.Auth
         /// <summary>
         /// Logins the test.
         /// </summary>
-        [TestInitialize]
+        //[TestInitialize]
         public void LoginTest()
         {
             _auth.Login();
             
         }
 
-        [TestMethod()]
+        //[TestMethod()]
         public void GetSolicitudesTest()
         {
             var task = _auth.GetSolicitudes();
@@ -33,7 +33,7 @@ namespace Homologador.Fe.Tests.Auth
             Trace.WriteLine(result);
             Assert.IsNotNull(result);
         }
-        [TestMethod()]
+        //[TestMethod()]
         public void GetPruebasTest()
         {
             var task = _auth.GetPruebas("3050825980023");
