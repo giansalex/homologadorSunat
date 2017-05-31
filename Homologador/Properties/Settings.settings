@@ -6,10 +6,10 @@
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="Usuario" Type="System.String" Scope="User">
-      <Value Profile="(Default)">MODDATOS</Value>
+      <Value Profile="(Default)" />
     </Setting>
     <Setting Name="Clave" Type="System.String" Scope="User">
-      <Value Profile="(Default)">moddatos</Value>
+      <Value Profile="(Default)" />
     </Setting>
     <Setting Name="RzSocial" Type="System.String" Scope="User">
       <Value Profile="(Default)" />

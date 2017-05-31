@@ -25,7 +25,7 @@ namespace Homologador.Fe.Manage
                 Ruc = company.Ruc,
                 Usuario = company.User,
                 Clave = company.Clave,
-                Service = ServiceSunatType.Beta
+                Service = ServiceSunatType.Homologacion
             };
             _wsManager = new SunatManager(config);
         }

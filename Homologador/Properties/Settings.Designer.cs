@@ -37,7 +37,7 @@ namespace Homologador.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("MODDATOS")]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string Usuario {
             get {
                 return ((string)(this["Usuario"]));
@@ -49,7 +49,7 @@ namespace Homologador.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("moddatos")]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string Clave {
             get {
                 return ((string)(this["Clave"]));
