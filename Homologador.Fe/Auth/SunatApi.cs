@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Homologador.Fe.Properties;
 
 namespace Homologador.Fe.Auth
 {
@@ -50,7 +51,7 @@ namespace Homologador.Fe.Auth
         {
             using (var client = CreatClient())
             {
-                var r = await client.GetAsync("https://ww1.sunat.gob.pe/cl-ti-itconestsol/Consulta.htm?accion=consultaTodasSolicitudes&numRUC=" + Ruc +"&indTipoContrib=0");
+                var r = await client.GetAsync(Resources.UriConsulta + "?accion=consultaTodasSolicitudes&numRUC=" + Ruc +"&indTipoContrib=0");
                 if (!r.IsSuccessStatusCode) return null;
                 
                 return await r.Content.ReadAsStringAsync();
@@ -67,7 +68,7 @@ namespace Homologador.Fe.Auth
                     new KeyValuePair<string, string>("numProceso", numProceso),
                     new KeyValuePair<string, string>("numEtapa", "2")
                 });
-                var r = await client.PostAsync("https://ww1.sunat.gob.pe/cl-ti-itconestsol/Consulta.htm", content);
+                var r = await client.PostAsync(Resources.UriConsulta, content);
                 if (!r.IsSuccessStatusCode) return null;
 
                 return await r.Content.ReadAsStringAsync();

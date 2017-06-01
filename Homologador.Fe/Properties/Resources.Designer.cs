@@ -77,5 +77,14 @@ namespace Homologador.Fe.Properties {
                 return ResourceManager.GetString("OpcionMenu", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a https://ww1.sunat.gob.pe/cl-ti-itconestsol/Consulta.htm.
+        /// </summary>
+        internal static string UriConsulta {
+            get {
+                return ResourceManager.GetString("UriConsulta", resourceCulture);
+            }
+        }
     }
 }

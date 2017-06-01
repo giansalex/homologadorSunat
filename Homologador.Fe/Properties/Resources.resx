@@ -123,4 +123,7 @@
   <data name="OpcionMenu" xml:space="preserve">
     <value>https://e-menu.sunat.gob.pe/cl-ti-itmenu/MenuInternet.htm?action=execute&amp;code=11.9.3.1.1&amp;s=ww1</value>
   </data>
+  <data name="UriConsulta" xml:space="preserve">
+    <value>https://ww1.sunat.gob.pe/cl-ti-itconestsol/Consulta.htm</value>
+  </data>
 </root>
