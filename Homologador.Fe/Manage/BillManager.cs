@@ -1,5 +1,4 @@
-﻿using System.IO;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using FacturacionElectronica.GeneradorXml.Entity;
 using FacturacionElectronica.Homologacion;
 using FacturacionElectronica.Homologacion.Res;
@@ -101,13 +100,11 @@ namespace Homologador.Fe.Manage
 
         private async Task<WsResult> SendDoc(string xmlfile, byte[] content)
         {
-            File.WriteAllBytes(Path.Combine(Path.GetTempPath(), xmlfile + ".xml"), content);
             var res = await _wsManager.SendDocument(xmlfile, content);
             return FromSunatResponse(res);
         }
         private async Task<WsResult> SendSumm(string xmlPath, byte[] content)
         {
-            File.WriteAllBytes(Path.Combine(Path.GetTempPath(), xmlPath + ".xml"), content);
             var res = await _wsManager.SendSummary(xmlPath, content);
             var result = new WsResult
             {

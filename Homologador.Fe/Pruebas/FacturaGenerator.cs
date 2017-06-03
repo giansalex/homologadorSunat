@@ -169,7 +169,7 @@ namespace Homologador.Fe.Pruebas
 
                 detail.Impuesto.Add(new TotalImpuestosType
                 {
-                    Monto = tipIgv == TipoAfectacionIgv.GravadoOperacionOnerosa ? (detail.ValorVenta + isc) * 1.18M : 0,
+                    Monto = tipIgv == TipoAfectacionIgv.GravadoOperacionOnerosa ? (detail.ValorVenta + isc) * 0.18M : 0,
                     TipoAfectacion = tipIgv,
                     TipoTributo = TipoTributo.IGV_VAT
                 });

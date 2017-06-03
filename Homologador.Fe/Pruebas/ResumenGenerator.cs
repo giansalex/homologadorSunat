@@ -40,6 +40,7 @@ namespace Homologador.Fe.Pruebas
                 DetallesDocumento = new List<SummaryDetail>(_lines)
             };
 
+            var mountGrav = 100M;
             foreach (var item in Enumerable.Range(1, _lines))
             {
                 head.DetallesDocumento.Add(new SummaryDetail
@@ -55,17 +56,17 @@ namespace Homologador.Fe.Pruebas
                         new TotalImporteType
                         {
                             TipoImporte = TipoValorVenta.Gravado,
-                            Monto = 100M,
+                            Monto = mountGrav
                         },
                         new TotalImporteType
                         {
                             TipoImporte = TipoValorVenta.Exonerado,
-                            Monto = 100M,
+                            Monto = 100M
                         },
                         new TotalImporteType
                         {
                             TipoImporte = TipoValorVenta.Inafecto,
-                            Monto = 0M,
+                            Monto = 100M
                         }
                     },
                     OtroImporte = new List<TotalImporteExtType>
@@ -73,14 +74,14 @@ namespace Homologador.Fe.Pruebas
                         new TotalImporteExtType
                         {
                             Indicador = true,
-                            Monto = 0M
+                            Monto = 5M
                         }
                     },
                     Impuesto = new List<TotalImpuestosType>
                     {
                         new TotalImpuestosType
                         {
-                            Monto = 100M,
+                            Monto = mountGrav * 0.18M,
                             TipoTributo = TipoTributo.IGV_VAT
                         },
                         new TotalImpuestosType

@@ -115,6 +115,7 @@ namespace Homologador
             }
             catch (Exception er)
             {
+                spinner.Visible = false;
                 Error(er.Message);
             }
         }
@@ -134,6 +135,9 @@ namespace Homologador
             
             foreach (DataGridViewRow row in rows)
             {
+                if (row.Cells["festado"].Value.ToString()
+                    .Equals("Aprobado", StringComparison.InvariantCultureIgnoreCase)) continue;
+
                 var gr = row.Cells["fgroup"].Value.ToString();
                 var lines = int.Parse(row.Cells["fcantidad"].Value.ToString());
                 var hasNcr = bool.Parse(row.Cells["fnotacr"].Value.ToString());
@@ -184,6 +188,9 @@ namespace Homologador
 
             foreach (DataGridViewRow row in rows)
             {
+                if (row.Cells["bestado"].Value.ToString()
+                    .Equals("Aprobado", StringComparison.InvariantCultureIgnoreCase)) continue;
+
                 var gr = row.Cells["bgroup"].Value.ToString();
                 var lines = int.Parse(row.Cells["bcantidad"].Value.ToString());
                 var hasNcr = bool.Parse(row.Cells["bnotacr"].Value.ToString());
