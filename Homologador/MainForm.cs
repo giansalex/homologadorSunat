@@ -95,20 +95,27 @@ namespace Homologador
 
         private async void btnRun_Click(object sender, EventArgs e)
         {
-            switch (tbDocs.SelectedTab.Name)
+            try
             {
-                case nameof(mtabFacturas):
-                    await Factura_Run();
-                    break;
-                case nameof(mtabBoletas):
-                    await Boleta_Run();
-                    break;
-                case nameof(mtabResumen):
-                    await Resumen_Run();
-                    break;
-                case nameof(mtabBajas):
-                    await Baja_Run();
-                    break;
+                switch (tbDocs.SelectedTab.Name)
+                {
+                    case nameof(mtabFacturas):
+                        await Factura_Run();
+                        break;
+                    case nameof(mtabBoletas):
+                        await Boleta_Run();
+                        break;
+                    case nameof(mtabResumen):
+                        await Resumen_Run();
+                        break;
+                    case nameof(mtabBajas):
+                        await Baja_Run();
+                        break;
+                }
+            }
+            catch (Exception er)
+            {
+                Error(er.Message);
             }
         }
 

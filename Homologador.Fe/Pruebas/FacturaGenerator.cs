@@ -7,7 +7,6 @@ using FacturacionElectronica.GeneradorXml.Entity.Misc;
 using FacturacionElectronica.GeneradorXml.Enums;
 using Gs.Ubl.v2.Sac;
 using Homologador.Fe.Model;
-using Homologador.Model;
 
 namespace Homologador.Fe.Pruebas
 {
@@ -142,7 +141,7 @@ namespace Homologador.Fe.Pruebas
                 case GrupoPrueba.InafectaExonerada:
                     return TipoAfectacionIgv.InafectoOperacionOnerosa;
                 default:
-                    return TipoAfectacionIgv.InafectoOperacionOnerosa;
+                    return TipoAfectacionIgv.GravadoOperacionOnerosa;
             }
         }
 
@@ -155,6 +154,7 @@ namespace Homologador.Fe.Pruebas
                 detail.ValorVenta = detail.Cantidad * detail.PrecioUnitario;
                 var isc = 0M;
 
+                detail.Impuesto = new List<TotalImpuestosType>();
                 if (_grupo == GrupoPrueba.ConIsc)
                 {
                     isc = 0.17M * detail.PrecioUnitario * detail.Cantidad;
@@ -167,15 +167,12 @@ namespace Homologador.Fe.Pruebas
                 }
 
 
-                detail.Impuesto = new List<TotalImpuestosType>
+                detail.Impuesto.Add(new TotalImpuestosType
                 {
-                    new TotalImpuestosType
-                    {
-                        Monto = tipIgv == TipoAfectacionIgv.GravadoOperacionOnerosa ? (detail.ValorVenta + isc)* 1.18M : 0,
-                        TipoAfectacion = tipIgv,
-                        TipoTributo = TipoTributo.IGV_VAT
-                    }
-                };
+                    Monto = tipIgv == TipoAfectacionIgv.GravadoOperacionOnerosa ? (detail.ValorVenta + isc) * 1.18M : 0,
+                    TipoAfectacion = tipIgv,
+                    TipoTributo = TipoTributo.IGV_VAT
+                });
 
                 detail.PrecioAlternativos = new List<PrecioItemType>
                 {
@@ -220,11 +217,14 @@ namespace Homologador.Fe.Pruebas
         private void LoadTotal(InvoiceHeader head)
         {
             var subTotal = 0M;
+            var mtoGrav = 0M;
             foreach (var adicional in head.TotalTributosAdicionales)
             {
                 switch (adicional.Id)
                 {
                     case OtrosConceptosTributarios.TotalVentaOperacionesGravadas:
+                        mtoGrav += adicional.MontoPagable;
+                        goto case OtrosConceptosTributarios.TotalVentaOperacionesExoneradas;
                     case OtrosConceptosTributarios.TotalVentaOperacionesExoneradas:
                     case OtrosConceptosTributarios.TotalVentaOperacionesInafectas:
                         subTotal += adicional.MontoPagable;
@@ -247,14 +247,14 @@ namespace Homologador.Fe.Pruebas
                 });
             }
 
-            var igv = (subTotal + isc - head.DescuentoGlobal)* 1.18M;
+            var igv = (mtoGrav + isc - head.DescuentoGlobal)* 0.18M;
             head.Impuesto.Add(new TotalImpuestosType
             {
                 TipoTributo = TipoTributo.IGV_VAT,
                 Monto = Math.Round(igv, 2, MidpointRounding.AwayFromZero)
             });
 
-            head.TotalVenta = Math.Round(subTotal + igv, 2, MidpointRounding.AwayFromZero);
+            head.TotalVenta = Math.Round(subTotal + igv + isc, 2, MidpointRounding.AwayFromZero);
             head.InfoAddicional = new List<AdditionalPropertyType>
             {
                 new AdditionalPropertyType

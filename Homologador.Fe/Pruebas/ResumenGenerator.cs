@@ -55,17 +55,17 @@ namespace Homologador.Fe.Pruebas
                         new TotalImporteType
                         {
                             TipoImporte = TipoValorVenta.Gravado,
-                            Monto = 98232.00M,
+                            Monto = 100M,
                         },
                         new TotalImporteType
                         {
                             TipoImporte = TipoValorVenta.Exonerado,
-                            Monto = 20,
+                            Monto = 100M,
                         },
                         new TotalImporteType
                         {
                             TipoImporte = TipoValorVenta.Inafecto,
-                            Monto = 232,
+                            Monto = 0M,
                         }
                     },
                     OtroImporte = new List<TotalImporteExtType>
@@ -73,20 +73,20 @@ namespace Homologador.Fe.Pruebas
                         new TotalImporteExtType
                         {
                             Indicador = true,
-                            Monto = 5
+                            Monto = 0M
                         }
                     },
                     Impuesto = new List<TotalImpuestosType>
                     {
                         new TotalImpuestosType
                         {
-                            Monto = 17681.76M,
+                            Monto = 100M,
                             TipoTributo = TipoTributo.IGV_VAT
                         },
                         new TotalImpuestosType
                         {
-                            Monto = 1200,
-                            TipoTributo = TipoTributo.OTROS_OTH
+                            Monto = 100M,
+                            TipoTributo = TipoTributo.ISC_EXC
                         }
                     }
                 });
