@@ -37,7 +37,7 @@ namespace Homologador.Fe.Pruebas
             var baseNote = new NotasBase<InvoiceDetail>
             {
                 SerieDocumento = _invoice.SerieDocumento,
-                CorrelativoDocumento = new Random().Next(1, 1000).ToString(),
+                CorrelativoDocumento = new Random().Next(1, 100000).ToString(),
                 FechaEmision = _invoice.FechaEmision,
                 TipoDocumentoIdentidadEmisor = _invoice.TipoDocumentoIdentidadEmisor,
                 RucEmisor = _invoice.RucEmisor,

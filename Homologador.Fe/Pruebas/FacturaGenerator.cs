@@ -56,7 +56,7 @@ namespace Homologador.Fe.Pruebas
             {
                 TipoDocumento = _tipoDoc == "03" ? TipoDocumentoElectronico.Boleta : TipoDocumentoElectronico.Factura,
                 SerieDocumento = GetSerie(),
-                CorrelativoDocumento = new Random().Next(1, 1000).ToString(),
+                CorrelativoDocumento = new Random().Next(1, 100000).ToString(),
                 FechaEmision = DateTime.Now.Date,
                 RucEmisor = _company.Ruc,
                 NombreRazonSocialEmisor = _company.RazonSocial,

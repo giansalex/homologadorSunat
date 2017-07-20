@@ -33,7 +33,7 @@ namespace Homologador.Fe.Pruebas
                 FechaEmision = DateTime.Now.Date,
                 NombreRazonSocialEmisor = _company.RazonSocial,
                 NombreComercialEmisor = _company.NombreComercial,
-                CorrelativoArchivo = new Random().Next(1, 100).ToString("D3"),
+                CorrelativoArchivo = new Random().Next(1, 999).ToString("D3"),
                 DetallesDocumento = new List<VoidedDetail>(_lines)
             };
 
