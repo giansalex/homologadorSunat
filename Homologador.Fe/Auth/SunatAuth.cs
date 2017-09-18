@@ -44,6 +44,8 @@ namespace Homologador.Fe.Auth
             _cookies = new CookieContainer();
             Send(new NameValueCollection
             {
+                {"tipo", "2" },
+                {"dni", "" },
                 {"username", Ruc + _user},
                 {"password", _password},
                 {"captcha", ""},

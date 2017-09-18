@@ -39,7 +39,7 @@ namespace Homologador.Fe.Auth
 
         private static bool ValidateInternal(string ruc, string user, string pass)
         {
-            var content = $"username={ruc}{user}&password={pass}&captcha=&params=%2A%26%2A%26%2Fcl-ti-itmenu%2FMenuInternet.htm%26b64d26a8b5af091923b23b6407a1c1db41e733a6&exe=";
+            var content = $"tipo=2&dni=&username={ruc}{user}&password={pass}&captcha=&params=%2A%26%2A%26%2Fcl-ti-itmenu%2FMenuInternet.htm%26b64d26a8b5af091923b23b6407a1c1db41e733a6&exe=";
             var bytes = Encoding.ASCII.GetBytes(content);
             var req = (HttpWebRequest)WebRequest.Create(Properties.Resources.Auth);
             req.AllowAutoRedirect = false;
