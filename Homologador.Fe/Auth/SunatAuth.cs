@@ -52,7 +52,7 @@ namespace Homologador.Fe.Auth
                 {"params", "*&*&/cl-ti-itmenu/MenuInternet.htm&b64d26a8b5af091923b23b6407a1c1db41e733a6"},
                 {"exe", ""},
             });
-            _location = Properties.Resources.OpcionMenu;
+            _location = Properties.Resources.OpcionMenu; // Change menu for proveedor
             Send();
         }
         private void Send(NameValueCollection data = null)

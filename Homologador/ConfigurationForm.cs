@@ -5,6 +5,7 @@ using Homologador.Fe.Auth;
 using Homologador.Properties;
 using MetroFramework;
 using MetroFramework.Forms;
+using Newtonsoft.Json.Linq;
 
 namespace Homologador
 {
@@ -31,6 +32,7 @@ namespace Homologador
             txtUser.Text = sett.Usuario;
             txtClave.Text = sett.Clave;
             txtClaveCert.Text = sett.ClaveCert;
+            txtPathCertify.Tag = sett.Certificado;
             metroTabControl1.SelectTab(0);
         }
 
@@ -40,6 +42,7 @@ namespace Homologador
             if (open.ShowDialog() != DialogResult.OK)
                 return;
 
+            txtPathCertify.Tag = null;
             txtPathCertify.Text = open.FileName;
         }
 
@@ -61,10 +64,15 @@ namespace Homologador
             sett.Clave = txtClave.Text;
             sett.ClaveCert = txtClaveCert.Text;
             var pathCert = txtPathCertify.Text;
-            if (!string.IsNullOrWhiteSpace(pathCert) && File.Exists(pathCert))
+
+            if (txtPathCertify.Tag != null && (string)txtPathCertify.Tag != string.Empty)
+            {
+                sett.Certificado = (string)txtPathCertify.Tag;
+            }
+            else if (!string.IsNullOrWhiteSpace(pathCert) && File.Exists(pathCert))
             {
                 var bytes = File.ReadAllBytes(pathCert);
-                sett.Ceritificado = Convert.ToBase64String(bytes);
+                sett.Certificado = Convert.ToBase64String(bytes);
             }
             Settings.Default.Save();
             Close();
@@ -83,6 +91,81 @@ namespace Homologador
                 MetroMessageBox.Show(this, e.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             return false;
+        }
+
+        private void btnLoadConfig_Click(object sender, EventArgs e)
+        {
+            var  dialog = new OpenFileDialog
+            {
+                Filter = Resources.FileFilterJson
+            };
+
+            if (dialog.ShowDialog() != DialogResult.OK)
+            {
+                return;
+            }
+
+            var jsonText = File.ReadAllText(dialog.FileName);
+            dynamic obj = JObject.Parse(jsonText);
+
+            txtRuc.Text = obj.Ruc;
+            txtRsz.Text = obj.RzSocial;
+            txtNomComercial.Text = obj.NComercial;
+            txtUbigueo.Text = obj.Ubigueo;
+            txtDirecion.Text = obj.Direccion;
+            txtUrbanizacion.Text = obj.Urbanizacion;
+            txtDepartment.Text = obj.Departamento;
+            txtProvincia.Text = obj.Provincia;
+            txtDistrito.Text = obj.Distrito;
+            txtUser.Text = obj.Usuario;
+            txtClave.Text = obj.Clave;
+            txtClaveCert.Text = obj.ClaveCert;
+            if (!string.IsNullOrEmpty(obj.Certificado))
+            {
+                txtPathCertify.Tag = obj.Certificado;
+                txtPathCertify.Text = @"Certificado Cargado";
+            }
+        }
+
+        private void btnSaveConfig_Click(object sender, EventArgs e)
+        {
+            var dialog = new SaveFileDialog
+            {
+                Filter = Resources.FileFilterJson,
+                FileName = "homologador_settings.json"
+            };
+
+            if (dialog.ShowDialog() != DialogResult.OK)
+            {
+                return;
+            }
+
+            dynamic obj = new JObject();
+
+            obj.Ruc = txtRuc.Text;
+            obj.RzSocial = txtRsz.Text;
+            obj.NComercial = txtNomComercial.Text;
+            obj.Ubigueo = txtUbigueo.Text;
+            obj.Direccion = txtDirecion.Text;
+            obj.Urbanizacion = txtUrbanizacion.Text;
+            obj.Departamento = txtDepartment.Text;
+            obj.Provincia = txtProvincia.Text;
+            obj.Distrito = txtDistrito.Text;
+            obj.Usuario = txtUser.Text;
+            obj.Clave = txtClave.Text;
+            obj.ClaveCert = txtClaveCert.Text;
+            if (!string.IsNullOrEmpty(txtPathCertify.Text) && File.Exists(txtPathCertify.Text))
+            {
+                var bytes = File.ReadAllBytes(txtPathCertify.Text);
+                obj.Certificado = Convert.ToBase64String(bytes);
+            }
+            else if (txtPathCertify.Tag != null && (string)txtPathCertify.Tag != string.Empty)
+            {
+                obj.Certificado = txtPathCertify.Tag;
+            }
+
+            File.WriteAllText(dialog.FileName, obj.ToString());
+            MetroMessageBox.Show(this, "Configuracion Guardada", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }

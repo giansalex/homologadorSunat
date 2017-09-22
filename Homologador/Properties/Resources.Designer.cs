@@ -81,6 +81,15 @@ namespace Homologador.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Json Files (*.json)|*.json|All Files (*.*)|*.*.
+        /// </summary>
+        internal static string FileFilterJson {
+            get {
+                return ResourceManager.GetString("FileFilterJson", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap play {

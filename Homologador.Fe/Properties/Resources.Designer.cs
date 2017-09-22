@@ -79,11 +79,29 @@ namespace Homologador.Fe.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a https://e-menu.sunat.gob.pe/cl-ti-itmenu/MenuInternet.htm?action=execute&amp;code=11.10.2.1.1&amp;s=ww1.
+        /// </summary>
+        internal static string OpcionMenuProveedor {
+            get {
+                return ResourceManager.GetString("OpcionMenuProveedor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a https://ww1.sunat.gob.pe/cl-ti-itconestsol/Consulta.htm.
         /// </summary>
         internal static string UriConsulta {
             get {
                 return ResourceManager.GetString("UriConsulta", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a https://ww1.sunat.gob.pe/cl-ti-itconestpsesol/Consulta.htm.
+        /// </summary>
+        internal static string UriConsultProveedor {
+            get {
+                return ResourceManager.GetString("UriConsultProveedor", resourceCulture);
             }
         }
     }

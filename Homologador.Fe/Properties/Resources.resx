@@ -126,4 +126,10 @@
   <data name="UriConsulta" xml:space="preserve">
     <value>https://ww1.sunat.gob.pe/cl-ti-itconestsol/Consulta.htm</value>
   </data>
+  <data name="UriConsultProveedor" xml:space="preserve">
+    <value>https://ww1.sunat.gob.pe/cl-ti-itconestpsesol/Consulta.htm</value>
+  </data>
+  <data name="OpcionMenuProveedor" xml:space="preserve">
+    <value>https://e-menu.sunat.gob.pe/cl-ti-itmenu/MenuInternet.htm?action=execute&amp;code=11.10.2.1.1&amp;s=ww1</value>
+  </data>
 </root>

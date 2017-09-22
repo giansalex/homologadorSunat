@@ -33,6 +33,8 @@
             this.metroStyleManager1 = new MetroFramework.Components.MetroStyleManager(this.components);
             this.metroTabControl1 = new MetroFramework.Controls.MetroTabControl();
             this.metroTabPage1 = new MetroFramework.Controls.MetroTabPage();
+            this.btnSaveConfig = new MetroFramework.Controls.MetroButton();
+            this.btnLoadConfig = new MetroFramework.Controls.MetroButton();
             this.txtDistrito = new MetroFramework.Controls.MetroTextBox();
             this.txtProvincia = new MetroFramework.Controls.MetroTextBox();
             this.txtDepartment = new MetroFramework.Controls.MetroTextBox();
@@ -62,10 +64,13 @@
             this.txtUser = new MetroFramework.Controls.MetroTextBox();
             this.metroLabel10 = new MetroFramework.Controls.MetroLabel();
             this.btnSave = new MetroFramework.Controls.MetroButton();
+            this.metroTabPage3 = new MetroFramework.Controls.MetroTabPage();
+            this.chkProveedor = new MetroFramework.Controls.MetroCheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.metroStyleManager1)).BeginInit();
             this.metroTabControl1.SuspendLayout();
             this.metroTabPage1.SuspendLayout();
             this.metroTabPage2.SuspendLayout();
+            this.metroTabPage3.SuspendLayout();
             this.SuspendLayout();
             // 
             // metroStyleManager1
@@ -80,15 +85,17 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.metroTabControl1.Controls.Add(this.metroTabPage1);
             this.metroTabControl1.Controls.Add(this.metroTabPage2);
+            this.metroTabControl1.Controls.Add(this.metroTabPage3);
             this.metroTabControl1.Location = new System.Drawing.Point(23, 63);
             this.metroTabControl1.Name = "metroTabControl1";
-            this.metroTabControl1.SelectedIndex = 1;
+            this.metroTabControl1.SelectedIndex = 0;
             this.metroTabControl1.Size = new System.Drawing.Size(614, 325);
             this.metroTabControl1.TabIndex = 0;
             this.metroTabControl1.UseSelectable = true;
             // 
             // metroTabPage1
             // 
+            this.metroTabPage1.Controls.Add(this.chkProveedor);
             this.metroTabPage1.Controls.Add(this.txtDistrito);
             this.metroTabPage1.Controls.Add(this.txtProvincia);
             this.metroTabPage1.Controls.Add(this.txtDepartment);
@@ -112,12 +119,34 @@
             this.metroTabPage1.HorizontalScrollbarSize = 10;
             this.metroTabPage1.Location = new System.Drawing.Point(4, 38);
             this.metroTabPage1.Name = "metroTabPage1";
-            this.metroTabPage1.Size = new System.Drawing.Size(580, 283);
+            this.metroTabPage1.Size = new System.Drawing.Size(606, 283);
             this.metroTabPage1.TabIndex = 0;
             this.metroTabPage1.Text = "Informacion";
             this.metroTabPage1.VerticalScrollbarBarColor = true;
             this.metroTabPage1.VerticalScrollbarHighlightOnWheel = false;
             this.metroTabPage1.VerticalScrollbarSize = 10;
+            // 
+            // btnSaveConfig
+            // 
+            this.btnSaveConfig.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSaveConfig.Location = new System.Drawing.Point(98, 25);
+            this.btnSaveConfig.Name = "btnSaveConfig";
+            this.btnSaveConfig.Size = new System.Drawing.Size(75, 23);
+            this.btnSaveConfig.TabIndex = 22;
+            this.btnSaveConfig.Text = "Guardar";
+            this.btnSaveConfig.UseSelectable = true;
+            this.btnSaveConfig.Click += new System.EventHandler(this.btnSaveConfig_Click);
+            // 
+            // btnLoadConfig
+            // 
+            this.btnLoadConfig.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnLoadConfig.Location = new System.Drawing.Point(17, 25);
+            this.btnLoadConfig.Name = "btnLoadConfig";
+            this.btnLoadConfig.Size = new System.Drawing.Size(75, 23);
+            this.btnLoadConfig.TabIndex = 21;
+            this.btnLoadConfig.Text = "Cargar";
+            this.btnLoadConfig.UseSelectable = true;
+            this.btnLoadConfig.Click += new System.EventHandler(this.btnLoadConfig_Click);
             // 
             // txtDistrito
             // 
@@ -671,6 +700,32 @@
             this.btnSave.UseSelectable = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
+            // metroTabPage3
+            // 
+            this.metroTabPage3.Controls.Add(this.btnSaveConfig);
+            this.metroTabPage3.Controls.Add(this.btnLoadConfig);
+            this.metroTabPage3.HorizontalScrollbarBarColor = true;
+            this.metroTabPage3.HorizontalScrollbarHighlightOnWheel = false;
+            this.metroTabPage3.HorizontalScrollbarSize = 10;
+            this.metroTabPage3.Location = new System.Drawing.Point(4, 38);
+            this.metroTabPage3.Name = "metroTabPage3";
+            this.metroTabPage3.Size = new System.Drawing.Size(606, 283);
+            this.metroTabPage3.TabIndex = 2;
+            this.metroTabPage3.Text = "Store";
+            this.metroTabPage3.VerticalScrollbarBarColor = true;
+            this.metroTabPage3.VerticalScrollbarHighlightOnWheel = false;
+            this.metroTabPage3.VerticalScrollbarSize = 10;
+            // 
+            // chkProveedor
+            // 
+            this.chkProveedor.AutoSize = true;
+            this.chkProveedor.Location = new System.Drawing.Point(7, 211);
+            this.chkProveedor.Name = "chkProveedor";
+            this.chkProveedor.Size = new System.Drawing.Size(77, 15);
+            this.chkProveedor.TabIndex = 10;
+            this.chkProveedor.Text = "Proveedor";
+            this.chkProveedor.UseSelectable = true;
+            // 
             // ConfigurationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -690,6 +745,7 @@
             this.metroTabPage1.PerformLayout();
             this.metroTabPage2.ResumeLayout(false);
             this.metroTabPage2.PerformLayout();
+            this.metroTabPage3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -728,5 +784,9 @@
         private MetroFramework.Controls.MetroTextBox txtClaveCert;
         private MetroFramework.Controls.MetroLabel metroLabel13;
         private MetroFramework.Controls.MetroButton btnSave;
+        private MetroFramework.Controls.MetroButton btnSaveConfig;
+        private MetroFramework.Controls.MetroButton btnLoadConfig;
+        private MetroFramework.Controls.MetroTabPage metroTabPage3;
+        private MetroFramework.Controls.MetroCheckBox chkProveedor;
     }
 }

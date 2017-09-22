@@ -43,7 +43,7 @@ namespace Homologador
                     },
                     Certified = new Certified
                     {
-                        Content = Convert.FromBase64String(sett.Ceritificado),
+                        Content = Convert.FromBase64String(sett.Certificado),
                         Password = sett.ClaveCert
                     }
                 };
@@ -348,7 +348,7 @@ namespace Homologador
                     {
                         if (state.Equals("Aprobado", StringComparison.InvariantCultureIgnoreCase)) continue;
                         
-                        if (desc.Contains("crédito"))
+                        if (desc.Contains("dito")) // credito
                             subGroup[num - 1].HasNotaCredit = true;
                         else
                             subGroup[num - 1].HasNotaDebit = true;
@@ -401,7 +401,7 @@ namespace Homologador
                     {
                         if (state.Equals("Aprobado", StringComparison.InvariantCultureIgnoreCase)) continue;
 
-                        if (desc.Contains("crédito"))
+                        if (desc.Contains("dito"))
                             subGroup[num - 1].HasNotaCredit = true;
                         else
                             subGroup[num - 1].HasNotaDebit = true;
