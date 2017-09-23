@@ -41,8 +41,6 @@ namespace Homologador.Fe.Manage
         public async Task<BillResult> Send(DebitNoteHeader debit)
         {
             var xmlRes = _xmlGenerator.ToXml(debit);
-            Write(xmlRes);
-            //throw new Exception();
             if (!xmlRes.Success) return xmlRes;
             
             return await SendDoc(xmlRes.Path, xmlRes.Content);
@@ -151,11 +149,5 @@ namespace Homologador.Fe.Manage
 
             return res;
         }
-
-        private void Write(XmlResult result)
-        {
-            File.WriteAllBytes(result.Path + ".xml", result.Content);
-        }
-
     }
 }

@@ -197,7 +197,6 @@ namespace Homologador
                 var hasNcr = bool.Parse(row.Cells["bnotacr"].Value.ToString());
                 var hasNdb = bool.Parse(row.Cells["bnotadb"].Value.ToString());
 
-                //var gro = gr == "12" ? GrupoPrueba.OtrasMonedas : (GrupoPrueba)Enum.ToObject(typeof(GrupoPrueba), int.Parse(gr) - 7);
                 var inv = fgenerator
                     .ForGroup(GroupHelper.GetFromCode(grCode))
                     .WithLines(lines)
@@ -478,11 +477,6 @@ namespace Homologador
         } 
         #endregion
 
-        private T ToEnum<T>(string code)
-        {
-            return (T) Enum.ToObject(typeof(T), int.Parse(code));
-        }
-
         private void Status(string msg)
         {
             if (InvokeRequired)
@@ -541,17 +535,6 @@ namespace Homologador
             
             var lines = int.Parse(row.Cells[sufx + "cantidad"].Value.ToString());
             GrupoPrueba gro = GroupHelper.GetFromCode(grCode);
-
-            //if (isFact)
-            //{
-            //    gro = ToEnum<GrupoPrueba>(gr);
-            //}
-            //else
-            //{
-            //    gro = gr == "12"
-            //        ? GrupoPrueba.OtrasMonedas
-            //        : (GrupoPrueba)Enum.ToObject(typeof(GrupoPrueba), int.Parse(gr) - 7);
-            //}
 
             var inv = new FacturaGenerator()
                     .ToCompany(_company)
