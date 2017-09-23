@@ -178,5 +178,17 @@ namespace Homologador.Properties {
                 this["ClaveCert"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool EsProveedor {
+            get {
+                return ((bool)(this["EsProveedor"]));
+            }
+            set {
+                this["EsProveedor"] = value;
+            }
+        }
     }
 }

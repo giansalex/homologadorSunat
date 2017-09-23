@@ -51,7 +51,7 @@ namespace Homologador.Fe.Auth
         {
             using (var client = CreatClient())
             {
-                var r = await client.GetAsync(Resources.UriConsulta + "?accion=consultaTodasSolicitudes&numRUC=" + Ruc +"&indTipoContrib=0"); // tipoContrib=1 for proveedor
+                var r = await client.GetAsync(UriProvider.UriConsult + "?accion=consultaTodasSolicitudes&numRUC=" + Ruc +"&indTipoContrib=" + (UriProvider.IsProveedor ? "1" : "0")); // tipoContrib=1 for proveedor
                 if (!r.IsSuccessStatusCode) return null;
                 
                 return await r.Content.ReadAsStringAsync();
@@ -68,7 +68,7 @@ namespace Homologador.Fe.Auth
                     new KeyValuePair<string, string>("numProceso", numProceso),
                     new KeyValuePair<string, string>("numEtapa", "2")
                 });
-                var r = await client.PostAsync(Resources.UriConsulta, content);
+                var r = await client.PostAsync(UriProvider.UriConsult, content);
                 if (!r.IsSuccessStatusCode) return null;
 
                 return await r.Content.ReadAsStringAsync();

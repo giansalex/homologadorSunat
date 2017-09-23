@@ -47,6 +47,7 @@
     <Compile Include="Auth\RucAuth.cs" />
     <Compile Include="Auth\SunatApi.cs" />
     <Compile Include="Auth\SunatAuth.cs" />
+    <Compile Include="Auth\UriProvider.cs" />
     <Compile Include="Manage\BillManager.cs" />
     <Compile Include="Manage\BillResult.cs" />
     <Compile Include="Manage\XmlManager.cs" />

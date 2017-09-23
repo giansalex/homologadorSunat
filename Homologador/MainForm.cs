@@ -68,6 +68,7 @@ namespace Homologador
             {
                 InitLoad();
                 var sett = Settings.Default;
+                UriProvider.IsProveedor = sett.EsProveedor;
                 if (string.IsNullOrWhiteSpace(sett.Ruc)
                     || string.IsNullOrWhiteSpace(sett.Usuario)
                     || string.IsNullOrWhiteSpace(sett.Clave))
@@ -138,13 +139,13 @@ namespace Homologador
                 if (row.Cells["festado"].Value.ToString()
                     .Equals("Aprobado", StringComparison.InvariantCultureIgnoreCase)) continue;
 
-                var gr = row.Cells["fgroup"].Value.ToString();
+                var grCode = row.Cells["fgroup"].Value.ToString();
                 var lines = int.Parse(row.Cells["fcantidad"].Value.ToString());
                 var hasNcr = bool.Parse(row.Cells["fnotacr"].Value.ToString());
                 var hasNdb = bool.Parse(row.Cells["fnotadb"].Value.ToString());
 
                 var inv = fgenerator
-                    .ForGroup(ToEnum<GrupoPrueba>(gr))
+                    .ForGroup(GroupHelper.GetFromCode(grCode))
                     .WithLines(lines)
                     .Build();
 
@@ -191,14 +192,14 @@ namespace Homologador
                 if (row.Cells["bestado"].Value.ToString()
                     .Equals("Aprobado", StringComparison.InvariantCultureIgnoreCase)) continue;
 
-                var gr = row.Cells["bgroup"].Value.ToString();
+                var grCode = row.Cells["bgroup"].Value.ToString();
                 var lines = int.Parse(row.Cells["bcantidad"].Value.ToString());
                 var hasNcr = bool.Parse(row.Cells["bnotacr"].Value.ToString());
                 var hasNdb = bool.Parse(row.Cells["bnotadb"].Value.ToString());
 
-                var gro = gr == "12" ? GrupoPrueba.OtrasMonedas : (GrupoPrueba)Enum.ToObject(typeof(GrupoPrueba), int.Parse(gr) - 7);
+                //var gro = gr == "12" ? GrupoPrueba.OtrasMonedas : (GrupoPrueba)Enum.ToObject(typeof(GrupoPrueba), int.Parse(gr) - 7);
                 var inv = fgenerator
-                    .ForGroup(gro)
+                    .ForGroup(GroupHelper.GetFromCode(grCode))
                     .WithLines(lines)
                     .Build();
 
@@ -231,7 +232,7 @@ namespace Homologador
         private async Task Resumen_Run()
         {
             int cant;
-            if (!int.TryParse(mtxtBajaCant.Text, out cant))
+            if (!int.TryParse(mtxtItemsRes.Text, out cant))
             {
                 Error("Numero de items invalido");
                 mtxtBajaCant.Focus();
@@ -536,21 +537,21 @@ namespace Homologador
                 return;
             }
 
-            var gr = row.Cells[sufx + "group"].Value.ToString();
+            var grCode = row.Cells[sufx + "group"].Value.ToString();
             
             var lines = int.Parse(row.Cells[sufx + "cantidad"].Value.ToString());
-            GrupoPrueba gro;
+            GrupoPrueba gro = GroupHelper.GetFromCode(grCode);
 
-            if (isFact)
-            {
-                gro = ToEnum<GrupoPrueba>(gr);
-            }
-            else
-            {
-                gro = gr == "12"
-                    ? GrupoPrueba.OtrasMonedas
-                    : (GrupoPrueba)Enum.ToObject(typeof(GrupoPrueba), int.Parse(gr) - 7);
-            }
+            //if (isFact)
+            //{
+            //    gro = ToEnum<GrupoPrueba>(gr);
+            //}
+            //else
+            //{
+            //    gro = gr == "12"
+            //        ? GrupoPrueba.OtrasMonedas
+            //        : (GrupoPrueba)Enum.ToObject(typeof(GrupoPrueba), int.Parse(gr) - 7);
+            //}
 
             var inv = new FacturaGenerator()
                     .ToCompany(_company)

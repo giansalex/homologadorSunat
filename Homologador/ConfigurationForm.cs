@@ -33,6 +33,7 @@ namespace Homologador
             txtClave.Text = sett.Clave;
             txtClaveCert.Text = sett.ClaveCert;
             txtPathCertify.Tag = sett.Certificado;
+            chkProveedor.Checked = sett.EsProveedor;
             metroTabControl1.SelectTab(0);
         }
 
@@ -63,6 +64,7 @@ namespace Homologador
             sett.Usuario = txtUser.Text;
             sett.Clave = txtClave.Text;
             sett.ClaveCert = txtClaveCert.Text;
+            sett.EsProveedor = chkProveedor.Checked;
             var pathCert = txtPathCertify.Text;
 
             if (txtPathCertify.Tag != null && (string)txtPathCertify.Tag != string.Empty)
@@ -120,6 +122,7 @@ namespace Homologador
             txtUser.Text = obj.Usuario;
             txtClave.Text = obj.Clave;
             txtClaveCert.Text = obj.ClaveCert;
+            chkProveedor.Checked = obj.EsProveedor;
             if (!string.IsNullOrEmpty(obj.Certificado))
             {
                 txtPathCertify.Tag = obj.Certificado;
@@ -154,6 +157,7 @@ namespace Homologador
             obj.Usuario = txtUser.Text;
             obj.Clave = txtClave.Text;
             obj.ClaveCert = txtClaveCert.Text;
+            obj.EsProveedor = chkProveedor.Checked;
             if (!string.IsNullOrEmpty(txtPathCertify.Text) && File.Exists(txtPathCertify.Text))
             {
                 var bytes = File.ReadAllBytes(txtPathCertify.Text);

@@ -56,7 +56,7 @@ namespace Homologador.Fe.Pruebas
             {
                 TipoDocumento = _tipoDoc == "03" ? TipoDocumentoElectronico.Boleta : TipoDocumentoElectronico.Factura,
                 SerieDocumento = GetSerie(),
-                CorrelativoDocumento = new Random().Next(1, 100000).ToString(),
+                CorrelativoDocumento = GenCorrelativo(),
                 FechaEmision = DateTime.Now.Date,
                 RucEmisor = _company.Ruc,
                 NombreRazonSocialEmisor = _company.RazonSocial,
@@ -101,7 +101,7 @@ namespace Homologador.Fe.Pruebas
 
         private string GetSerie()
         {
-            string serie = _tipoDoc == "03" ? "BB" : "FF";
+            var serie = _tipoDoc == "03" ? "BB" : "FF";
             string num;
             switch (_grupo)
             {
@@ -270,7 +270,6 @@ namespace Homologador.Fe.Pruebas
                     ID = "1002",
                     Value = "TRANSFERENCIA GRATUITA DE UN BIEN Y/O SERVICIO PRESTADO GRATUITAMENTE"
                 });
-
             if (_grupo == GrupoPrueba.ConPercepcion)
             {
                 var val = head.TotalVenta * 0.02M; // 2% percepcion
@@ -286,6 +285,16 @@ namespace Homologador.Fe.Pruebas
                     Value = "COMPROBANTE DE PERCEPCION"
                 });
             }
+        }
+
+        /// <summary>
+        /// Gens the correlativo.
+        /// </summary>
+        /// <returns>System.String.</returns>
+        private static string GenCorrelativo()
+        {
+            return DateTime.Now.Ticks.ToString().Substring(0, 8);
+            //return new Random().Next(1, 100000).ToString();
         }
 
         private DireccionType GetDireccion()

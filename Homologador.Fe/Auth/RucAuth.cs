@@ -19,6 +19,11 @@ namespace Homologador.Fe.Auth
         /// <param name="user">Usuario del contribuyente.</param>
         /// <param name="password">Contraseña del contribuyente.</param>
         /// <returns>true si la credencil es válida</returns>
+        /// <exception cref="ArgumentException">
+        /// Ruc debe tener 11 digitos.
+        /// or
+        /// Ningun campo debe estar vacio.
+        /// </exception>
         public static bool Validate(string ruc, string user, string password)
         {
             if (string.IsNullOrEmpty(ruc) || ruc.Length != 11)
