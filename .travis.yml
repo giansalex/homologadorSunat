@@ -1,7 +1,7 @@
 language: csharp
 solution: Homologador.sln
 install:
-  - nuget restore Homologador.sln -Source $NUGET_SOURCE
+  - nuget restore Homologador.sln -Source https://nuget.org/api/v2/ -Source $NUGET_SOURCE
 script:
   - xbuild /p:Configuration=Release Homologador.Fe/Homologador.Fe.csproj
   - xbuild /p:Configuration=Release Homologador/Homologador.UI.csproj
