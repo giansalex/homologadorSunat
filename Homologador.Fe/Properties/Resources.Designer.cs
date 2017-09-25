@@ -70,6 +70,15 @@ namespace Homologador.Fe.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Serie para grupo de prueba solicitado no pudo crearse..
+        /// </summary>
+        internal static string MsgSerieNotFound {
+            get {
+                return ResourceManager.GetString("MsgSerieNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a https://e-menu.sunat.gob.pe/cl-ti-itmenu/MenuInternet.htm?action=execute&amp;code=11.9.3.1.1&amp;s=ww1.
         /// </summary>
         internal static string OpcionMenu {

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using FacturacionElectronica.GeneradorXml.Entity;
 using Homologador.Fe.Auth;
 using Homologador.Fe.Manage;
 using Homologador.Fe.Model;
@@ -531,21 +532,8 @@ namespace Homologador
                 return;
             }
 
-            var grCode = row.Cells[sufx + "group"].Value.ToString();
-            
-            var lines = int.Parse(row.Cells[sufx + "cantidad"].Value.ToString());
-            GrupoPrueba gro = GroupHelper.GetFromCode(grCode);
-
-            var inv = new FacturaGenerator()
-                    .ToCompany(_company)
-                    .ForDoc(isFact ? "01" : "03")
-                    .ForGroup(gro)
-                    .WithLines(lines)
-                    .Build();
-
             var arrs = doc.Split('-');
-            inv.SerieDocumento = arrs[0];
-            inv.CorrelativoDocumento = arrs[1];
+            var inv = CreateInvoiceForNote(isFact ? "01" : "03", arrs[0], arrs[1]);
 
             var mng = new BillManager(_company);
 
@@ -563,6 +551,21 @@ namespace Homologador
                 row.Cells[sufx + "notadb"].Value = !(await mng.Send(ncr)).Success;
             }
             
+        }
+
+        private InvoiceHeader CreateInvoiceForNote(string tipo, string serie, string correlativo)
+        {
+            var inv = new FacturaGenerator()
+                .ToCompany(_company)
+                .ForDoc(tipo)
+                .ForGroup(GrupoPrueba.Gravada)
+                .WithLines(1)
+                .Build();
+
+            inv.SerieDocumento = serie;
+            inv.CorrelativoDocumento = correlativo;
+
+            return inv;
         }
         #endregion
     }

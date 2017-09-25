@@ -2,7 +2,6 @@
 using System.Security.Cryptography.X509Certificates;
 using FacturacionElectronica.GeneradorXml;
 using FacturacionElectronica.GeneradorXml.Entity;
-using FacturacionElectronica.GeneradorXml.Res;
 using Homologador.Fe.Model;
 
 namespace Homologador.Fe.Manage
@@ -113,70 +112,65 @@ namespace Homologador.Fe.Manage
 
         private XmlResult XmlForVentaInternal(InvoiceHeader venta)
         {
-            var result = new OperationResult();
-            var res = _xmlGenerator.GeneraDocumentoInvoice(ref result, venta);
+            var res = _xmlGenerator.GeneraDocumentoInvoice(venta);
             return new XmlResult
             {
-                Success = result.Success,
-                Description = result.Error,
+                Success = res.Success,
+                Description = res.Error,
                 Path = res.FileName,
                 Content = res.Content,
-                Code = result.Success ? null : CodeStatus.ConErrores
+                Code = res.Success ? null : CodeStatus.ConErrores
             };
         }
 
         private XmlResult XmlForVentaInternal(DebitNoteHeader venta)
         {
-            var result = new OperationResult();
-            var res = _xmlGenerator.GenerarDocumentoDebitNote(ref result, venta);
+            var res = _xmlGenerator.GenerarDocumentoDebitNote(venta);
             return new XmlResult
             {
-                Success = result.Success,
-                Description = result.Error,
+                Success = res.Success,
+                Description = res.Error,
                 Path = res.FileName,
                 Content = res.Content,
-                Code = result.Success ? null : CodeStatus.ConErrores
+                Code = res.Success ? null : CodeStatus.ConErrores
             };
         }
 
         private XmlResult XmlForVentaInternal(CreditNoteHeader venta)
         {
-            var result = new OperationResult();
-            var res = _xmlGenerator.GenerarDocumentoCreditNote(ref result, venta);
+            var res = _xmlGenerator.GenerarDocumentoCreditNote(venta);
             return new XmlResult
             {
-                Success = result.Success,
-                Description = result.Error,
+                Success = res.Success,
+                Description = res.Error,
                 Path = res.FileName,
                 Content = res.Content,
-                Code = result.Success ? null : CodeStatus.ConErrores
+                Code = res.Success ? null : CodeStatus.ConErrores
             };
         }
         private XmlResult XmlForaResumenInternal(SummaryHeader header)
         {
-            var result = new OperationResult();
-            var res = _xmlGenerator.GenerarDocumentoSummary(ref result, header);
+            var res = _xmlGenerator.GenerarDocumentoSummary(header);
 
             return new XmlResult
             {
-                Success = result.Success,
-                Description = result.Error,
+                Success = res.Success,
+                Description = res.Error,
                 Path = res.FileName,
                 Content = res.Content,
-                Code = result.Success ? null : CodeStatus.ConErrores
+                Code = res.Success ? null : CodeStatus.ConErrores
             };
         }
         private XmlResult XmlForBajaInternal(VoidedHeader baja)
         {
-            var result = new OperationResult();
-            var res = _xmlGenerator.GenerarDocumentoVoided(ref result, baja);
+            var res = _xmlGenerator.GenerarDocumentoVoided(baja);
             return new XmlResult
             {
-                Success = result.Success,
-                Description = result.Error,
+                Success = res.Success,
+                Description = res.Error,
                 Path = res.FileName,
                 Content = res.Content,
-                Code = result.Success ? null : CodeStatus.ConErrores
+                Code = res.Success ? null : CodeStatus.ConErrores
             };
         }
 

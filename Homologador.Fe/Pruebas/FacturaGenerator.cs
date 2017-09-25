@@ -5,8 +5,11 @@ using FacturacionElectronica.GeneradorXml.Entity;
 using FacturacionElectronica.GeneradorXml.Entity.Details;
 using FacturacionElectronica.GeneradorXml.Entity.Misc;
 using FacturacionElectronica.GeneradorXml.Enums;
+using Gs.Ubl.v2.Cac;
 using Gs.Ubl.v2.Sac;
+using Gs.Ubl.v2.Udt;
 using Homologador.Fe.Model;
+using Homologador.Fe.Properties;
 
 namespace Homologador.Fe.Pruebas
 {
@@ -47,6 +50,7 @@ namespace Homologador.Fe.Pruebas
             SetClient(head);
             Calculator(head);
             LoadTotal(head);
+            LoadExtraHeadsAndLegends(head);
             return head;
         }
 
@@ -67,6 +71,8 @@ namespace Homologador.Fe.Pruebas
                 Impuesto = new List<TotalImpuestosType>(),
                 DireccionEmisor = GetDireccion()
             };
+
+            SetCustomBodyByGroup(header);
 
             foreach (var item in Enumerable.Range(1, _lines))
             {
@@ -93,7 +99,9 @@ namespace Homologador.Fe.Pruebas
             }
             else
             {
-                header.TipoDocumentoIdentidadCliente = TipoDocumentoIdentidad.RegistroUnicoContribuyentes;
+                header.TipoDocumentoIdentidadCliente = _grupo == GrupoPrueba.ComercioExterior 
+                    ? TipoDocumentoIdentidad.NoDomiciliado 
+                    : TipoDocumentoIdentidad.RegistroUnicoContribuyentes;
                 header.NroDocCliente = "20100070970";
                 header.NombreRazonSocialCliente = "SUPER COMPANY";
             }
@@ -101,7 +109,9 @@ namespace Homologador.Fe.Pruebas
 
         private string GetSerie()
         {
-            var serie = _tipoDoc == "03" ? "BB" : "FF";
+            var isBol = _tipoDoc == "03";
+            var prefix = isBol ? "B" : "F";
+            var serie = isBol ? "BB" : "FF";
             string num;
             switch (_grupo)
             {
@@ -126,12 +136,69 @@ namespace Homologador.Fe.Pruebas
                 case GrupoPrueba.OtrasMonedas:
                     num = "50";
                     break;
+                case GrupoPrueba.Detraccciones:
+                    num = "60";
+                    break;
+                case GrupoPrueba.ComercioExterior:
+                    num = "70";
+                    break;
+                case GrupoPrueba.FacturaGuia:
+                    num = "80";
+                    break;
+                case GrupoPrueba.DatosNoTributarios:
+                    num = "90";
+                    break;
+                case GrupoPrueba.Anticipos:
+                    serie = prefix;
+                    num = "100";
+                    break;
+                case GrupoPrueba.RegulacionAnticipos:
+                    serie = prefix;
+                    num = "110";
+                    break;
+                case GrupoPrueba.EmisorItinerante:
+                    serie = prefix;
+                    num = "100";
+                    break;
                 default:
-                    throw new ArgumentOutOfRangeException();
+                    throw new ArgumentOutOfRangeException(nameof(num), Resources.MsgSerieNotFound);
             }
             return serie + num;
         }
 
+        private void SetCustomBodyByGroup(InvoiceHeader head)
+        {
+            switch (_grupo)
+            {
+                case GrupoPrueba.Anticipos:
+                    head.TipoOperacion = TipoOperacion.VentaInternaAnticipos;
+                    break;
+                case GrupoPrueba.EmisorItinerante:
+                    head.TipoOperacion = TipoOperacion.VentaItinerante;
+                    head.GuiaRemisionReferencia = new List<GuiaRemisionType>
+                    {
+                        new GuiaRemisionType
+                        {
+                            IdTipoGuiaRemision = "09",
+                            NumeroGuiaRemision = "T001-1"
+                        }
+                    };
+                    break;
+                case GrupoPrueba.RegulacionAnticipos:
+                    head.TotalAnticipos = 10;
+                    head.Anticipos = new List<AnticipoType>
+                    {
+                        new AnticipoType
+                        {
+                            MontoAnticipo = head.TotalAnticipos.Value,
+                            NroDocumentRel = "F001-1",
+                            RucEmisorDoc = head.RucEmisor,
+                            TipoDocRel = DocRelTributario.FacturaAnticipos
+                        }
+                    }; 
+                    break;
+            }
+        }
         private TipoAfectacionIgv GetTipoIgv()
         {
             switch (_grupo)
@@ -140,6 +207,8 @@ namespace Homologador.Fe.Pruebas
                     return TipoAfectacionIgv.GravadoRetiro;
                 case GrupoPrueba.InafectaExonerada:
                     return TipoAfectacionIgv.InafectoOperacionOnerosa;
+                case GrupoPrueba.ComercioExterior:
+                    return TipoAfectacionIgv.Exportacion;
                 default:
                     return TipoAfectacionIgv.GravadoOperacionOnerosa;
             }
@@ -206,6 +275,7 @@ namespace Homologador.Fe.Pruebas
             switch (igv)
             {
                 case TipoAfectacionIgv.InafectoOperacionOnerosa:
+                case TipoAfectacionIgv.Exportacion:
                     return OtrosConceptosTributarios.TotalVentaOperacionesInafectas;
                 case TipoAfectacionIgv.GravadoRetiro:
                     return OtrosConceptosTributarios.TotalVentaOperacionesGratuitas;
@@ -263,28 +333,128 @@ namespace Homologador.Fe.Pruebas
                     Value = "MONTO EN LETRAS"
                 }
             };
+        }
 
-            if (_grupo == GrupoPrueba.Gratuita)
-                head.InfoAddicional.Add(new AdditionalPropertyType
-                {
-                    ID = "1002",
-                    Value = "TRANSFERENCIA GRATUITA DE UN BIEN Y/O SERVICIO PRESTADO GRATUITAMENTE"
-                });
-            if (_grupo == GrupoPrueba.ConPercepcion)
+        private void LoadExtraHeadsAndLegends(InvoiceHeader head)
+        {
+            switch (_grupo)
             {
-                var val = head.TotalVenta * 0.02M; // 2% percepcion
-                head.TotalTributosAdicionales.Add(new TotalTributosType
-                {
-                    Id = OtrosConceptosTributarios.Percepciones,
-                    MontoPagable = val,
-                    MontoTotal = head.TotalVenta + val
-                });
-                head.InfoAddicional.Add(new AdditionalPropertyType
-                {
-                    ID = "2000",
-                    Value = "COMPROBANTE DE PERCEPCION"
-                });
+                case GrupoPrueba.Gratuita:
+                    head.InfoAddicional.Add(new AdditionalPropertyType
+                    {
+                        ID = "1002",
+                        Value = "TRANSFERENCIA GRATUITA DE UN BIEN Y/O SERVICIO PRESTADO GRATUITAMENTE"
+                    });
+                    break;
+                case GrupoPrueba.ConPercepcion:
+                    var val = head.TotalVenta * 0.02M; // 2% percepcion
+                    head.TotalTributosAdicionales.Add(new TotalTributosType
+                    {
+                        Id = OtrosConceptosTributarios.Percepciones,
+                        MontoPagable = val,
+                        MontoTotal = head.TotalVenta + val
+                    });
+                    head.InfoAddicional.Add(new AdditionalPropertyType
+                    {
+                        ID = "2000",
+                        Value = "COMPROBANTE DE PERCEPCION"
+                    });
+                    break;
+                case GrupoPrueba.Detraccciones:
+                    head.TotalTributosAdicionales.Add(new TotalTributosType
+                    {
+                        Id = OtrosConceptosTributarios.Detracciones,
+                        MontoPagable = head.TotalVenta * 0.09M,// 9% detraccion
+                        Porcentaje = 9.00M
+                    });
+                    head.InfoAddicional.AddRange(new[]{
+                        new AdditionalPropertyType
+                        {
+                            ID = "3000",
+                            Value = "004"
+                        },
+                        new AdditionalPropertyType
+                        {
+                            ID = "3001",
+                            Value = "192-99982-1"
+                        }
+                    });
+                    break;
+                case GrupoPrueba.FacturaGuia:
+                    head.GuiaEmbebida = new SUNATEmbededDespatchAdviceType
+                    {
+                        DeliveryAddress = new AddressType
+                        {
+                            ID = "150102",
+                            StreetName = "AV. REPUBLICA DE ARGENTINA N? 2976 URB",
+                            CitySubdivisionName = "LIMA 01",
+                            CityName = "LIMA",
+                            CountrySubentity = "LIMA",
+                            District = "LIMA",
+                            Country = new CountryType
+                            {
+                                IdentificationCode = "PE"
+                            }
+                        },
+                        OriginAddress = new AddressType
+                        {
+                            ID = "150121",
+                            StreetName = "AV. REPUBLICA DE ARGENTINA N? 2976 URB",
+                            CitySubdivisionName = "LIMA 01",
+                            CityName = "LIMA",
+                            CountrySubentity = "LIMA",
+                            District = "LIMA",
+                            Country = new CountryType
+                            {
+                                IdentificationCode = "PE"
+                            }
+                        },
+                        SUNATCarrierParty = new SUNATCarrierPartyType
+                        {
+                            CustomerAssignedAccountID = "20123456789",
+                            AdditionalAccountID = new IdentifierType[] { "6" },
+                        },
+                        DriverParty = new DriverPartyType
+                        {
+                            Party = new PartyType
+                            {
+                                PartyIdentification = new PartyIdentificationType[] { "1111111111" }
+                            }
+                        },
+                        SUNATRoadTransport = new []
+                        {
+                            new SUNATRoadTransportType
+                            {
+                                LicensePlateID   = "B9Y-778",
+                                TransportAuthorizationCode = "1",
+                                BrandName = "Scania"
+                            }
+                        },
+                        TransportModeCode = "01",
+                        GrossWeightMeasure = new MeasureType
+                        {
+                            unitCode = "KGM",
+                            Value = 10.00M
+                        }
+                    };
+                    break;
+                case GrupoPrueba.EmisorItinerante:
+                    head.InfoAddicional.AddRange(new []
+                    {
+                        new AdditionalPropertyType
+                        {
+                            ID = "2005", // Segun catalogo
+                            Value = "Venta realizada por emisor itinerante"
+                        },
+                        new AdditionalPropertyType
+                        {
+                            ID = "3000", // Segun personal de SUNAT y necesario para homologacion PSE.
+                            Value = "Venta realizada por emisor itinerante"
+                        }
+                    });
+                    break;
             }
+
         }
 
         /// <summary>
@@ -293,7 +463,8 @@ namespace Homologador.Fe.Pruebas
         /// <returns>System.String.</returns>
         private static string GenCorrelativo()
         {
-            return DateTime.Now.Ticks.ToString().Substring(0, 8);
+            var ticks = DateTime.Now.Ticks.ToString();
+            return ticks.Substring(ticks.Length - 8, 8);
             //return new Random().Next(1, 100000).ToString();
         }
 

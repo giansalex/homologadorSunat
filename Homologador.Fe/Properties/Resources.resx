@@ -132,4 +132,7 @@
   <data name="OpcionMenuProveedor" xml:space="preserve">
     <value>https://e-menu.sunat.gob.pe/cl-ti-itmenu/MenuInternet.htm?action=execute&amp;code=11.10.2.1.1&amp;s=ww1</value>
   </data>
+  <data name="MsgSerieNotFound" xml:space="preserve">
+    <value>Serie para grupo de prueba solicitado no pudo crearse.</value>
+  </data>
 </root>

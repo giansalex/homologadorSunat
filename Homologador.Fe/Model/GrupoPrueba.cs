@@ -4,13 +4,20 @@ namespace Homologador.Fe.Model
 {
     public enum GrupoPrueba : byte
     {
-        Gravada = 1,
-        InafectaExonerada = 2,
-        Gratuita = 3,
-        DescuentoGlobal = 4,
-        ConIsc = 5,
-        ConPercepcion = 6,
-        OtrasMonedas = 7,
+        Gravada,
+        InafectaExonerada,
+        Gratuita,
+        DescuentoGlobal,
+        ConIsc,
+        ConPercepcion,
+        OtrasMonedas,
+        Detraccciones,
+        ComercioExterior,
+        FacturaGuia,
+        DatosNoTributarios,
+        Anticipos,
+        RegulacionAnticipos,
+        EmisorItinerante
     }
 
     /// <summary>
@@ -49,6 +56,21 @@ namespace Homologador.Fe.Model
                 case "7":
                 case "12":
                     return GrupoPrueba.OtrasMonedas;
+                case "15":
+                    return GrupoPrueba.Detraccciones;
+                case "16":
+                    return GrupoPrueba.ComercioExterior;
+                case "17":
+                    return GrupoPrueba.FacturaGuia;
+                case "18":
+                case "23":
+                    return GrupoPrueba.DatosNoTributarios;
+                case "19":
+                    return GrupoPrueba.Anticipos;
+                case "20":
+                    return GrupoPrueba.RegulacionAnticipos;
+                case "24":
+                    return GrupoPrueba.EmisorItinerante;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(code), @"Grupo no soportado");
             }

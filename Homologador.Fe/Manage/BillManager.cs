@@ -1,6 +1,4 @@
-﻿using System;
-using System.IO;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using FacturacionElectronica.GeneradorXml.Entity;
 using FacturacionElectronica.Homologacion;
 using FacturacionElectronica.Homologacion.Res;
@@ -68,6 +66,7 @@ namespace Homologador.Fe.Manage
         public async Task<BillResult> Send(InvoiceHeader venta)
         {
             var xmlRes = _xmlGenerator.ToXml(venta);
+            
             if (!xmlRes.Success) return xmlRes;
 
             return await SendDoc(xmlRes.Path, xmlRes.Content);
