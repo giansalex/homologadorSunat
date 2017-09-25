@@ -4,9 +4,6 @@ Herramienta para la homologación para Emisores y Proveedores de servicios elect
 
 ![Alt text](/Third/formulario.png?raw=true "Pagina Principal de Homologador")
 
-## Video ##
-[![Alt text](/Third/demostracion-video-homologador.png?raw=true "Youtube Homologador")](https://youtu.be/x1zJROi-qvM)
-
 ## Grupo de Casos de pruebas soportados ##
 
 
@@ -36,3 +33,6 @@ GRUPO                | TIPO DE DOCUMENTO    | SERIE | Descripcion
 22 :heavy_check_mark:| Boletas y Notas      | BB50  | Boletas de Venta sujetas a Percepción
 23 :heavy_check_mark:| Boletas y Notas      | BB90  | Boletas de venta con datos no tributarios
 24 :heavy_check_mark:| Boletas y Notas      | B100  | Boletas de venta – emisor itineranteón
+
+## Video Demostrativo ##
+[![Alt text](/Third/demostracion-video-homologador.png?raw=true "Youtube Homologador")](https://youtu.be/x1zJROi-qvM)
