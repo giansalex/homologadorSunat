@@ -1,6 +1,6 @@
 # Homologador - Facturación Electrónica - SUNAT
 [![AppVeyor](https://ci.appveyor.com/api/projects/status/ha6hpsh9075xbseh?svg=true)](https://ci.appveyor.com/project/giansalex/homologadorsunat) [![Travis-CI](https://travis-ci.org/giansalex/homologadorSunat.svg?branch=master)](https://travis-ci.org/giansalex/homologadorSunat)   
-Herramienta para la homologacion en Facturación Electrónica - PERU
+Herramienta para la homologación para Emisores y Proveedores de servicios electrónicos en Facturación Electrónica - PERU
 
 ![Alt text](/Third/formulario.png?raw=true "Pagina Principal de Homologador")
 
@@ -26,3 +26,13 @@ GRUPO                | TIPO DE DOCUMENTO    | SERIE | Descripcion
 12 :heavy_check_mark:| Boletas y Notas      | BB50  | Operaciones con otro tipo de moneda
 13 :heavy_check_mark:| Resúmenes Diarios    |   -   | Resumen diario de Boletas
 14 :heavy_check_mark:| Comunicación de Baja |   -   | Comunicación de Baja
+15 :heavy_check_mark:| Facturas y Notas     | FF60  | Facturas sujetas a detracción 
+16 :heavy_check_mark:| Facturas y Notas     | FF70  | Facturas con operaciones de comercio exterior 
+17 :heavy_check_mark:| Facturas y Notas     | FF80  | Factura – Guía
+18 :heavy_check_mark:| Facturas y Notas     | FF90  | Facturas con datos no tributarios
+19 :heavy_check_mark:| Facturas y Notas     | F100  | Facturas por pagos anticipados
+19 :heavy_check_mark:| Facturas y Notas     | F110  | Facturas con regularización de anticipos
+21 :heavy_check_mark:| Boletas y Notas      | BB40  | Boletas de venta gravadas con ISC
+22 :heavy_check_mark:| Boletas y Notas      | BB50  | Boletas de Venta sujetas a Percepción
+23 :heavy_check_mark:| Boletas y Notas      | BB90  | Boletas de venta con datos no tributarios
+24 :heavy_check_mark:| Boletas y Notas      | B100  | Boletas de venta – emisor itineranteón
