@@ -90,12 +90,94 @@ namespace Homologador.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a https://github.com/giansalex/homologadorSunat.
+        /// </summary>
+        internal static string GibhubLinkProject {
+            get {
+                return ResourceManager.GetString("GibhubLinkProject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap github {
+            get {
+                object obj = ResourceManager.GetObject("github", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap play {
             get {
                 object obj = ResourceManager.GetObject("play", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a homologador_settings.json.
+        /// </summary>
+        internal static string SettingFilenamDefault {
+            get {
+                return ResourceManager.GetString("SettingFilenamDefault", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Pfx Files (*.pfx)|*.pfx.
+        /// </summary>
+        internal static string SettingFilterFilesPfx {
+            get {
+                return ResourceManager.GetString("SettingFilterFilesPfx", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a No se pudo cargar la configuracion.
+        /// </summary>
+        internal static string SettingMsgLoadError {
+            get {
+                return ResourceManager.GetString("SettingMsgLoadError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Configuración Cargada.
+        /// </summary>
+        internal static string SettingMsgLoadSuccess {
+            get {
+                return ResourceManager.GetString("SettingMsgLoadSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Configuracion Guardada.
+        /// </summary>
+        internal static string SettingMsgSaved {
+            get {
+                return ResourceManager.GetString("SettingMsgSaved", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Error.
+        /// </summary>
+        internal static string SettingTitleError {
+            get {
+                return ResourceManager.GetString("SettingTitleError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Exito.
+        /// </summary>
+        internal static string SettingTitleSucces {
+            get {
+                return ResourceManager.GetString("SettingTitleSucces", resourceCulture);
             }
         }
         

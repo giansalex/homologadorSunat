@@ -39,7 +39,7 @@ namespace Homologador
 
         private void btnCertificate_Click(object sender, EventArgs e)
         {
-            var open = new OpenFileDialog {Filter = @"Pfx Files (*.pfx)|*.pfx"};
+            var open = new OpenFileDialog {Filter = Resources.SettingFilterFilesPfx};
             if (open.ShowDialog() != DialogResult.OK)
                 return;
 
@@ -85,12 +85,12 @@ namespace Homologador
             try
             {
                 if (RucAuth.Validate(txtRuc.Text, txtUser.Text, txtClave.Text)) return true;
-                MetroMessageBox.Show(this, "Credenciales invalidas", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MetroMessageBox.Show(this, "Credenciales invalidas", Resources.SettingTitleError, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtRuc.Focus();
             }
             catch (Exception e)
             {
-                MetroMessageBox.Show(this, e.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MetroMessageBox.Show(this, e.Message, Resources.SettingTitleError, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             return false;
         }
@@ -107,7 +107,29 @@ namespace Homologador
                 return;
             }
 
-            var jsonText = File.ReadAllText(dialog.FileName);
+            try
+            {
+                LoadConfig(dialog.FileName);
+                MetroMessageBox.Show(this,
+                    Resources.SettingMsgLoadSuccess,
+                    Resources.SettingTitleSucces,
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+            }
+            catch (Exception)
+            {
+                MetroMessageBox.Show(this,
+                    Resources.SettingMsgLoadError,
+                    Resources.SettingTitleError,
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+        }
+
+
+        private void LoadConfig(string filename)
+        {
+            var jsonText = File.ReadAllText(filename);
             dynamic obj = JObject.Parse(jsonText);
 
             txtRuc.Text = obj.Ruc;
@@ -123,9 +145,9 @@ namespace Homologador
             txtClave.Text = obj.Clave;
             txtClaveCert.Text = obj.ClaveCert;
             chkProveedor.Checked = obj.EsProveedor;
-            if (!string.IsNullOrEmpty(obj.Certificado))
+            if (!string.IsNullOrEmpty((string)obj.Certificado))
             {
-                txtPathCertify.Tag = obj.Certificado;
+                txtPathCertify.Tag = obj.Certificado.ToString();
                 txtPathCertify.Text = @"Certificado Cargado";
             }
         }
@@ -135,7 +157,7 @@ namespace Homologador
             var dialog = new SaveFileDialog
             {
                 Filter = Resources.FileFilterJson,
-                FileName = "homologador_settings.json"
+                FileName = Resources.SettingFilenamDefault
             };
 
             if (dialog.ShowDialog() != DialogResult.OK)
@@ -169,7 +191,11 @@ namespace Homologador
             }
 
             File.WriteAllText(dialog.FileName, obj.ToString());
-            MetroMessageBox.Show(this, "Configuracion Guardada", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MetroMessageBox.Show(this,
+                Resources.SettingMsgSaved,
+                Resources.SettingTitleSucces,
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information);
         }
     }
 }

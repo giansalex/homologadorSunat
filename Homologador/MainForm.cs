@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -511,6 +512,11 @@ namespace Homologador
         private void btnSync_Click(object sender, EventArgs e)
         {
             Init();
+        }
+
+        private void pictGithub_Click(object sender, EventArgs e)
+        {
+            Process.Start(Resources.GibhubLinkProject);
         }
 
         #region Notas

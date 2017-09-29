@@ -76,6 +76,7 @@
             this.btnSync = new System.Windows.Forms.PictureBox();
             this.btnSetting = new System.Windows.Forms.PictureBox();
             this.btnRun = new System.Windows.Forms.PictureBox();
+            this.pictGithub = new System.Windows.Forms.PictureBox();
             this.tbDocs.SuspendLayout();
             this.mtabFacturas.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridFacturas)).BeginInit();
@@ -88,6 +89,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnSync)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSetting)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnRun)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictGithub)).BeginInit();
             this.SuspendLayout();
             // 
             // tbDocs
@@ -624,11 +626,25 @@
             this.btnRun.TabStop = false;
             this.btnRun.Click += new System.EventHandler(this.btnRun_Click);
             // 
+            // pictGithub
+            // 
+            this.pictGithub.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictGithub.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictGithub.Image = global::Homologador.Properties.Resources.github;
+            this.pictGithub.Location = new System.Drawing.Point(346, 20);
+            this.pictGithub.Name = "pictGithub";
+            this.pictGithub.Size = new System.Drawing.Size(32, 33);
+            this.pictGithub.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictGithub.TabIndex = 7;
+            this.pictGithub.TabStop = false;
+            this.pictGithub.Click += new System.EventHandler(this.pictGithub_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(661, 436);
+            this.Controls.Add(this.pictGithub);
             this.Controls.Add(this.btnSync);
             this.Controls.Add(this.btnSetting);
             this.Controls.Add(this.spinner);
@@ -654,6 +670,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnSync)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSetting)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnRun)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictGithub)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -701,5 +718,6 @@
         private System.Windows.Forms.DataGridViewCheckBoxColumn bnotacr;
         private System.Windows.Forms.DataGridViewCheckBoxColumn bnotadb;
         private System.Windows.Forms.DataGridViewTextBoxColumn bestado;
+        private System.Windows.Forms.PictureBox pictGithub;
     }
 }
