@@ -78,6 +78,7 @@
             this.btnRun = new System.Windows.Forms.PictureBox();
             this.pictGithub = new System.Windows.Forms.PictureBox();
             this.pictSendAll = new System.Windows.Forms.PictureBox();
+            this.mtToolTip = new MetroFramework.Components.MetroToolTip();
             this.tbDocs.SuspendLayout();
             this.mtabFacturas.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridFacturas)).BeginInit();
@@ -600,6 +601,8 @@
             this.btnSync.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.btnSync.TabIndex = 6;
             this.btnSync.TabStop = false;
+            this.btnSync.Tag = "";
+            this.mtToolTip.SetToolTip(this.btnSync, "Refrescar los casos");
             this.btnSync.Click += new System.EventHandler(this.btnSync_Click);
             // 
             // btnSetting
@@ -613,6 +616,8 @@
             this.btnSetting.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.btnSetting.TabIndex = 5;
             this.btnSetting.TabStop = false;
+            this.btnSetting.Tag = "";
+            this.mtToolTip.SetToolTip(this.btnSetting, "Configuraciones");
             this.btnSetting.Click += new System.EventHandler(this.btnSetting_Click);
             // 
             // btnRun
@@ -625,6 +630,7 @@
             this.btnRun.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.btnRun.TabIndex = 3;
             this.btnRun.TabStop = false;
+            this.mtToolTip.SetToolTip(this.btnRun, "Enviar seleccionados");
             this.btnRun.Click += new System.EventHandler(this.btnRun_Click);
             // 
             // pictGithub
@@ -638,6 +644,8 @@
             this.pictGithub.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictGithub.TabIndex = 7;
             this.pictGithub.TabStop = false;
+            this.pictGithub.Tag = "";
+            this.mtToolTip.SetToolTip(this.pictGithub, "Github Inc.");
             this.pictGithub.Click += new System.EventHandler(this.pictGithub_Click);
             // 
             // pictSendAll
@@ -650,7 +658,14 @@
             this.pictSendAll.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictSendAll.TabIndex = 8;
             this.pictSendAll.TabStop = false;
+            this.mtToolTip.SetToolTip(this.pictSendAll, "Enviar Todos los casos");
             this.pictSendAll.Click += new System.EventHandler(this.pictSendAll_Click);
+            // 
+            // mtToolTip
+            // 
+            this.mtToolTip.Style = MetroFramework.MetroColorStyle.Blue;
+            this.mtToolTip.StyleManager = null;
+            this.mtToolTip.Theme = MetroFramework.MetroThemeStyle.Light;
             // 
             // MainForm
             // 
@@ -735,5 +750,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn bestado;
         private System.Windows.Forms.PictureBox pictGithub;
         private System.Windows.Forms.PictureBox pictSendAll;
+        private MetroFramework.Components.MetroToolTip mtToolTip;
     }
 }
