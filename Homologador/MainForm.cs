@@ -21,6 +21,8 @@ namespace Homologador
     public partial class MainForm : MetroForm
     {
         private SunatApi _auth;
+        private Action<string> Success;
+        private Action<string> Error;
 
         private Company _company
         {
@@ -55,6 +57,8 @@ namespace Homologador
         public MainForm()
         {
             InitializeComponent();
+            Success = SuccessBox;
+            Error = ErrorBox;
             Theme = MetroThemeStyle.Dark;
             Load += MainForm_Load;
         }
@@ -215,13 +219,19 @@ namespace Homologador
                 if (hasNcr)
                 {
                     var ncr = nGene.BuildNcr();
-                    row.Cells["bnotacr"].Value = !(await mng.Send(ncr)).Success;
+                    var result = await mng.Send(ncr);
+                    var cell = row.Cells["bnotacr"];
+                    cell.Value = !result.Success;
+                    cell.ToolTipText = result.Description;
                 }
 
                 if (hasNdb)
                 {
                     var ndb = nGene.BuildNdb();
-                    row.Cells["bnotadb"].Value = !(await mng.Send(ndb)).Success;
+                    var result = await mng.Send(ndb);
+                    var cell = row.Cells["bnotadb"];
+                    cell.Value = !result.Success;
+                    cell.ToolTipText = result.Description;
                 }
             }
             spinner.Visible = false;
@@ -240,6 +250,11 @@ namespace Homologador
                 return;
             }
 
+            await SendResumen(cant);
+        }
+
+        private async Task SendResumen(int cant)
+        {
             var resumen = new ResumenGenerator()
                 .ToCompany(_company)
                 .WithLines(cant)
@@ -451,7 +466,7 @@ namespace Homologador
         {
             using (var frm = new ConfigurationForm())
             {
-                frm.ShowDialog(this);
+                var result = frm.ShowDialog(this);
                 var sett = Settings.Default;
                 if (string.IsNullOrWhiteSpace(sett.Ruc)
                     || string.IsNullOrWhiteSpace(sett.Usuario)
@@ -460,16 +475,18 @@ namespace Homologador
                     Application.Exit();
                     return;
                 }
-                Init();
+
+                if (result == DialogResult.OK)
+                    Init();
             }
         }
 
         #region Messages Box
-        private void Success(string msg)
+        private void SuccessBox(string msg)
         {
             MetroMessageBox.Show(this, msg, "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
-        private void Error(string msg)
+        private void ErrorBox(string msg)
         {
             MetroMessageBox.Show(this, msg, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
@@ -517,6 +534,31 @@ namespace Homologador
         private void pictGithub_Click(object sender, EventArgs e)
         {
             Process.Start(Resources.GibhubLinkProject);
+        }
+
+        private async void pictSendAll_Click(object sender, EventArgs e)
+        {
+            Success = Status;
+            Error = Status;
+            var isPse = Settings.Default.EsProveedor;
+            try
+            {
+                await Factura_Run();
+                await Boleta_Run();
+                await SendResumen(5);
+                if (isPse)
+                    await SendResumen(3);
+                await Baja_Run();
+            }
+            catch (Exception)
+            {
+                ErrorBox("No se pudo enviar todos los casos de pruebas.");
+            }
+            finally
+            {
+                Success = SuccessBox;
+                Error = ErrorBox;
+            }
         }
 
         #region Notas

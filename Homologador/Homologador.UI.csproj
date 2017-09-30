@@ -125,6 +125,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Compartir-50.ico" />
+    <None Include="Resources\reproducir.png" />
+    <None Include="Resources\play_double.png" />
     <None Include="Resources\github.png" />
     <None Include="Resources\Sincronizar.png" />
     <None Include="Resources\ajustes.png" />

@@ -77,6 +77,7 @@
             this.btnSetting = new System.Windows.Forms.PictureBox();
             this.btnRun = new System.Windows.Forms.PictureBox();
             this.pictGithub = new System.Windows.Forms.PictureBox();
+            this.pictSendAll = new System.Windows.Forms.PictureBox();
             this.tbDocs.SuspendLayout();
             this.mtabFacturas.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridFacturas)).BeginInit();
@@ -90,6 +91,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnSetting)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnRun)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictGithub)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictSendAll)).BeginInit();
             this.SuspendLayout();
             // 
             // tbDocs
@@ -101,10 +103,10 @@
             this.tbDocs.Controls.Add(this.mtabBoletas);
             this.tbDocs.Controls.Add(this.mtabBajas);
             this.tbDocs.Controls.Add(this.mtabResumen);
-            this.tbDocs.Location = new System.Drawing.Point(23, 63);
+            this.tbDocs.Location = new System.Drawing.Point(23, 95);
             this.tbDocs.Name = "tbDocs";
             this.tbDocs.SelectedIndex = 0;
-            this.tbDocs.Size = new System.Drawing.Size(615, 350);
+            this.tbDocs.Size = new System.Drawing.Size(615, 333);
             this.tbDocs.TabIndex = 0;
             this.tbDocs.UseSelectable = true;
             // 
@@ -117,7 +119,7 @@
             this.mtabFacturas.HorizontalScrollbarSize = 10;
             this.mtabFacturas.Location = new System.Drawing.Point(4, 38);
             this.mtabFacturas.Name = "mtabFacturas";
-            this.mtabFacturas.Size = new System.Drawing.Size(607, 308);
+            this.mtabFacturas.Size = new System.Drawing.Size(607, 291);
             this.mtabFacturas.TabIndex = 0;
             this.mtabFacturas.Text = "Facturas";
             this.mtabFacturas.ToolTipText = "Facturas y Notas";
@@ -128,7 +130,7 @@
             // lblCountFact
             // 
             this.lblCountFact.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblCountFact.Location = new System.Drawing.Point(431, 290);
+            this.lblCountFact.Location = new System.Drawing.Point(431, 273);
             this.lblCountFact.Name = "lblCountFact";
             this.lblCountFact.Size = new System.Drawing.Size(177, 19);
             this.lblCountFact.TabIndex = 4;
@@ -192,7 +194,7 @@
             this.gridFacturas.RowHeadersWidth = 20;
             this.gridFacturas.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.gridFacturas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridFacturas.Size = new System.Drawing.Size(611, 287);
+            this.gridFacturas.Size = new System.Drawing.Size(611, 270);
             this.gridFacturas.TabIndex = 2;
             // 
             // fgroup
@@ -287,7 +289,7 @@
             this.mtabBoletas.HorizontalScrollbarSize = 10;
             this.mtabBoletas.Location = new System.Drawing.Point(4, 38);
             this.mtabBoletas.Name = "mtabBoletas";
-            this.mtabBoletas.Size = new System.Drawing.Size(607, 308);
+            this.mtabBoletas.Size = new System.Drawing.Size(607, 291);
             this.mtabBoletas.TabIndex = 1;
             this.mtabBoletas.Text = "Boletas";
             this.mtabBoletas.ToolTipText = "Boletas y Notas";
@@ -433,7 +435,7 @@
             this.mtabBajas.HorizontalScrollbarSize = 10;
             this.mtabBajas.Location = new System.Drawing.Point(4, 38);
             this.mtabBajas.Name = "mtabBajas";
-            this.mtabBajas.Size = new System.Drawing.Size(607, 308);
+            this.mtabBajas.Size = new System.Drawing.Size(607, 291);
             this.mtabBajas.TabIndex = 3;
             this.mtabBajas.Text = "C. de Baja";
             this.mtabBajas.VerticalScrollbarBarColor = true;
@@ -502,7 +504,7 @@
             this.mtabResumen.HorizontalScrollbarSize = 10;
             this.mtabResumen.Location = new System.Drawing.Point(4, 38);
             this.mtabResumen.Name = "mtabResumen";
-            this.mtabResumen.Size = new System.Drawing.Size(607, 308);
+            this.mtabResumen.Size = new System.Drawing.Size(607, 291);
             this.mtabResumen.TabIndex = 2;
             this.mtabResumen.Text = "Resumen";
             this.mtabResumen.VerticalScrollbarBarColor = true;
@@ -571,7 +573,7 @@
             // 
             this.lblStatus.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblStatus.AutoSize = true;
-            this.lblStatus.Location = new System.Drawing.Point(2, 416);
+            this.lblStatus.Location = new System.Drawing.Point(2, 442);
             this.lblStatus.Name = "lblStatus";
             this.lblStatus.Size = new System.Drawing.Size(35, 19);
             this.lblStatus.TabIndex = 1;
@@ -580,7 +582,7 @@
             // spinner
             // 
             this.spinner.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.spinner.Location = new System.Drawing.Point(324, 385);
+            this.spinner.Location = new System.Drawing.Point(324, 411);
             this.spinner.Maximum = 100;
             this.spinner.Name = "spinner";
             this.spinner.Size = new System.Drawing.Size(60, 50);
@@ -590,12 +592,11 @@
             // 
             // btnSync
             // 
-            this.btnSync.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSync.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnSync.Image = global::Homologador.Properties.Resources.Sincronizar;
-            this.btnSync.Location = new System.Drawing.Point(570, 39);
+            this.btnSync.Location = new System.Drawing.Point(105, 55);
             this.btnSync.Name = "btnSync";
-            this.btnSync.Size = new System.Drawing.Size(32, 33);
+            this.btnSync.Size = new System.Drawing.Size(38, 34);
             this.btnSync.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.btnSync.TabIndex = 6;
             this.btnSync.TabStop = false;
@@ -606,9 +607,9 @@
             this.btnSetting.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSetting.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnSetting.Image = global::Homologador.Properties.Resources.ajustes;
-            this.btnSetting.Location = new System.Drawing.Point(608, 39);
+            this.btnSetting.Location = new System.Drawing.Point(599, 55);
             this.btnSetting.Name = "btnSetting";
-            this.btnSetting.Size = new System.Drawing.Size(32, 33);
+            this.btnSetting.Size = new System.Drawing.Size(35, 34);
             this.btnSetting.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.btnSetting.TabIndex = 5;
             this.btnSetting.TabStop = false;
@@ -617,10 +618,10 @@
             // btnRun
             // 
             this.btnRun.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnRun.Image = global::Homologador.Properties.Resources.play;
-            this.btnRun.Location = new System.Drawing.Point(281, 19);
+            this.btnRun.Image = global::Homologador.Properties.Resources.reproducir;
+            this.btnRun.Location = new System.Drawing.Point(25, 55);
             this.btnRun.Name = "btnRun";
-            this.btnRun.Size = new System.Drawing.Size(40, 37);
+            this.btnRun.Size = new System.Drawing.Size(34, 34);
             this.btnRun.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.btnRun.TabIndex = 3;
             this.btnRun.TabStop = false;
@@ -628,22 +629,35 @@
             // 
             // pictGithub
             // 
-            this.pictGithub.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictGithub.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.pictGithub.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictGithub.Image = global::Homologador.Properties.Resources.github;
-            this.pictGithub.Location = new System.Drawing.Point(346, 20);
+            this.pictGithub.Location = new System.Drawing.Point(340, 19);
             this.pictGithub.Name = "pictGithub";
-            this.pictGithub.Size = new System.Drawing.Size(32, 33);
+            this.pictGithub.Size = new System.Drawing.Size(34, 37);
             this.pictGithub.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictGithub.TabIndex = 7;
             this.pictGithub.TabStop = false;
             this.pictGithub.Click += new System.EventHandler(this.pictGithub_Click);
             // 
+            // pictSendAll
+            // 
+            this.pictSendAll.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictSendAll.Image = global::Homologador.Properties.Resources.play_double;
+            this.pictSendAll.Location = new System.Drawing.Point(65, 55);
+            this.pictSendAll.Name = "pictSendAll";
+            this.pictSendAll.Size = new System.Drawing.Size(34, 34);
+            this.pictSendAll.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictSendAll.TabIndex = 8;
+            this.pictSendAll.TabStop = false;
+            this.pictSendAll.Click += new System.EventHandler(this.pictSendAll_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(661, 436);
+            this.ClientSize = new System.Drawing.Size(661, 462);
+            this.Controls.Add(this.pictSendAll);
             this.Controls.Add(this.pictGithub);
             this.Controls.Add(this.btnSync);
             this.Controls.Add(this.btnSetting);
@@ -671,6 +685,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnSetting)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnRun)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictGithub)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictSendAll)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -719,5 +734,6 @@
         private System.Windows.Forms.DataGridViewCheckBoxColumn bnotadb;
         private System.Windows.Forms.DataGridViewTextBoxColumn bestado;
         private System.Windows.Forms.PictureBox pictGithub;
+        private System.Windows.Forms.PictureBox pictSendAll;
     }
 }

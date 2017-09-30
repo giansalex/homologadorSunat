@@ -117,27 +117,27 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="SettingFilenamDefault" xml:space="preserve">
-    <value>homologador_settings.json</value>
+  <data name="GibhubLinkProject" xml:space="preserve">
+    <value>https://github.com/giansalex/homologadorSunat</value>
+  </data>
+  <data name="FileFilterJson" xml:space="preserve">
+    <value>Json Files (*.json)|*.json|All Files (*.*)|*.*</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="play" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\play.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="play_double" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\play_double.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="SettingFilterFilesPfx" xml:space="preserve">
-    <value>Pfx Files (*.pfx)|*.pfx</value>
+  <data name="ajustes" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ajustes.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SettingTitleSucces" xml:space="preserve">
+    <value>Exito</value>
   </data>
   <data name="SettingTitleError" xml:space="preserve">
     <value>Error</value>
   </data>
-  <data name="SettingMsgLoadSuccess" xml:space="preserve">
-    <value>Configuración Cargada</value>
-  </data>
-  <data name="SettingMsgSaved" xml:space="preserve">
-    <value>Configuracion Guardada</value>
-  </data>
-  <data name="SettingTitleSucces" xml:space="preserve">
-    <value>Exito</value>
+  <data name="play" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\play.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Sincronizar" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Sincronizar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -145,19 +145,25 @@
   <data name="Factura50" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Factura50.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="FileFilterJson" xml:space="preserve">
-    <value>Json Files (*.json)|*.json|All Files (*.*)|*.*</value>
+  <data name="github" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\github.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="ajustes" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ajustes.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="SettingMsgSaved" xml:space="preserve">
+    <value>Configuracion Guardada</value>
+  </data>
+  <data name="SettingMsgLoadSuccess" xml:space="preserve">
+    <value>Configuración Cargada</value>
   </data>
   <data name="SettingMsgLoadError" xml:space="preserve">
     <value>No se pudo cargar la configuracion</value>
   </data>
-  <data name="github" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\github.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="SettingFilenamDefault" xml:space="preserve">
+    <value>homologador_settings.json</value>
   </data>
-  <data name="GibhubLinkProject" xml:space="preserve">
-    <value>https://github.com/giansalex/homologadorSunat</value>
+  <data name="SettingFilterFilesPfx" xml:space="preserve">
+    <value>Pfx Files (*.pfx)|*.pfx</value>
+  </data>
+  <data name="reproducir" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\reproducir.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

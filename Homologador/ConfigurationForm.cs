@@ -11,6 +11,7 @@ namespace Homologador
 {
     public partial class ConfigurationForm : MetroForm
     {
+
         public ConfigurationForm()
         {
             InitializeComponent();
@@ -77,7 +78,8 @@ namespace Homologador
                 sett.Certificado = Convert.ToBase64String(bytes);
             }
             Settings.Default.Save();
-            Close();
+
+            DialogResult = DialogResult.OK;
         }
 
         private bool ValidarCredenciales()
