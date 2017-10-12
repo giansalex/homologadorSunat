@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using FacturacionElectronica.GeneradorXml.Entity;
@@ -15,6 +16,7 @@ using MetroFramework;
 using MetroFramework.Controls;
 using MetroFramework.Forms;
 using Newtonsoft.Json.Linq;
+using Squirrel;
 
 namespace Homologador
 {
@@ -73,6 +75,8 @@ namespace Homologador
             try
             {
                 InitLoad();
+                await UpdateApp();
+
                 var sett = Settings.Default;
                 UriProvider.IsProveedor = sett.EsProveedor;
                 if (string.IsNullOrWhiteSpace(sett.Ruc)
@@ -95,6 +99,15 @@ namespace Homologador
             Invoke(new MethodInvoker(() => spinner.Visible = false));
         }
 
+        private async Task UpdateApp()
+        {
+            using (var mgr = UpdateManager.GitHubUpdateManager(Resources.GibhubLinkProject))
+            {
+                await mgr.Result.UpdateApp();
+            }
+            var assembly = Assembly.GetExecutingAssembly();
+            lblVersion.Text = assembly.GetName().Version.ToString(3);
+        }
         private void InitLoad()
         {
             spinner.Visible = true;

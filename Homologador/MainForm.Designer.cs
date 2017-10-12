@@ -79,6 +79,7 @@
             this.pictGithub = new System.Windows.Forms.PictureBox();
             this.pictSendAll = new System.Windows.Forms.PictureBox();
             this.mtToolTip = new MetroFramework.Components.MetroToolTip();
+            this.lblVersion = new MetroFramework.Controls.MetroLabel();
             this.tbDocs.SuspendLayout();
             this.mtabFacturas.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridFacturas)).BeginInit();
@@ -667,11 +668,22 @@
             this.mtToolTip.StyleManager = null;
             this.mtToolTip.Theme = MetroFramework.MetroThemeStyle.Light;
             // 
+            // lblVersion
+            // 
+            this.lblVersion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblVersion.Location = new System.Drawing.Point(582, 437);
+            this.lblVersion.Name = "lblVersion";
+            this.lblVersion.Size = new System.Drawing.Size(54, 19);
+            this.lblVersion.TabIndex = 9;
+            this.lblVersion.Text = "v1";
+            this.lblVersion.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(661, 462);
+            this.Controls.Add(this.lblVersion);
             this.Controls.Add(this.pictSendAll);
             this.Controls.Add(this.pictGithub);
             this.Controls.Add(this.btnSync);
@@ -751,5 +763,6 @@
         private System.Windows.Forms.PictureBox pictGithub;
         private System.Windows.Forms.PictureBox pictSendAll;
         private MetroFramework.Components.MetroToolTip mtToolTip;
+        private MetroFramework.Controls.MetroLabel lblVersion;
     }
 }
