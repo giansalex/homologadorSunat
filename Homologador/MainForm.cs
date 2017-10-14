@@ -101,12 +101,45 @@ namespace Homologador
 
         private async Task UpdateApp()
         {
-            using (var mgr = UpdateManager.GitHubUpdateManager(Resources.GibhubLinkProject))
+            try
             {
-                await mgr.Result.UpdateApp();
+                var assembly = Assembly.GetExecutingAssembly();
+                lblVersion.Text = assembly.GetName().Version.ToString(3);
+
+                using (var mgr = await UpdateManager.GitHubUpdateManager(Resources.GibhubLinkProject))
+                {
+                    var updates = await mgr.CheckForUpdate();
+                    var lastVersion = updates?.ReleasesToApply?.OrderBy(x => x.Version).LastOrDefault();
+                    if (lastVersion == null)
+                    {
+                        return;
+                    }
+
+                    if (MetroMessageBox.Show(this, string.Format(Resources.MsgFormatUpdateAvailable, lastVersion.Version),
+                            Resources.MsgUpdateAvaliableTitle, MessageBoxButtons.OKCancel, MessageBoxIcon.Question) != DialogResult.OK)
+                    {
+                        return;
+                    }
+
+#if DEBUG
+                    SuccessBox("DEBUG: Don't actually perform the update in debug mode");
+        }
+#else
+                    await mgr.DownloadReleases(new[] { lastVersion });
+                    await mgr.ApplyReleases(updates);
+                    await mgr.UpdateApp();
+
+                    SuccessBox(Resources.MsgRestartAfterUpdate);
+
+                }
+
+                UpdateManager.RestartApp();
+#endif
             }
-            var assembly = Assembly.GetExecutingAssembly();
-            lblVersion.Text = assembly.GetName().Version.ToString(3);
+            catch (Exception e)
+            {
+                ErrorBox("Update check failed with an exception: " + e.Message);
+            }
         }
         private void InitLoad()
         {

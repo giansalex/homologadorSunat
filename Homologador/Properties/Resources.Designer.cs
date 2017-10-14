@@ -19,7 +19,7 @@ namespace Homologador.Properties {
     // a través de una herramienta como ResGen o Visual Studio.
     // Para agregar o quitar un miembro, edite el archivo .ResX y, a continuación, vuelva a ejecutar ResGen
     // con la opción /str o recompile su proyecto de VS.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
@@ -105,6 +105,33 @@ namespace Homologador.Properties {
             get {
                 object obj = ResourceManager.GetObject("github", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a La versión {0} esta lista para ser instalada. Quiere actualizar en este momento?.
+        /// </summary>
+        internal static string MsgFormatUpdateAvailable {
+            get {
+                return ResourceManager.GetString("MsgFormatUpdateAvailable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a La aplicación ha sido actualizada, la aplicación se reiniciará..
+        /// </summary>
+        internal static string MsgRestartAfterUpdate {
+            get {
+                return ResourceManager.GetString("MsgRestartAfterUpdate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Actualización Disponible.
+        /// </summary>
+        internal static string MsgUpdateAvaliableTitle {
+            get {
+                return ResourceManager.GetString("MsgUpdateAvaliableTitle", resourceCulture);
             }
         }
         
