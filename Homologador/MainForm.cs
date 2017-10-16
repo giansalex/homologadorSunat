@@ -67,6 +67,7 @@ namespace Homologador
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            Task.Factory.StartNew(async () => await UpdateApp());
             Init();
         }
 
@@ -75,7 +76,8 @@ namespace Homologador
             try
             {
                 InitLoad();
-                await UpdateApp();
+                var assembly = Assembly.GetExecutingAssembly();
+                lblVersion.Text = assembly.GetName().Version.ToString(3);
 
                 var sett = Settings.Default;
                 UriProvider.IsProveedor = sett.EsProveedor;
@@ -103,9 +105,6 @@ namespace Homologador
         {
             try
             {
-                var assembly = Assembly.GetExecutingAssembly();
-                lblVersion.Text = assembly.GetName().Version.ToString(3);
-
                 using (var mgr = await UpdateManager.GitHubUpdateManager(Resources.GibhubLinkProject))
                 {
                     var updates = await mgr.CheckForUpdate();
