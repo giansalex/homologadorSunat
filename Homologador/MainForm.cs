@@ -119,7 +119,7 @@ namespace Homologador
                     {
                         return;
                     }
-
+                    ConfigHelper.BackupSettings();
 #if DEBUG
                     SuccessBox("DEBUG: Don't actually perform the update in debug mode");
         }
@@ -127,7 +127,7 @@ namespace Homologador
                     await mgr.DownloadReleases(new[] { lastVersion });
                     await mgr.ApplyReleases(updates);
                     await mgr.UpdateApp();
-
+                    ConfigHelper.RestoreSettings();
                     SuccessBox(Resources.MsgRestartAfterUpdate);
 
                 }

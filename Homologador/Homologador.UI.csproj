@@ -96,6 +96,7 @@
       <HintPath>..\packages\squirrel.windows.1.7.8\lib\Net45\Squirrel.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -109,6 +110,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Caso.cs" />
+    <Compile Include="ConfigHelper.cs" />
     <Compile Include="ConfigurationForm.cs">
       <SubType>Form</SubType>
     </Compile>
