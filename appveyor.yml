@@ -3,7 +3,7 @@ configuration: Release
 before_build:
   - nuget sources Add -Name "MyNugetServer" -Source %NUGET_SOURCE% -UserName %NUGET_USER% -Password %NUGET_PASS%
   - nuget source Enable -Name "MyNugetServer"
-  - nuget restore Homologador.sln -Source https://nuget.org/api/v2/ -Source %NUGET_SOURCE%
+  - nuget restore Homologador.sln -Source https://nuget.org/api/v2/
 
 build:
   verbosity: minimal
