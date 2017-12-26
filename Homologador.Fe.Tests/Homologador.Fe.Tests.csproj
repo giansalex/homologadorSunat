@@ -36,7 +36,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="FacturacionElectronica.GeneradorXml, Version=1.0.0.0, Culture=neutral, PublicKeyToken=4730f6f819969f08, processorArchitecture=MSIL">
-      <HintPath>..\packages\FacturacionElectronica.GeneradorXml.1.0.1\lib\net40\FacturacionElectronica.GeneradorXml.dll</HintPath>
+      <HintPath>..\packages\FacturacionElectronica.GeneradorXml.1.0.2\lib\net40\FacturacionElectronica.GeneradorXml.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Gs.Ubl, Version=1.0.0.0, Culture=neutral, PublicKeyToken=4730f6f819969f08, processorArchitecture=MSIL">
