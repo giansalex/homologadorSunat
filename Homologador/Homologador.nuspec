@@ -11,27 +11,7 @@
         <language>es-PE</language>
     </metadata>
     <files>
-        <file src="bin\Release\DeltaCompressionDotNet.dll" target="lib\net45\DeltaCompressionDotNet.dll" />
-        <file src="bin\Release\DeltaCompressionDotNet.MsDelta.dll" target="lib\net45\DeltaCompressionDotNet.MsDelta.dll" />
-        <file src="bin\Release\DeltaCompressionDotNet.PatchApi.dll" target="lib\net45\DeltaCompressionDotNet.PatchApi.dll" />
-        <file src="bin\Release\FacturacionElectronica.GeneradorXml.dll" target="lib\net45\FacturacionElectronica.GeneradorXml.dll" />
-        <file src="bin\Release\FacturacionElectronica.Homologacion.dll" target="lib\net45\FacturacionElectronica.Homologacion.dll" />
-        <file src="bin\Release\Gs.Ubl.dll" target="lib\net45\Gs.Ubl.dll" />
         <file src="bin\Release\Homologador.exe" target="lib\net45\Homologador.exe" />
         <file src="bin\Release\Homologador.exe.config" target="lib\net45\Homologador.exe.config" />
-        <file src="bin\Release\Homologador.Fe.dll" target="lib\net45\Homologador.Fe.dll" />
-        <file src="bin\Release\Ionic.Zip.Reduced.dll" target="lib\net45\Ionic.Zip.Reduced.dll" />
-        <file src="bin\Release\MetroFramework.Design.dll" target="lib\net45\MetroFramework.Design.dll" />
-        <file src="bin\Release\MetroFramework.dll" target="lib\net45\MetroFramework.dll" />
-        <file src="bin\Release\MetroFramework.Fonts.dll" target="lib\net45\MetroFramework.Fonts.dll" />
-        <file src="bin\Release\Mono.Cecil.dll" target="lib\net45\Mono.Cecil.dll" />
-        <file src="bin\Release\Mono.Cecil.Mdb.dll" target="lib\net45\Mono.Cecil.Mdb.dll" />
-        <file src="bin\Release\Mono.Cecil.Pdb.dll" target="lib\net45\Mono.Cecil.Pdb.dll" />
-        <file src="bin\Release\Mono.Cecil.Rocks.dll" target="lib\net45\Mono.Cecil.Rocks.dll" />
-        <file src="bin\Release\Newtonsoft.Json.dll" target="lib\net45\Newtonsoft.Json.dll" />
-        <file src="bin\Release\NuGet.Squirrel.dll" target="lib\net45\NuGet.Squirrel.dll" />
-        <file src="bin\Release\SharpCompress.dll" target="lib\net45\SharpCompress.dll" />
-        <file src="bin\Release\Splat.dll" target="lib\net45\Splat.dll" />
-        <file src="bin\Release\Squirrel.dll" target="lib\net45\Squirrel.dll" />
     </files>
 </package>

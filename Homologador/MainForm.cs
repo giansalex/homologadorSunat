@@ -20,6 +20,9 @@ using Squirrel;
 
 namespace Homologador
 {
+    /// <summary>
+    /// Class MainForm.
+    /// </summary>
     public partial class MainForm : MetroForm
     {
         private SunatApi _auth;
@@ -122,7 +125,7 @@ namespace Homologador
                     ConfigHelper.BackupSettings();
 #if DEBUG
                     SuccessBox("DEBUG: Don't actually perform the update in debug mode");
-        }
+                }
 #else
                     await mgr.DownloadReleases(new[] { lastVersion });
                     await mgr.ApplyReleases(updates);
@@ -184,7 +187,7 @@ namespace Homologador
             var fgenerator = new FacturaGenerator()
                     .ToCompany(_company)
                     .ForDoc("01");
-            
+
             foreach (DataGridViewRow row in rows)
             {
                 if (row.Cells["festado"].Value.ToString()
@@ -317,7 +320,7 @@ namespace Homologador
 
         private async Task Baja_Run()
         {
-            int cant ;
+            int cant;
             if (!int.TryParse(mtxtBajaCant.Text, out cant))
             {
                 MetroMessageBox.Show(this, "Numero de items invalido", "Error");
@@ -346,7 +349,7 @@ namespace Homologador
             if (string.IsNullOrEmpty(numpr))
             {
                 Alert("No se encontro ningún proceso de homologación vigente");
-                return;    
+                return;
             }
 
             var json = await _auth.GetPruebas(numpr);
@@ -382,7 +385,7 @@ namespace Homologador
                 mtabBoletas.Visible = false;
                 mtabResumen.Visible = false;
             }
-            
+
         }
         private void LoadFacs(JArray facturas)
         {
@@ -398,18 +401,18 @@ namespace Homologador
                     lblStateBaja.Text = (string)casos.First["estado"];
                     continue;
                 }
-                
+
                 var subGroup = new List<Caso>();
                 foreach (var caso1 in casos)
                 {
                     var desc = (string)caso1["descaso"];
                     var isNota = desc.StartsWith("NOTA", StringComparison.InvariantCultureIgnoreCase);
                     var num = GetNumItems(desc, isNota);
-                    var state = (string) caso1["estado"];
+                    var state = (string)caso1["estado"];
                     if (isNota)
                     {
                         if (state.Equals("Aprobado", StringComparison.InvariantCultureIgnoreCase)) continue;
-                        
+
                         if (desc.Contains("dito")) // credito
                             subGroup[num - 1].HasNotaCredit = true;
                         else
@@ -451,7 +454,7 @@ namespace Homologador
                     lblStateResumen.Text = (string)casos.First["estado"];
                     continue;
                 }
-                
+
                 var subGroup = new List<Caso>();
                 foreach (var caso1 in casos)
                 {
@@ -538,7 +541,7 @@ namespace Homologador
         private void Alert(string msg)
         {
             MetroMessageBox.Show(this, msg, "Alert!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-        } 
+        }
         #endregion
 
         private void Status(string msg)
@@ -643,7 +646,7 @@ namespace Homologador
                 var ncr = gn.BuildNdb();
                 row.Cells[sufx + "notadb"].Value = !(await mng.Send(ncr)).Success;
             }
-            
+
         }
 
         private InvoiceHeader CreateInvoiceForNote(string tipo, string serie, string correlativo)
