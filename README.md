@@ -1,6 +1,6 @@
 # Homologador - Facturación Electrónica - SUNAT
 [![AppVeyor](https://ci.appveyor.com/api/projects/status/ha6hpsh9075xbseh?svg=true)](https://ci.appveyor.com/project/giansalex/homologadorsunat) [![Travis-CI](https://travis-ci.org/giansalex/homologadorSunat.svg?branch=master)](https://travis-ci.org/giansalex/homologadorSunat)   
-Herramienta para la homologación para Emisores y Proveedores de servicios electrónicos en Facturación Electrónica - PERU
+Herramienta para la homologación de Emisores y Proveedores de servicios electrónicos en Facturación Electrónica - PERU
 
 ![Alt text](/Third/formulario.png?raw=true "Pagina Principal de Homologador")
 
@@ -33,6 +33,9 @@ GRUPO                | TIPO DE DOCUMENTO    | SERIE | Descripcion
 22 :heavy_check_mark:| Boletas y Notas      | BB50  | Boletas de Venta sujetas a Percepción
 23 :heavy_check_mark:| Boletas y Notas      | BB90  | Boletas de venta con datos no tributarios
 24 :heavy_check_mark:| Boletas y Notas      | B100  | Boletas de venta – emisor itineranteón
+
+## Nota
+Para los contribuyentes que quieren convertirse en emisores electronicos, SUNAT segun la resolución de superintendencia [n° 287-2017](http://www.sunat.gob.pe/legislacion/superin/2017/287-2017.pdf) elimina la presentación de la solicitud de autorización así como el procedimiento de homologación. 
 
 ## Video Demostrativo ##
 [![Alt text](/Third/demostracion-video-homologador.png?raw=true "Youtube Homologador")](https://youtu.be/x1zJROi-qvM)
