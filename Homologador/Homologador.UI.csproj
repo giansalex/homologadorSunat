@@ -51,12 +51,10 @@
       <HintPath>..\packages\DeltaCompressionDotNet.1.1.0\lib\net20\DeltaCompressionDotNet.PatchApi.dll</HintPath>
     </Reference>
     <Reference Include="FacturacionElectronica.GeneradorXml, Version=1.0.0.0, Culture=neutral, PublicKeyToken=4730f6f819969f08, processorArchitecture=MSIL">
-      <HintPath>..\packages\FacturacionElectronica.GeneradorXml.1.0.2\lib\net40\FacturacionElectronica.GeneradorXml.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\packages\FacturacionElectronica.GeneradorXml.1.0.6\lib\net40\FacturacionElectronica.GeneradorXml.dll</HintPath>
     </Reference>
     <Reference Include="Gs.Ubl, Version=1.0.0.0, Culture=neutral, PublicKeyToken=4730f6f819969f08, processorArchitecture=MSIL">
-      <HintPath>..\packages\Gs.Ubl.1.0.2\lib\net40\Gs.Ubl.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\packages\Gs.Ubl.1.0.3\lib\net40\Gs.Ubl.dll</HintPath>
     </Reference>
     <Reference Include="Ionic.Zip.Reduced, Version=1.9.1.8, Culture=neutral, PublicKeyToken=edbe51ad942a3f5c, processorArchitecture=MSIL">
       <HintPath>..\packages\DotNetZip.Reduced.1.9.1.8\lib\net20\Ionic.Zip.Reduced.dll</HintPath>
