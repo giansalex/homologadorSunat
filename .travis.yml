@@ -5,5 +5,5 @@ install:
   - nuget source Enable -Name "MyNugetServer"
   - nuget restore Homologador.sln -Source https://nuget.org/api/v2/
 script:
-  - xbuild /p:Configuration=Release Homologador.Fe/Homologador.Fe.csproj
-  - xbuild /p:Configuration=Release Homologador/Homologador.UI.csproj
+  - xbuild /p:Configuration=Debug Homologador.Fe/Homologador.Fe.csproj
+  - xbuild /p:Configuration=Debug Homologador/Homologador.UI.csproj
