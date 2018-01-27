@@ -1,9 +1,0 @@
-language: csharp
-solution: Homologador.sln
-install:
-  - nuget sources Add -Name "MyNugetServer" -Source $NUGET_SOURCE -UserName $NUGET_USER -Password $NUGET_PASS
-  - nuget source Enable -Name "MyNugetServer"
-  - nuget restore Homologador.sln -Source https://nuget.org/api/v2/
-script:
-  - xbuild /p:Configuration=Debug Homologador.Fe/Homologador.Fe.csproj
-  - xbuild /p:Configuration=Debug Homologador/Homologador.UI.csproj
