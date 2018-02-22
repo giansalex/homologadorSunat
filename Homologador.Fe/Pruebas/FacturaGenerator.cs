@@ -69,7 +69,8 @@ namespace Homologador.Fe.Pruebas
                 CodigoMoneda = _grupo == GrupoPrueba.OtrasMonedas ? "USD" : "PEN",
                 DetallesDocumento = new List<InvoiceDetail>(_lines),
                 Impuesto = new List<TotalImpuestosType>(),
-                DireccionEmisor = GetDireccion()
+                DireccionEmisor = GetDireccion(),
+                Compra = "000023"
             };
 
             SetCustomBodyByGroup(header);
