@@ -51,7 +51,8 @@
       <HintPath>..\packages\DeltaCompressionDotNet.1.1.0\lib\net20\DeltaCompressionDotNet.PatchApi.dll</HintPath>
     </Reference>
     <Reference Include="FacturacionElectronica.GeneradorXml, Version=1.0.0.0, Culture=neutral, PublicKeyToken=4730f6f819969f08, processorArchitecture=MSIL">
-      <HintPath>..\packages\FacturacionElectronica.GeneradorXml.1.0.6\lib\net40\FacturacionElectronica.GeneradorXml.dll</HintPath>
+      <HintPath>..\packages\FacturacionElectronica.GeneradorXml.1.0.7\lib\net40\FacturacionElectronica.GeneradorXml.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Gs.Ubl, Version=1.0.0.0, Culture=neutral, PublicKeyToken=4730f6f819969f08, processorArchitecture=MSIL">
       <HintPath>..\packages\Gs.Ubl.1.0.3\lib\net40\Gs.Ubl.dll</HintPath>
@@ -88,11 +89,13 @@
       <HintPath>..\packages\Mono.Cecil.0.9.6.4\lib\net45\Mono.Cecil.Rocks.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="NuGet.Squirrel, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\squirrel.windows.1.7.8\lib\Net45\NuGet.Squirrel.dll</HintPath>
+      <HintPath>..\packages\squirrel.windows.1.7.9\lib\Net45\NuGet.Squirrel.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="SharpCompress, Version=0.19.2.0, Culture=neutral, PublicKeyToken=afb0a02973931d96, processorArchitecture=MSIL">
       <HintPath>..\packages\SharpCompress.0.19.2\lib\net45\SharpCompress.dll</HintPath>
@@ -102,8 +105,9 @@
       <HintPath>..\packages\Splat.2.0.0\lib\Net45\Splat.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Squirrel, Version=1.7.8.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\squirrel.windows.1.7.8\lib\Net45\Squirrel.dll</HintPath>
+    <Reference Include="Squirrel, Version=1.7.9.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\squirrel.windows.1.7.9\lib\Net45\Squirrel.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
@@ -192,10 +196,10 @@
       <ErrorText>Este proyecto hace referencia a los paquetes NuGet que faltan en este equipo. Use la restauración de paquetes NuGet para descargarlos. Para obtener más información, consulte http://go.microsoft.com/fwlink/?LinkID=322105. El archivo que falta es {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Costura.Fody.1.6.2\build\dotnet\Costura.Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Costura.Fody.1.6.2\build\dotnet\Costura.Fody.targets'))" />
-    <Error Condition="!Exists('..\packages\Fody.2.3.20\build\Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Fody.2.3.20\build\Fody.targets'))" />
+    <Error Condition="!Exists('..\packages\Fody.2.4.2\build\Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Fody.2.4.2\build\Fody.targets'))" />
   </Target>
   <Import Project="..\packages\Costura.Fody.1.6.2\build\dotnet\Costura.Fody.targets" Condition="Exists('..\packages\Costura.Fody.1.6.2\build\dotnet\Costura.Fody.targets') And '$(Configuration)' == 'Release'" />
-  <Import Project="..\packages\Fody.2.3.20\build\Fody.targets" Condition="Exists('..\packages\Fody.2.3.20\build\Fody.targets')" />
+  <Import Project="..\packages\Fody.2.4.2\build\Fody.targets" Condition="Exists('..\packages\Fody.2.4.2\build\Fody.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
