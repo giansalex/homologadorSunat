@@ -70,7 +70,8 @@ namespace Homologador.Fe.Pruebas
                 DetallesDocumento = new List<InvoiceDetail>(_lines),
                 Impuesto = new List<TotalImpuestosType>(),
                 DireccionEmisor = GetDireccion(),
-                Compra = "000023"
+                Compra = "000023",
+                CorreoCliente = "admin@gmail.com"
             };
 
             SetCustomBodyByGroup(header);
