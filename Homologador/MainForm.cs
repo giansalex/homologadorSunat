@@ -5,6 +5,7 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Autofac;
 using FacturacionElectronica.GeneradorXml.Entity;
 using Homologador.Fe.Auth;
 using Homologador.Fe.Manage;
@@ -28,6 +29,7 @@ namespace Homologador
         private SunatApi _auth;
         private Action<string> Success;
         private Action<string> Error;
+        private readonly ILifetimeScope _lifetimeScope;
 
         private Company _company
         {
@@ -59,7 +61,7 @@ namespace Homologador
             }
         }
 
-        public MainForm()
+        public MainForm(ILifetimeScope lifetimeScope)
         {
             InitializeComponent();
             Success = SuccessBox;
@@ -512,7 +514,7 @@ namespace Homologador
 
         private void btnSetting_Click(object sender, EventArgs e)
         {
-            using (var frm = new ConfigurationForm())
+            using (var frm = _lifetimeScope.Resolve<ConfigurationForm>())
             {
                 var result = frm.ShowDialog(this);
                 var sett = Settings.Default;
