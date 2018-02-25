@@ -10,9 +10,6 @@ namespace Homologador.Config
         public static IContainer BootStrap()
         {
             var builder = new ContainerBuilder();
-            builder.RegisterType<StudentRepository>()
-                .As<IModelRepository<WindowsApp.Models.Student>>()
-                .InstancePerDependency();
 
             var assembly = Assembly.GetExecutingAssembly();
             builder.RegisterAssemblyTypes(assembly)

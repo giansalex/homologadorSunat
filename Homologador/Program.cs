@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Autofac;
+using Homologador.Config;
+using System;
 using System.Windows.Forms;
 
 namespace Homologador
@@ -13,7 +15,10 @@ namespace Homologador
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainForm());
+
+            var container = AutoFacConfig.BootStrap();
+
+            Application.Run(container.Resolve<MainForm>());
         }
     }
 }
