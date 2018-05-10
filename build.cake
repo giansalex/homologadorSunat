@@ -1,3 +1,6 @@
+#addin "nuget:?package=Cake.Sonar"
+#tool "nuget:?package=MSBuild.SonarQube.Runner.Tool"
+
 ///////////////////////////////////////////////////////////////////////////////
 // ARGUMENTS
 ///////////////////////////////////////////////////////////////////////////////
@@ -60,6 +63,31 @@ Task("Build")
         settings.SetConfiguration(configuration));
     }
 });
+
+Task("Sonar")
+  .IsDependentOn("SonarBegin")
+  .IsDependentOn("Build")
+  .IsDependentOn("SonarEnd");
+ 
+Task("SonarBegin")
+  .Does(() => {
+     SonarBegin(new SonarBeginSettings {
+        Url = "http://localhost:8090",
+        Name = "Homologador",
+        Key = "default",
+        Login = "admin",
+        Password = "admin",
+        Verbose = true
+     });
+  });
+
+Task("SonarEnd")
+  .Does(() => {
+     SonarEnd(new SonarEndSettings {
+        Login = "admin",
+        Password = "admin",
+     });
+  });
 
 Task("Default")
     .IsDependentOn("build");
