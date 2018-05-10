@@ -71,13 +71,13 @@ namespace Homologador
             Load += MainForm_Load;
         }
 
-        private void MainForm_Load(object sender, EventArgs e)
+        private async void MainForm_Load(object sender, EventArgs e)
         {
-            Task.Factory.StartNew(async () => await UpdateApp());
-            Init();
+            await UpdateApp();
+            await Init();
         }
 
-        private async void Init()
+        private async Task Init()
         {
             try
             {
@@ -513,7 +513,7 @@ namespace Homologador
             return int.Parse(isNota ? arrs[arrs.Length - 1] : arrs[arrs.Length - 2]);
         }
 
-        private void btnSetting_Click(object sender, EventArgs e)
+        private async void btnSetting_Click(object sender, EventArgs e)
         {
             using (var frm = _lifetimeScope.Resolve<ConfigurationForm>())
             {
@@ -528,7 +528,9 @@ namespace Homologador
                 }
 
                 if (result == DialogResult.OK)
-                    Init();
+                {
+                    await Init();
+                }
             }
         }
 
@@ -577,9 +579,9 @@ namespace Homologador
             e.Cancel = true;
         }
 
-        private void btnSync_Click(object sender, EventArgs e)
+        private async void btnSync_Click(object sender, EventArgs e)
         {
-            Init();
+            await Init();
         }
 
         private void pictGithub_Click(object sender, EventArgs e)
