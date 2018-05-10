@@ -67,6 +67,7 @@ namespace Homologador
             Success = SuccessBox;
             Error = ErrorBox;
             Theme = MetroThemeStyle.Dark;
+            _lifetimeScope = lifetimeScope;
             Load += MainForm_Load;
         }
 

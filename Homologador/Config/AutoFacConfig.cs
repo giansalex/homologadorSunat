@@ -1,6 +1,5 @@
 ﻿using Autofac;
 using MetroFramework.Forms;
-using System.Linq;
 using System.Reflection;
 
 namespace Homologador.Config
