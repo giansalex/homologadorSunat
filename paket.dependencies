@@ -1,0 +1,11 @@
+source https://nuget.org/api/v2/
+source https://nuget.tisoluciones.net.pe/api/v2/
+
+nuget Autofac >= 4.6.2 restriction: >= net45
+nuget Costura.Fody >= 1.6.2 restriction: >= net45
+nuget FacturacionElectronica.GeneradorXml >= 1.0.7 restriction: >= net45
+nuget FacturacionElectronica.Homologacion >= 1.0.1 restriction: >= net45
+nuget MetroModernUI >= 1.4.0.0 restriction: >= net45
+nuget Newtonsoft.Json >= 11.0.1 restriction: >= net45
+nuget squirrel.windows >= 1.7.9 restriction: >= net45
+nuget Splat <= 3.0.0 restriction: >= net45

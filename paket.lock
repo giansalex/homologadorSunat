@@ -1,0 +1,25 @@
+NUGET
+  remote: https://www.nuget.org/api/v2
+    Autofac (4.8.1) - restriction: >= net45
+    Costura.Fody (2.0.1) - restriction: >= net45
+      Fody (>= 3.0.3) - restriction: >= net452
+    DeltaCompressionDotNet (1.1) - restriction: >= net45
+    DotNetZip.Reduced (1.9.1.8) - restriction: >= net45
+    FacturacionElectronica.GeneradorXml (1.0.12) - restriction: >= net45
+      Gs.Ubl (>= 1.0)
+    FacturacionElectronica.Homologacion (1.0.3) - restriction: >= net45
+      DotNetZip.Reduced (>= 1.9.1.8)
+    Fody (3.0.3) - restriction: >= net452
+    Gs.Ubl (1.0.3) - restriction: >= net45
+    MetroModernUI (1.4) - restriction: >= net45
+    Mono.Cecil (0.10) - restriction: >= net45
+    Newtonsoft.Json (11.0.2) - restriction: >= net45
+    SharpCompress (0.21.1) - restriction: >= net45
+    Splat (3.0) - restriction: >= net45
+      System.Drawing.Primitives (>= 4.3) - restriction: || (&& (< monoandroid7.0) (>= netstandard1.1) (< xamarinios) (< xamarinmac)) (>= net45) (>= netstandard2.0) (>= uap10.0)
+    squirrel.windows (1.8) - restriction: >= net45
+      DeltaCompressionDotNet (>= 1.1 < 2.0)
+      Mono.Cecil (>= 0.9.6.1)
+      SharpCompress (>= 0.17.1)
+      Splat (>= 1.6.2)
+    System.Drawing.Primitives (4.3) - restriction: >= net45

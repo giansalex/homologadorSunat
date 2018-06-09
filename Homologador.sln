@@ -3,6 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".paket", ".paket", "{44BED888-97C0-4ABA-97A8-7292A97B936F}"
+	ProjectSection(SolutionItems) = preProject
+		paket.dependencies = paket.dependencies
+	EndProjectSection
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Homologador.UI", "Homologador\Homologador.UI.csproj", "{8E30FB35-1F8C-4DAE-92CC-A959C8C9D6AC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Homologador.Fe", "Homologador.Fe\Homologador.Fe.csproj", "{5A5037C7-9BC3-4F45-95C6-A9F956E1701E}"
