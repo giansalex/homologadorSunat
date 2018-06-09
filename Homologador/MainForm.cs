@@ -111,6 +111,7 @@ namespace Homologador
         {
             try
             {
+                System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Tls12;
                 using (var mgr = await UpdateManager.GitHubUpdateManager(Resources.GibhubLinkProject))
                 {
                     var updates = await mgr.CheckForUpdate();
