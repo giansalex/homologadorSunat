@@ -1,5 +1,7 @@
-#addin "nuget:?package=Cake.Sonar"
-#tool "nuget:?package=MSBuild.SonarQube.Runner.Tool"
+#addin nuget:?package=Cake.Sonar
+#tool nuget:?package=MSBuild.SonarQube.Runner.Tool
+#addin nuget:?package=Cake.Paket
+#tool nuget:?package=Paket
 
 ///////////////////////////////////////////////////////////////////////////////
 // ARGUMENTS
@@ -39,15 +41,15 @@ Task("Clean")
     CleanDirectory(buildDir);
 });
 
-Task("Restore-NuGet-Packages")
+Task("Paket-Restore")
     .IsDependentOn("Clean")
     .Does(() =>
 {
-    NuGetRestore("./Homologador.sln");
+    PaketRestore(new PaketRestoreSettings());
 });
 
 Task("Build")
-    .IsDependentOn("Restore-NuGet-Packages")
+    .IsDependentOn("Paket-Restore")
     .Does(() =>
 {
     if(IsRunningOnWindows())
