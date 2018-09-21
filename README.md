@@ -4,6 +4,13 @@ Herramienta para la homologaci√≥n de Emisores y Proveedores de servicios electr√
 
 ![Alt text](/Third/formulario.png?raw=true "Pagina Principal de Homologador")
 
+## Build
+Clonar el repositorio y dentro de la carpeta, abrir powershell y ejecutar los situientes comandos
+```
+.paket/paket.exe install
+.\build.ps1
+```
+
 ## Grupo de Casos de pruebas soportados ##
 
 
