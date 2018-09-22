@@ -7,7 +7,7 @@ Herramienta para la homologaci√≥n de Emisores y Proveedores de servicios electr√
 ## Build
 Clonar el repositorio y dentro de la carpeta, abrir powershell y ejecutar los situientes comandos
 ```
-.paket/paket.exe install
+.\.paket\paket.exe install
 .\build.ps1
 ```
 
