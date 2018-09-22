@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".paket", ".paket", "{44BED888-97C0-4ABA-97A8-7292A97B936F}"
 	ProjectSection(SolutionItems) = preProject
@@ -14,7 +14,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Homologador.Fe", "Homologad
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Homologador.Fe.Tests", "Homologador.Fe.Tests\Homologador.Fe.Tests.csproj", "{0B414600-C43F-417B-9130-B93780F2FDA7}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{038D1E6D-4980-4D42-888C-32B015D4456C}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{038D1E6D-4980-4D42-888C-32B015D4456C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{41C86ABD-329C-4D2F-BA2E-E674B99EFBB6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,11 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
+		{8E30FB35-1F8C-4DAE-92CC-A959C8C9D6AC} = {41C86ABD-329C-4D2F-BA2E-E674B99EFBB6}
+		{5A5037C7-9BC3-4F45-95C6-A9F956E1701E} = {41C86ABD-329C-4D2F-BA2E-E674B99EFBB6}
 		{0B414600-C43F-417B-9130-B93780F2FDA7} = {038D1E6D-4980-4D42-888C-32B015D4456C}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A6854C88-20B3-4ED9-94DA-E913751741D0}
 	EndGlobalSection
 EndGlobal
