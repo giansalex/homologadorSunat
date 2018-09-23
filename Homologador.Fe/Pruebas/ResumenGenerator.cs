@@ -48,8 +48,9 @@ namespace Homologador.Fe.Pruebas
                     TipoDocumento = TipoDocumentoElectronico.Boleta,
                     TipoDocumentoIdentidadCliente = TipoDocumentoIdentidad.DocumentoNacionalIdentidad,
                     NroDocCliente = "99887766",
-                    Documento = "B001-" + item,
-                    Estado = EstadoResumen.Adicionar,
+                    SerieDocumento = "B00" + item,
+                    NroCorrelativoInicial = "456",
+                    NroCorrelativoFinal = "764",
                     Importe = new List<TotalImporteType>
                     {
                         new TotalImporteType

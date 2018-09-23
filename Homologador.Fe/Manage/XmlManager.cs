@@ -150,7 +150,7 @@ namespace Homologador.Fe.Manage
         }
         private XmlResult XmlForaResumenInternal(SummaryHeader header)
         {
-            var res = _xmlGenerator.GenerarDocumentoSummary(header, true);
+            var res = _xmlGenerator.GenerarDocumentoSummary(header);
 
             return new XmlResult
             {
