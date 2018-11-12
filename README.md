@@ -28,7 +28,7 @@ GRUPO                | TIPO DE DOCUMENTO    | SERIE | Descripcion
 10 :heavy_check_mark:| Boletas y Notas      | BB13  | Ventas Gratuitas
 11 :heavy_check_mark:| Boletas y Notas      | BB14  | Ventas con descuento global
 12 :heavy_check_mark:| Boletas y Notas      | BB50  | Operaciones con otro tipo de moneda
-13 :heavy_check_mark:| Resúmenes Diarios    |   -   | Resumen diario de Boletas
+13 :heavy_check_mark:| Resúmenes Diarios v1 |   -   | Resumen diario de Boletas
 14 :heavy_check_mark:| Comunicación de Baja |   -   | Comunicación de Baja
 15 :heavy_check_mark:| Facturas y Notas     | FF60  | Facturas sujetas a detracción 
 16 :heavy_check_mark:| Facturas y Notas     | FF70  | Facturas con operaciones de comercio exterior 
