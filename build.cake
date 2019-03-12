@@ -1,7 +1,7 @@
-#addin nuget:?package=Cake.Sonar
-#tool nuget:?package=MSBuild.SonarQube.Runner.Tool
-#addin nuget:?package=Cake.Paket
-#tool nuget:?package=Paket
+#addin nuget:?package=Cake.Sonar&version=1.1.18
+#tool nuget:?package=MSBuild.SonarQube.Runner.Tool&version=4.3.1
+#addin nuget:?package=Cake.Paket&version=4.0.0
+#tool nuget:?package=Paket&version=5.181.1
 
 ///////////////////////////////////////////////////////////////////////////////
 // ARGUMENTS
@@ -45,7 +45,7 @@ Task("Paket-Restore")
     .IsDependentOn("Clean")
     .Does(() =>
 {
-    PaketRestore(new PaketRestoreSettings());
+    PaketRestore();
 });
 
 Task("Build")
